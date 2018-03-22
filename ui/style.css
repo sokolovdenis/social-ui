@@ -1,0 +1,153 @@
+body {
+    background-color: #DFD5F5;
+    margin: 0;
+    padding: 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.vertical-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.header {
+    width: 100%;
+    position: fixed;
+    height: 50px;
+    background-color: #602f6b;
+    font-size: 18pt;
+}
+
+.header-container {
+    width: 1200px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    height: 50px;
+    background-color: #602f6b;
+    color: white;
+    font-size: 18pt;
+}
+
+.header-logo {
+    flex-grow: 1;
+    font-weight: 700;
+}
+
+.header-post {
+    width: 70px;
+    height: 30px;
+    text-align: center;
+    background-color: #E8FC3F;
+    color: #602f6b;
+    border-radius: 10px;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: center; */
+    align-items: flex-start;
+    margin-top: 50px;
+}
+
+.nav-container {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    align-items: stretch;
+    margin-right: 10px;
+    margin-left: auto;
+    margin-top: 10px;
+    width: 300px;
+    background-color: white;
+    /* margin: 10px; */
+}
+
+.nav-userinfo-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-end;
+}
+
+.nav-userinfo-pic {
+    width: 80px;
+    height: 80px;
+    border: #602f6b solid 5px;
+    border-radius: 80px;
+    margin: 10px;
+}
+
+.nav-userinfo-name {
+    margin-bottom: 0;
+    margin-top: 0;
+    font-size: 18pt;
+    font-weight: 700;
+}
+
+.nav-userinfo-nick {
+    margin-top: 0;
+    color: grey;
+    font-weight: 700;
+}
+
+.nav-container-labels {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+
+.nav-label {
+    color: grey;
+    font-size: 12pt;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-number {
+    color: #602f6b;
+    font-weight: 700;
+    font-size: 14pt;
+    margin: 0;
+    padding: 0;
+}
+
+.main-container {
+    /* margin-right: auto; */
+    /* margin-left: auto; */
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    width: 600px;
+}
+
+.rightfake {
+    content: "";
+    width: 300px;
+    margin-right: auto;
+    /* margin-left: auto; */
+}
+
+.post {
+    background-color: white;
+    border: #DFD5F5 solid 1px;
+}
+
+@media (max-width: 1200px) {
+    .header-container {
+        width: 100%;
+    }
+    .header-post {
+        margin-right: 15px;
+    }
+    .header-logo {
+        margin-left: 15px;
+    }
+    .nav-container {
+        margin-left: 10px;
+    }
+}
