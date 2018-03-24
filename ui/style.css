@@ -2,7 +2,8 @@ body {
     background-color: #DFD5F5;
     margin: 0;
     padding: 0;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif
+    /* font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
 }
 
 .vertical-container {
@@ -39,7 +40,7 @@ body {
     width: 70px;
     height: 30px;
     text-align: center;
-    background-color: #E8FC3F;
+    background-color: #fff325;
     color: #602f6b;
     border-radius: 10px;
 }
@@ -125,6 +126,8 @@ body {
     width: 600px;
 }
 
+/* TODO: try to use preudo class */
+
 .rightfake {
     content: "";
     width: 300px;
@@ -132,9 +135,103 @@ body {
     /* margin-left: auto; */
 }
 
+.main-createpost {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff325;
+    border: #DFD5F5 solid 1px;
+    padding: 7px;
+    margin-bottom: 10px;
+}
+
+.main-createpost-submit {
+    align-self: flex-end;
+    margin-top: 5px;
+    height: 30px;
+    text-align: center;
+    background-color: #602f6b;
+    color: white;
+    border-radius: 10px;
+    border: 0;
+    font-size: 14pt;
+    font-weight: 600;
+}
+
+input,
+textarea {
+    outline: none;
+}
+
+.main-createpost-uploadimage>input {
+    visibility: hidden;
+    width: 0;
+    height: 0
+}
+
+.main-createpost-bottom {
+    display: flex;
+    justify-content: space-between;
+}
+
+.main-createpost-upladimage-icon {
+    position: relative;
+    top: 3px;
+    height: 36px;
+    width: 36px;
+}
+
+.main-createpost-uploadimage-label {
+    display: inline-block;
+    height: 36px;
+    width: 36px;
+}
+
+.main-createpost-textarea {
+    resize: none;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+    /* margin: 15px; */
+    font-size: 14pt;
+    color: grey;
+    border-radius: 10px;
+}
+
 .post {
     background-color: white;
     border: #DFD5F5 solid 1px;
+}
+
+.post-container {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+}
+
+.post-userpic {
+    width: 60px;
+    height: 60px;
+    background-color: tomato;
+    flex-shrink: 0;
+    border-radius: 30px;
+    margin-right: 10px;
+}
+
+.post-content {
+    font-family: Verdana, Geneva, Tahoma, sans-serif
+}
+
+.post-user-name {
+    margin-bottom: 0;
+    margin-top: 0;
+    font-size: 14pt;
+    font-weight: 600;
+}
+
+.post-user-nick {
+    margin-top: 0;
+    font-size: 14pt;
+    color: grey;
 }
 
 @media (max-width: 1200px) {

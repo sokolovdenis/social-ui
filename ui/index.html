@@ -1,116 +1,140 @@
 <!DOCTYPE HTML>
 <html>
 
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Social UI</title>
-        <link rel="stylesheet" href="style.css" />
-        <style></style>
-    </head>
-    <body>
-        <div class="vertical-container">
-            <div class="header">
-                <header class="header-container">
-                    <div class="header-logo">
-                        Logo
-                    </div>
-                    <!-- <div class="header-userpic">
-                        Userpic
-                    </div> -->
-                    <div class="header-post">
-                        Say!
-                    </div>
-                </header>
-            </div>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Social UI</title>
+    <link rel="stylesheet" href="style.css" />
+    <style></style>
+</head>
 
-            <div class="container">
-
-                <nav class="nav-container">
-                    <div class="nav-userinfo-container">
-                        <img class="nav-userinfo-pic" src="userpic.png">
-                        <d>
-                            <p class="nav-userinfo-name">Maksim Dankovtsev</p>
-                            <p class="nav-userinfo-nick">@max_dankow</p>
-                        </d>
-                    </div>
-                    <div class="nav-container-labels">
-                        <d>
-                            <p class="nav-label">Tweets</p>
-                            <p class="nav-number">23</p>
-                        </d>
-                        <d>
-                            <p class="nav-label">Following</p>
-                            <p class="nav-number">238</p>
-                        </d>
-                        <d>
-                            <p class="nav-label">Followers</p>
-                            <p class="nav-number">12</p>
-                        </d>
-                    </div>
-                </nav>
-
-                <main class="main-container">
-                    <div class="post" style="height:130px">
-                        Content
-                    </div>
-
-                    <div class="post" style="height:90px">
-                        Content
-                    </div>
-
-                    <div class="post" style="height:110px">
-                        Content
-                    </div>
-                    <div class="post" style="height:130px">
-                        Content
-                    </div>
-                    
-                    <div class="post" style="height:90px">
-                        Content
-                    </div>
-                    
-                    <div class="post" style="height:110px">
-                        Content
-                    </div>
-                    <div class="post" style="height:130px">
-                        Content
-                    </div>
-                    
-                    <div class="post" style="height:90px">
-                        Content
-                    </div>
-                    
-                    <div class="post" style="height:110px">
-                        Content
-                    </div>
-                    <div class="post" style="height:130px">
-                        Content
-                    </div>
-                    
-                    <div class="post" style="height:90px">
-                        Content
-                    </div>
-                    
-                    <div class="post" style="height:110px">
-                        Content
-                    </div>
-                    <div class="post" style="height:130px">
-                        Content
-                    </div>
-                    
-                    <div class="post" style="height:90px">
-                        Content
-                    </div>
-                    
-                    <div class="post" style="height:110px">
-                        Content
-                    </div>
-                </main>
-
-                <div class="rightfake"></div>
-
-            </div>
+<body>
+    <div class="vertical-container">
+        <div class="header">
+            <header class="header-container">
+                <div class="header-logo">
+                    Logo
+                </div>
+                <div class="header-post">
+                    Say!
+                </div>
+            </header>
         </div>
-    </body>
+
+        <div class="container">
+
+            <nav class="nav-container">
+                <div class="nav-userinfo-container">
+                    <img class="nav-userinfo-pic" src="userpic.png">
+                    <d>
+                        <p class="nav-userinfo-name">Maksim Dankovtsev</p>
+                        <p class="nav-userinfo-nick">@max_dankow</p>
+                    </d>
+                </div>
+                <div class="nav-container-labels">
+                    <d>
+                        <p class="nav-label">Tweets</p>
+                        <p class="nav-number">23</p>
+                    </d>
+                    <d>
+                        <p class="nav-label">Following</p>
+                        <p class="nav-number">238</p>
+                    </d>
+                    <d>
+                        <p class="nav-label">Followers</p>
+                        <p class="nav-number">12</p>
+                    </d>
+                </div>
+            </nav>
+
+            <main class="main-container">
+
+                <div class="main-createpost">
+                    <textarea class="main-createpost-textarea" placeholder="What is happening?"></textarea>
+                    <div class="main-createpost-bottom">
+                        <div class="main-createpost-uploadimage">
+                            <label class="main-createpost-uploadimage-label" for="file-input">
+                                <img class="main-createpost-upladimage-icon" src="upload_image_icon.svg" style="pointer-events: none" />
+                            </label>
+
+                            <input id="file-input" type="file" name="pic" accept="image/*" />
+                        </div>
+                        <input class="main-createpost-submit" type="submit" value="Post">
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-container">
+                        <div class="post-userpic"></div>
+                        <div>
+                            <div class="post-user">
+                                <span class="post-user-name">Matthew Bellamy</span>
+                                <span class="post-user-nick">@MattBellamy</span>
+                            </div>
+                            <div class="post-content">
+                                Tune into @grahnort on @BBCRadio2 in 30mins to hear a brand new version of our next single...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="post" style="height:90px">
+                    Content
+                </div>
+
+                <div class="post" style="height:110px">
+                    Content
+                </div>
+                <div class="post" style="height:130px">
+                    Content
+                </div>
+
+                <div class="post" style="height:90px">
+                    Content
+                </div>
+
+                <div class="post" style="height:110px">
+                    Content
+                </div>
+                <div class="post" style="height:130px">
+                    Content
+                </div>
+
+                <div class="post" style="height:90px">
+                    Content
+                </div>
+
+                <div class="post" style="height:110px">
+                    Content
+                </div>
+                <div class="post" style="height:130px">
+                    Content
+                </div>
+
+                <div class="post" style="height:90px">
+                    Content
+                </div>
+
+                <div class="post" style="height:110px">
+                    Content
+                </div>
+                <div class="post" style="height:130px">
+                    Content
+                </div>
+
+                <div class="post" style="height:90px">
+                    Content
+                </div>
+
+                <div class="post" style="height:110px">
+                    Content
+                </div>
+            </main>
+
+            <div class="rightfake"></div>
+
+        </div>
+    </div>
+</body>
 
 </html>
