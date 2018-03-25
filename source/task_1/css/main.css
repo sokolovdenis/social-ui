@@ -1,0 +1,239 @@
+/* Global */
+
+:root {
+    --main-text-font-family: 'Open Sans', sans-serif;
+    --main-headers-font-family: 'Roboto', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--main-text-font-family);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+h3, h4 {
+    margin: 5px 0;
+}
+
+/* Navigation */
+
+nav {
+    display: flex;
+    background-color: #333;
+}
+
+nav a {
+    color: white;
+    padding: 14px 20px;
+    text-decoration: none;
+    text-align: center;
+}
+
+nav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.exit_link {
+    margin-left: auto;
+}
+
+/* Footer */
+
+footer {
+    text-align: center;
+    background: #ddd;
+}
+
+.footer_links {
+    display: flex;
+    background-color: #333;
+    justify-content: center;
+}
+
+.footer_links a {
+    color: white;
+    padding: 14px 20px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.footer_links a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+/* Content */
+
+main {
+    flex-grow: 1;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.side_column {
+    flex: 20%;
+    background-color: #f1f1f1;
+    padding: 20px;
+}
+
+.content_column {
+    flex: 60%;
+    background-color: white;
+    padding: 40px;
+}
+
+.content_header {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.fake_img {
+    background-color: #aaa;
+    width: 100%;
+    padding: 20px;
+}
+
+.user {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+
+.user_info {
+    padding-left: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.user_details {
+    margin: 0 0 5px;
+    font-size: 1.75vh;
+}
+
+.flex_row {
+    flex: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    background: #f1f1f1
+}
+
+.authentication_form {
+    background: white;
+    border-radius: 5px;
+    border: solid #8d8d8d;
+    margin: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.submit_row {
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+.input_row {
+    width: 350px;
+}
+
+input[type=text], input[type=password] {
+    width: 100%;
+    height: 5.5vh;
+    font-size: 2vh;
+    padding: 12px 10px;
+    margin: 8px 0;
+    font-family: var(--main-headers-font-family);
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #d1d1d1;
+    outline: none;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+    border: 1px solid lightskyblue;
+}
+
+textarea {
+    resize: none;
+    width: 100%;
+    height: 150px;
+    font-size: 2vh;
+    padding: 15px 15px;
+    margin: 8px 0;
+    font-family: var(--main-text-font-family);
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #d1d1d1;
+    outline: none;
+}
+
+textarea:focus {
+    border: 1px solid lightskyblue;
+}
+
+input[type=button], input[type=submit] {
+    font-family: var(--main-headers-font-family);
+    background-color: #555555;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #555;
+    color: white;
+    padding: 10px 32px;
+    font-size: 2.5vh;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+input[type=submit]:focus, input[type=submit]:hover {
+    background-color: green;
+}
+
+.remember_row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.button {
+    background-color: #555555;
+    font-family: var(--main-headers-font-family);
+    color: white;
+    text-align: center;
+    width: auto;
+    text-decoration: none;
+    display: inline-block;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #555;
+    padding: 10px 32px;
+    font-size: 2.5vh;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: green;
+}
+
+.post {
+    margin-bottom: 60px;
+}
+
+.centered_button {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
