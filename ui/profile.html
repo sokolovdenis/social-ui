@@ -1,0 +1,217 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Social UI</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="profile.css" />
+    <script defer src="script.js"></script>
+</head>
+
+<body>
+    <div class="page">
+        <div class="header">
+            <header class="header__container">
+                <div class="header__logo">
+                    Logo
+                </div>
+                <div id="create-post-header-button" class="header__post-button button">
+                    Say!
+                </div>
+            </header>
+        </div>
+
+        <div id="create-post-from-header-form" class="create-post create-post-hidden">
+            <textarea class="create-post__textatea" placeholder="What is happening?"></textarea>
+            <div class="create-post__bottom">
+                <div class="upload-image">
+                    <label class="upload-image__label" for="upload-image__file-input">
+                        <img class="upload-image__icon" src="upload_image_icon.svg" style="pointer-events: none" alt="upload photo button" />
+                    </label>
+                    <input id="upload-image__file-input" type="file" name="image" accept="image/*" />
+                </div>
+                <input class="create-post__submit" type="submit" value="Post">
+            </div>
+        </div>
+
+        <div class="page-content">
+            <!-- TODO: реализовать эту логику на js -->
+            <!-- State: view other user profile -->
+            <nav id="state-is-view-other" class="profile-container">
+                <img class="profile-pic" src="userpic.png" alt="user photo">
+                <div class="profile__bottom">
+                    <div class="profile-name">Maksim Dankovtsev</div>
+                    <div class="profile-nick">@max_dankow</div>
+                    <div class="user-statistics">
+                        <d>
+                            <p class="user-statistics__label">Tweets</p>
+                            <p class="user-statistics__number">23</p>
+                        </d>
+                        <d>
+                            <p class="user-statistics__label">Following</p>
+                            <p class="user-statistics__number">238</p>
+                        </d>
+                        <d>
+                            <p class="user-statistics__label">Followers</p>
+                            <p class="user-statistics__number">12</p>
+                        </d>
+                    </div>
+                    <div class="profile-age">
+                        21 years
+                    </div>
+                    <div class="profile-about">
+                        About me. Multiline. Коммерческие запросы, реклама тут: adv@gmail.com
+                    </div>
+
+                    <div class="profile-interact button">
+                        Subscribe
+                    </div>
+                </div>
+            </nav>
+
+            <!-- State: view owners profile -->
+            <nav id="state-is-view-owner" class="profile-container">
+                <img class="profile-pic" src="userpic.png" alt="user photo">
+                <div class="profile__bottom">
+                    <div class="profile-name">Maksim Dankovtsev</div>
+                    <div class="profile-nick">@max_dankow</div>
+                    <div class="user-statistics">
+                        <d>
+                            <p class="user-statistics__label">Tweets</p>
+                            <p class="user-statistics__number">23</p>
+                        </d>
+                        <d>
+                            <p class="user-statistics__label">Following</p>
+                            <p class="user-statistics__number">238</p>
+                        </d>
+                        <d>
+                            <p class="user-statistics__label">Followers</p>
+                            <p class="user-statistics__number">12</p>
+                        </d>
+                    </div>
+                    <div class="profile-age">
+                        21 years
+                    </div>
+                    <div class="profile-about">
+                        About me. Multiline. Коммерческие запросы, реклама тут: adv@gmail.com
+                    </div>
+
+                    <div id="edit-profile-button" class="profile-interact button">
+                        Edit profile
+                    </div>
+                </div>
+            </nav>
+
+            <!-- State: editing profile data -->
+            <nav id="state-is-edit-owner" class="profile-container">
+                <div class="profile-editing-picholder">
+
+                    <label class="profile-editing-changepic" for="file-input">
+                        <img class="profile-pic editing" src="userpic.png" style="pointer-events: none" alt="upload photo button">
+                        <div class="profile-editing-changepic-label">Change your profile photo</div>
+                    </label>
+
+                    <input id="file-input" type="file" name="pic" accept="image/*" />
+                </div>
+                <from class="profile__bottom">
+
+                    <input class="profile-name editing" type="text" value="Maksim Dankovtsev" placeholder="Name">
+                    <div class="profile-nick">@max_dankow</div>
+                    <div class="user-statistics">
+                        <d>
+                            <p class="user-statistics__label">Tweets</p>
+                            <p class="user-statistics__number">23</p>
+                        </d>
+                        <d>
+                            <p class="user-statistics__label">Following</p>
+                            <p class="user-statistics__number">238</p>
+                        </d>
+                        <d>
+                            <p class="user-statistics__label">Followers</p>
+                            <p class="user-statistics__number">12</p>
+                        </d>
+                    </div>
+                    <input class="profile-age editing" type="date" name="birthdate" placeholder="Date of birth">
+                    <textarea class="profile-about editing" name="about" cols="30" rows="10" placeholder="Information about yourself">About me. Multiline. Коммерческие запросы, реклама тут: adv@gmail.com</textarea>
+                    <input id="save-profile-button" class="profile-interact editing button" type="submit" value="Save">
+                </from>
+            </nav>
+
+            <main class="main-container">
+
+                <div class="post">
+                    <div class="post__container">
+                        <img class="post__user-image" src="userpic.png" alt="user photo">
+                        <div>
+                            <div class="post__user-info">
+                                <span class="post__user-name">Maksim Dankovtsev</span>
+                                <span class="post__user-nick">@maxdankow</span>
+                            </div>
+                            <div class="post__content">
+                                Trying to design social UI. #feelsgoodman #cssisfun
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="post" style="height:90px">
+                    Content
+                </div>
+
+                <div class="post" style="height:110px">
+                    Content
+                </div>
+                <div class="post" style="height:130px">
+                    Content
+                </div>
+
+                <div class="post" style="height:90px">
+                    Content
+                </div>
+
+                <div class="post" style="height:110px">
+                    Content
+                </div>
+                <div class="post" style="height:130px">
+                    Content
+                </div>
+
+                <div class="post" style="height:90px">
+                    Content
+                </div>
+
+                <div class="post" style="height:110px">
+                    Content
+                </div>
+                <div class="post" style="height:130px">
+                    Content
+                </div>
+
+                <div class="post" style="height:90px">
+                    Content
+                </div>
+
+                <div class="post" style="height:110px">
+                    Content
+                </div>
+                <div class="post" style="height:130px">
+                    Content
+                </div>
+
+                <div class="post" style="height:90px">
+                    Content
+                </div>
+
+                <div class="post" style="height:110px">
+                    Content
+                </div>
+            </main>
+
+            <div class="right-fake"></div>
+
+        </div>
+    </div>
+</body>
+
+</html>

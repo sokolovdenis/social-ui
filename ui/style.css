@@ -3,16 +3,18 @@ body {
     margin: 0;
     padding: 0;
     font-family: Verdana, Geneva, Tahoma, sans-serif
-    /* font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
 }
 
-.vertical-container {
+.page {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
 }
 
+/* Header */
+
 .header {
+    z-index: 100;
     width: 100%;
     position: fixed;
     height: 50px;
@@ -20,7 +22,7 @@ body {
     font-size: 18pt;
 }
 
-.header-container {
+.header__container {
     width: 1200px;
     margin: auto;
     display: flex;
@@ -31,12 +33,12 @@ body {
     font-size: 18pt;
 }
 
-.header-logo {
+.header__logo {
     flex-grow: 1;
     font-weight: 700;
 }
 
-.header-post {
+.header__post-button {
     width: 70px;
     height: 30px;
     text-align: center;
@@ -45,15 +47,16 @@ body {
     border-radius: 10px;
 }
 
-.container {
+.page-content {
     display: flex;
     flex-direction: row;
-    /* justify-content: center; */
     align-items: flex-start;
     margin-top: 50px;
 }
 
-.nav-container {
+/* Profile */
+
+.profile {
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
@@ -63,17 +66,16 @@ body {
     margin-top: 10px;
     width: 300px;
     background-color: white;
-    /* margin: 10px; */
 }
 
-.nav-userinfo-container {
+.profile__top {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: flex-end;
 }
 
-.nav-userinfo-pic {
+.profile__image {
     width: 80px;
     height: 80px;
     border: #602f6b solid 5px;
@@ -81,34 +83,41 @@ body {
     margin: 10px;
 }
 
-.nav-userinfo-name {
+.profile__name {
     margin-bottom: 0;
     margin-top: 0;
     font-size: 18pt;
     font-weight: 700;
 }
 
-.nav-userinfo-nick {
+.profile__nick {
     margin-top: 0;
     color: grey;
     font-weight: 700;
 }
 
-.nav-container-labels {
+.profile__bottom {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* User statistics */
+
+.user-statistics {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     margin-bottom: 10px;
 }
 
-.nav-label {
+.user-statistics__label {
     color: grey;
     font-size: 12pt;
     margin: 0;
     padding: 0;
 }
 
-.nav-number {
+.user-statistics__number {
     color: #602f6b;
     font-weight: 700;
     font-size: 14pt;
@@ -116,9 +125,7 @@ body {
     padding: 0;
 }
 
-.main-container {
-    /* margin-right: auto; */
-    /* margin-left: auto; */
+.main {
     margin-top: 10px;
     display: flex;
     flex-direction: column;
@@ -126,16 +133,15 @@ body {
     width: 600px;
 }
 
-/* TODO: try to use preudo class */
-
-.rightfake {
+.right-fake {
     content: "";
     width: 300px;
     margin-right: auto;
-    /* margin-left: auto; */
 }
 
-.main-createpost {
+/* Create post */
+
+.create-post {
     display: flex;
     flex-direction: column;
     background-color: #fff325;
@@ -144,7 +150,17 @@ body {
     margin-bottom: 10px;
 }
 
-.main-createpost-submit {
+.create-post-hidden {
+    width: 700px;
+    display: none;
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    box-shadow: 0 0 0 99999px rgba(0, 0, 0, 0.8);
+}
+
+.create-post__submit {
     align-self: flex-end;
     margin-top: 5px;
     height: 30px;
@@ -155,38 +171,52 @@ body {
     border: 0;
     font-size: 14pt;
     font-weight: 600;
+    cursor: pointer;
 }
 
 input,
 textarea {
     outline: none;
+    font-size: 12pt;
 }
 
-.main-createpost-uploadimage>input {
+textarea {
+    resize: none;
+}
+
+.button {
+    box-shadow: 0px 0px 0px transparent;
+    border: 0px solid transparent;
+    text-shadow: 0px 0px 0px transparent;
+    cursor: pointer;
+}
+
+.upload-image>input {
     visibility: hidden;
     width: 0;
-    height: 0
+    height: 0;
 }
 
-.main-createpost-bottom {
+.create-post__bottom {
     display: flex;
     justify-content: space-between;
 }
 
-.main-createpost-upladimage-icon {
+.upload-image__icon {
     position: relative;
     top: 3px;
     height: 36px;
     width: 36px;
 }
 
-.main-createpost-uploadimage-label {
+.upload-image__label {
     display: inline-block;
     height: 36px;
     width: 36px;
+    cursor: pointer;    
 }
 
-.main-createpost-textarea {
+.create-post__textatea {
     resize: none;
     box-sizing: border-box;
     width: 100%;
@@ -202,49 +232,54 @@ textarea {
     border: #DFD5F5 solid 1px;
 }
 
-.post-container {
+.post__container {
     display: flex;
     flex-direction: row;
     padding: 10px;
 }
 
-.post-userpic {
+.post__user-image {
     width: 60px;
     height: 60px;
-    background-color: tomato;
     flex-shrink: 0;
     border-radius: 30px;
     margin-right: 10px;
 }
 
-.post-content {
+.post__content {
     font-family: Verdana, Geneva, Tahoma, sans-serif
 }
 
-.post-user-name {
+.post__image {
+    margin-top: 10px;
+    width: 500px;
+    border-radius: 5px;
+}
+
+.post__user-name {
     margin-bottom: 0;
     margin-top: 0;
     font-size: 14pt;
     font-weight: 600;
 }
 
-.post-user-nick {
+.post__user-nick {
     margin-top: 0;
     font-size: 14pt;
     color: grey;
 }
 
 @media (max-width: 1200px) {
-    .header-container {
+    .header__container {
         width: 100%;
     }
-    .header-post {
+    .header__post-button {
         margin-right: 15px;
     }
-    .header-logo {
+    .header__logo {
         margin-left: 15px;
     }
-    .nav-container {
+    .profile {
         margin-left: 10px;
     }
 }
