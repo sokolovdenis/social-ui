@@ -1,0 +1,155 @@
+﻿body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    background: steelblue;
+    align-items: baseline;
+}
+
+header .logo {
+    font-size: 20px;
+    flex-grow: 5;
+    color: white;
+    margin-left: 2%;
+}
+
+header .header-menu {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: row;
+}
+
+header .header-menu a {
+    display: flex;
+    color: white;
+    margin: 5%;
+    border: 2px solid white;
+    width: 90%;
+    padding: 5px;
+    text-decoration: none;
+    padding-left: 3%;
+}
+
+.main-area {
+    display: flex;
+    flex-grow: 1;
+}
+
+.side-menu {
+    display: flex;
+    width: 15%;
+    background: lightsteelblue;
+    flex-direction: column;
+    align-items: baseline;
+    flex-grow: 1;
+}
+
+.side-menu a {
+    display: flex;
+    width: 60%;
+    color: steelblue;   
+    font-size: 16px;
+    margin: 5% 15%;
+    text-decoration: none;
+    padding: 1px;
+    border: 2px solid steelblue;
+    background: aliceblue;
+    padding-left: 3%;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-grow: 40;
+    background: aliceblue;
+}
+
+.all-user-info {
+    display: flex;
+    flex-direction: row;
+}
+
+.photo-area {
+    display: flex;
+    flex-grow: 1;
+    background: white;
+    margin-top: 2%;
+    margin-left: 2%;
+    margin-right: 0%;
+    margin-bottom: 1%;
+    padding: 2% 3%;
+    flex-direction: row;
+    height: 200px;
+    width: 200px;
+    border: 1px solid lightblue;
+}
+
+.info-area {
+    display: flex;
+    flex-grow: 16;
+    background: white;
+    margin-top: 2%;
+    margin-left: 1%;
+    margin-right: 2%;
+    margin-bottom: 1%;
+    border: 1px solid lightblue;
+    height: 246px;
+    flex-direction: column;
+}
+
+.info-area h2 {
+    margin: 1% 2%;
+    color: steelblue;
+}
+
+.info-area p {
+    margin: 1% 2%;
+    font-size: 20px;
+    color: steelblue;
+}
+
+.info-area span {
+    color: lightsteelblue;
+}
+
+.user-posts {
+    display: flex;   
+    flex-direction: column;
+}
+
+.post {
+    margin: 2%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid lightblue;
+    background: white;
+}
+
+.post h4 {
+    margin-left: 2%;
+    color: steelblue;
+}
+
+.post p {
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.post time {
+    color: lightsteelblue;
+}
+
+footer {
+    background: cadetblue;
+    padding-right: 20px;
+    color: navy;
+}
+
