@@ -18,6 +18,6 @@ document.querySelector('#registration-form').addEventListener('submit', function
             alert(sessionStorage.getItem('token'));
         })
         .catch(function (reason) {
-            alert('Failed to signup: ' + reason.dscr);
+            alert('Failed to signup: ' + Api.description(reason));
         });
 });

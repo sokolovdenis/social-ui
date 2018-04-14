@@ -2,11 +2,36 @@ class Api {
 
     static get statusCodes() {
         return {
-            Unknown: { code: -1, dscr: 'Unknown error' },
-            Ok: { code: 0, dscr: 'Ok' },
-            WrongCredentials: { code: 1, dscr: 'Wrong username or password' },
-            WrongParameters: { code: 2, dscr: 'One or more fields are incorrect' },
-            UserAlreadyExists: { code: 3, dscr: 'User with specified email already exists'},
+            Unknown: -1,
+            Ok: 0,
+            WrongCredentials: 1,
+            WrongParameters: 2,
+            UserAlreadyExists: 3,
+            AuthenticationFailed: 4,
+            NoAccessToken: 5
+        }
+    }
+
+    static description(code) {
+        let descriptions = [];
+        descriptions[this.statusCodes.Ok] = 'Ok';
+        switch (code) {
+            case this.statusCodes.Unknown:
+                return 'Unknown';
+            case this.statusCodes.Ok:
+                return 'Ok';
+            case this.statusCodes.WrongCredentials:
+                return 'Wrong username or password';
+            case this.statusCodes.WrongParameters:
+                return 'One or more fields are incorrect';
+            case this.statusCodes.UserAlreadyExists:
+                return 'User with specified email already exists';
+            case this.statusCodes.AuthenticationFailed:
+                return 'Authentication failed';
+            case this.statusCodes.NoAccessToken:
+                return 'No access token'
+            default:
+                throw new Error('Undefined status code');
         }
     }
 
@@ -33,7 +58,7 @@ class Api {
         if (authorize) {
             const token = this.getToken();
             if (token == null) {
-                throw 'No access token';
+                throw new Error('Assertion failed: No access token');
             }
             options.headers['Authorization'] = 'Bearer ' + this.getToken();
         }
@@ -60,7 +85,7 @@ class Api {
         if (authorize) {
             const token = this.getToken();
             if (token == null) {
-                throw 'No access token';
+                throw new Error('Assertion failed: No access token');
             }
             options.headers['Authorization'] = 'Bearer ' + this.getToken();
         }
@@ -97,7 +122,7 @@ class Api {
             }).catch(function (code) {
                 if (code == 400) {
                     return Promise.reject(Api.statusCodes.WrongParameters)
-                } if (code == 409) {
+                } else if (code == 409) {
                     return Promise.reject(Api.statusCodes.UserAlreadyExists)
                 } else {
                     return Promise.reject(Api.statusCodes.Unknown);
@@ -106,6 +131,18 @@ class Api {
     }
 
     static getMyselfInfo() {
-        return this.httpGet('/users/me', true);
+        if (!this.getToken()) {
+            return Promise.reject(Api.statusCodes.NoAccessToken);
+        }
+        return this.httpGet('/users/me', true)
+            .catch(function (code) {
+                if (code == 401) {
+                    return Promise.reject(Api.statusCodes.AuthenticationFailed);
+                } else if (code == 401) {
+                    throw new Error('Assert: failed to get myself info by access token');
+                } else {
+                    return Promise.reject(Api.statusCodes.Unknown);
+                }
+            });
     }
 }

@@ -16,6 +16,6 @@ document.querySelector('#login-form').addEventListener('submit', function (event
             alert(sessionStorage.getItem('token'));
         })
         .catch(function (reason) {
-            alert('Failed to log in: ' + reason.dscr);
+            alert('Failed to log in: ' + Api.description(reason));
         });
 });

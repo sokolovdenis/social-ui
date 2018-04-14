@@ -5,5 +5,10 @@ Api.getMyselfInfo()
         alert('Your own profile info: ' + result.name);
     })
     .catch(function (reason) {
-        alert(reason);
+        if (reason == Api.statusCodes.AuthenticationFailed
+            || reason == Api.statusCodes.NoAccessToken) {
+            window.location.href = "./login.html";
+        } else {
+            alert(Api.description(reason));
+        }
     });
