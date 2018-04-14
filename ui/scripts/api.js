@@ -8,30 +8,32 @@ class Api {
             WrongParameters: 2,
             UserAlreadyExists: 3,
             AuthenticationFailed: 4,
-            NoAccessToken: 5
+            NoAccessToken: 5,
+            NotFound: 6,
+            AlreadyFollow: 7
         }
     }
 
     static description(code) {
-        let descriptions = [];
-        descriptions[this.statusCodes.Ok] = 'Ok';
         switch (code) {
-            case this.statusCodes.Unknown:
+            case Api.statusCodes.Unknown:
                 return 'Unknown';
-            case this.statusCodes.Ok:
+            case Api.statusCodes.Ok:
                 return 'Ok';
-            case this.statusCodes.WrongCredentials:
+            case Api.statusCodes.WrongCredentials:
                 return 'Wrong username or password';
-            case this.statusCodes.WrongParameters:
+            case Api.statusCodes.WrongParameters:
                 return 'One or more fields are incorrect';
-            case this.statusCodes.UserAlreadyExists:
+            case Api.statusCodes.UserAlreadyExists:
                 return 'User with specified email already exists';
-            case this.statusCodes.AuthenticationFailed:
+            case Api.statusCodes.AuthenticationFailed:
                 return 'Authentication failed';
-            case this.statusCodes.NoAccessToken:
-                return 'No access token'
+            case Api.statusCodes.NoAccessToken:
+                return 'No access token';
+            case Api.statusCodes.NotFound:
+                return 'Resource is not found';
             default:
-                throw new Error('Undefined status code');
+                throw new Error('Undefined status code: ' + code);
         }
     }
 
@@ -47,23 +49,34 @@ class Api {
         sessionStorage.setItem('token', value);
     }
 
-    static httpGet(endpoint, authorize = false) {
+    static defaultErrorHandling(code) {
+        if (code == 401) {
+            return Promise.reject(Api.statusCodes.AuthenticationFailed);
+        } if (code == 404) {
+            return Promise.reject(Api.statusCodes.NotFound);
+        } else {
+            return Promise.reject(Api.statusCodes.Unknown);
+        }
+    }
+
+    static httpMethod(endpoint, method, authorize = false, body = null) {
         let options = {
-            method: 'GET',
+            method: method,
+            body: body,
             headers: {
                 'Content-Type': 'application/json',
             }
         };
 
         if (authorize) {
-            const token = this.getToken();
+            const token = Api.getToken();
             if (token == null) {
                 throw new Error('Assertion failed: No access token');
             }
-            options.headers['Authorization'] = 'Bearer ' + this.getToken();
+            options.headers['Authorization'] = 'Bearer ' + Api.getToken();
         }
 
-        return fetch(this.baseUrl + endpoint, options)
+        return fetch(Api.baseUrl + endpoint, options)
             .then(function (response) {
                 if (response.ok) {
                     return response.json();
@@ -71,37 +84,26 @@ class Api {
                     return Promise.reject(response.status);
                 }
             });
+    }
+
+    static httpGet(endpoint, authorize = false) {
+        return Api.httpMethod(endpoint, 'GET', authorize);
+    }
+
+    static httpDelete(endpoint, authorize = false) {
+        return Api.httpMethod(endpoint, 'DELETE', authorize);
+    }
+
+    static httpPut(endpoint, body, authorize = false) {
+        return Api.httpMethod(endpoint, 'PUT', authorize, body);
     }
 
     static httpPost(endpoint, body, authorize = false) {
-        let options = {
-            method: 'POST',
-            body: body,
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        };
-
-        if (authorize) {
-            const token = this.getToken();
-            if (token == null) {
-                throw new Error('Assertion failed: No access token');
-            }
-            options.headers['Authorization'] = 'Bearer ' + this.getToken();
-        }
-
-        return fetch(this.baseUrl + endpoint, options)
-            .then(function (response) {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    return Promise.reject(response.status);
-                }
-            });
+        return Api.httpMethod(endpoint, 'POST', authorize, body);
     }
 
     static signIn(credentials) {
-        return this.httpPost('/identity/signin', credentials)
+        return Api.httpPost('/identity/signin', credentials)
             .then(function (result) {
                 console.log(result.token);
                 Api.setToken(result.token);
@@ -115,7 +117,7 @@ class Api {
     }
 
     static signUp(data) {
-        return this.httpPost('/identity/signup', data)
+        return Api.httpPost('/identity/signup', data)
             .then(function (result) {
                 console.log(result.token);
                 Api.setToken(result.token);
@@ -130,19 +132,156 @@ class Api {
             });
     }
 
-    static getMyselfInfo() {
-        if (!this.getToken()) {
+    static getMyself() {
+        if (!Api.getToken()) {
             return Promise.reject(Api.statusCodes.NoAccessToken);
         }
-        return this.httpGet('/users/me', true)
+        return Api.httpGet('/users/me', true)
             .catch(function (code) {
                 if (code == 401) {
                     return Promise.reject(Api.statusCodes.AuthenticationFailed);
-                } else if (code == 401) {
+                } else if (code == 404) {
                     throw new Error('Assert: failed to get myself info by access token');
                 } else {
                     return Promise.reject(Api.statusCodes.Unknown);
                 }
             });
     }
+
+    static getUser(id) {
+        if (!Api.getToken()) {
+            // todo: try dry?
+            return Promise.reject(Api.statusCodes.NoAccessToken);
+        }
+        return Api.httpGet(`/users/${id}`, true)
+            .catch(Api.defaultErrorHandling);
+    }
+
+    static getAllUsers() {
+        if (!Api.getToken()) {
+            return Promise.reject(Api.statusCodes.NoAccessToken);
+        }
+        return Api.httpGet('/users', true)
+            .catch(function (code) {
+                if (code == 401) {
+                    return Promise.reject(Api.statusCodes.AuthenticationFailed);
+                } else {
+                    return Promise.reject(Api.statusCodes.Unknown);
+                }
+            });
+    }
+
+    static getUsersFollowings(id) {
+        if (!Api.getToken()) {
+            return Promise.reject(Api.statusCodes.NoAccessToken);
+        }
+        return Api.httpGet(`/users/${id}/followings`, true)
+            .catch(Api.defaultErrorHandling);
+    }
+
+    static getUsersFollowers(id) {
+        if (!Api.getToken()) {
+            return Promise.reject(Api.statusCodes.NoAccessToken);
+        }
+        return Api.httpGet(`/users/${id}/followers`, true)
+            .catch(Api.defaultErrorHandling);
+    }
+
+    static getUsersFollowings(id) {
+        if (!Api.getToken()) {
+            return Promise.reject(Api.statusCodes.NoAccessToken);
+        }
+        return Api.httpGet(`/users/${id}/followings`, true)
+            .catch(Api.defaultErrorHandling);
+    }
+
+    static follow(id) {
+        if (!Api.getToken()) {
+            return Promise.reject(Api.statusCodes.NoAccessToken);
+        }
+        return Api.httpPost(`/users/me/followings/${id}`, null, true)
+            .catch(function (code) {
+                if (code == 404) {
+                    return Promise.reject(Api.statusCodes.NotFound);
+                } if (code == 409) {
+                    return Promise.reject(Api.statusCodes.AlreadyFollow);
+                } else {
+                    return Promise.reject(Api.statusCodes.Unknown);
+                }
+            });
+    }
+
+    static unfollow(id) {
+        if (!Api.getToken()) {
+            return Promise.reject(Api.statusCodes.NoAccessToken);
+        }
+        return Api.httpDelete(`/users/me/followings/${id}`, true)
+            .catch(function (code) {
+                if (code == 404) {
+                    return Promise.reject(Api.statusCodes.NotFound);
+                } else {
+                    return Promise.reject(Api.statusCodes.Unknown);
+                }
+            });
+    }
+
+    static getUserPosts(id, skip, count = 20) {
+        if (!Api.getToken()) {
+            return Promise.reject(Api.statusCodes.NoAccessToken);
+        }
+        return Api.httpGet(`/users/${id}/posts/wall`, true)
+            .catch(Api.defaultErrorHandling);
+    }
+
+    static getUserPosts(id, skip, count = 20) {
+        if (!Api.getToken()) {
+            return Promise.reject(Api.statusCodes.NoAccessToken);
+        }
+        return Api.httpGet(`/users/${id}/posts/wall`, true)
+            .catch(Api.defaultErrorHandling);
+    }
+
+    static getUserFeed(id, skip, count = 20) {
+        if (!Api.getToken()) {
+            return Promise.reject(Api.statusCodes.NoAccessToken);
+        }
+        return Api.httpGet(`/users/${id}/posts/feed`, true)
+            .catch(Api.defaultErrorHandling);
+    }
+
+    static editMyself(value) {
+        if (typeof(value) == 'object') {
+            value = JSON.stringify(value);
+        }
+        if (!Api.getToken()) {
+            return Promise.reject(Api.statusCodes.NoAccessToken);
+        }
+        return Api.httpPut(`/users/me`, value, true)
+            .catch(function (code) {
+                if (code == 400) {
+                    return Api.statusCodes.WrongParameters;
+                }
+                return Api.defaultErrorHandling(code);
+            });
+    }
+
+    // todo: not implemented: delete myself
+    // todo: not implemented: update image
+
+    static createPost(text) {
+        if (!Api.getToken()) {
+            return Promise.reject(Api.statusCodes.NoAccessToken);
+        }
+        return Api.httpPost(`/users/me/posts?Text=${text}`, null, true)
+            .catch(function (code) {
+                if (code == 400) {
+                    return Api.statusCodes.WrongParameters;
+                }
+                return Api.defaultErrorHandling(code);
+            });
+    }
+
+    // todo: not implemented: attach image
+
+
 }
