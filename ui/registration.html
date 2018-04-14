@@ -4,8 +4,12 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Registration</title>
+
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="login_style.css" />
+
+    <script defer src="scripts/api.js"></script>    
+    <script defer src="scripts/registration.js"></script>
 </head>
 
 <body>
@@ -21,18 +25,18 @@
         <div class="login">
             <div class="login-container">
                 <h1>Registration</h1>
-                <form class="login-form">
+                <form id="registration-form" class="login-form">
                     <div>
-                        <input class="login-input-text" type="text" name="name" placeholder="Full name">
+                        <input id="registration-form-name" class="login-input-text" type="text" name="name" placeholder="Full name">
                     </div>
                     <div>
-                        <input class="login-input-text" type="date" name="birthday" placeholder="Date of birth">
+                        <input id="registration-form-date" class="login-input-text" type="date" name="birthday" placeholder="Date of birth">
                     </div>
                     <div>
-                        <input class="login-input-text" type="email" name="email" placeholder="Email">
+                        <input id="registration-form-email" class="login-input-text" type="email" name="email" placeholder="Email">
                     </div>
                     <div>
-                        <input class="login-input-text" type="password" name="password" placeholder="Password">
+                        <input id="registration-form-password" class="login-input-text" type="password" name="password" placeholder="Password">
                     </div>
                     <input class="login-submit" type="submit" value="Register">
                 </form>

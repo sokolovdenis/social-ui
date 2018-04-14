@@ -4,8 +4,12 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Log in</title>
+
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="login_style.css" />
+    
+    <script defer src="scripts/api.js"></script>
+    <script defer src="scripts/login.js"></script>
 </head>
 
 <body>
@@ -20,12 +24,12 @@
         <div class="login">
             <div class="login-container">
                 <h1>Log in</h1>
-                <form class="login-form">
+                <form id="login-form" class="login-form">
                     <div>
-                        <input class="login-input-text" type="email" name="email" placeholder="Email">
+                        <input id="login-form-email" class="login-input-text" type="email" name="email" placeholder="Email">
                     </div>
                     <div>
-                        <input class="login-input-text" type="password" name="password" placeholder="Password">
+                        <input id="login-form-password" class="login-input-text" type="password" name="password" placeholder="Password">
                     </div>
                     <input class="login-submit" type="submit" value="Log in">
                     <span class="login-input-checkbox">

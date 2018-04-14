@@ -78,6 +78,7 @@ body {
 .profile__image {
     width: 80px;
     height: 80px;
+    flex-shrink: 0;
     border: #602f6b solid 5px;
     border-radius: 80px;
     margin: 10px;
