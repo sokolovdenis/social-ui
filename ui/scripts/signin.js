@@ -10,12 +10,12 @@ function getLoginData() {
 document.querySelector('#login-form').addEventListener('submit', function (event) {
     event.preventDefault();
 
-    Api.login(getLoginData())
+    Api.signIn(getLoginData())
         .then(function () {
-            window.location.href = "./index.html";
+            window.location.href = "./profile.html";
             alert(sessionStorage.getItem('token'));
         })
         .catch(function (reason) {
-            alert('Failed to log in: ' + reason);
+            alert('Failed to log in: ' + reason.dscr);
         });
 });
