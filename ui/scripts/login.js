@@ -7,20 +7,15 @@ function getLoginData() {
     });
 }
 
-let api = new Api();
-
 document.querySelector('#login-form').addEventListener('submit', function (event) {
     event.preventDefault();
 
-    let payload = getLoginData();
-    console.log(payload);
-
-    Api.login(payload)
+    Api.login(getLoginData())
         .then(function () {
             window.location.href = "./index.html";
             alert(sessionStorage.getItem('token'));
         })
-        .catch(function() {
-            alert('Failed to log in.');
-        })
+        .catch(function (reason) {
+            alert('Failed to log in: ' + reason);
+        });
 });

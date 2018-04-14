@@ -12,11 +12,12 @@ function getRegistrationData() {
 document.querySelector('#registration-form').addEventListener('submit', function (event) {
     event.preventDefault();
 
-    let payload = getRegistrationData();
-    console.log(payload);
-
-    Api.register(payload)
+    Api.signup(getRegistrationData())
         .then(function () {
-            window.location.href = "./login.html";
+            window.location.href = "./index.html";
+            alert(sessionStorage.getItem('token'));
+        })
+        .catch(function (reason) {
+            alert('Failed to signup: ' + reason);
         });
 });

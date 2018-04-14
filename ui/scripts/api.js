@@ -12,44 +12,38 @@ class Api {
         sessionStorage.setItem('token', value);
     }
 
-    static login(credentials) {
+    static httpPost(endpoint, body) {
         let options = {
             method: 'POST',
-            body: credentials,
+            body: body,
             headers: {
                 'Content-Type': 'application/json'
             }
         };
 
-        return fetch(this.getBaseUrl() + '/identity/signin', options)
+        return fetch(this.getBaseUrl() + endpoint, options)
             .then(function (response) {
                 if (response.ok) {
-                    response.json().then(function (result) {
-                        console.log(result.token);
-                        setToken(result.token);
-                    });
+                    return response.json();
+                } else {
+                    return Promise.reject(response.statusText);
                 }
             });
     }
 
-    static register(data, callback) {
-        let options = {
-            method: 'POST',
-            body: data,
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        };
+    static login(credentials) {
+        return this.httpPost('/identity/signin', credentials)
+            .then(function (result) {
+                console.log(result.token);
+                Api.setToken(result.token);
+            });
+    }
 
-        return fetch(this.getBaseUrl() + '/identity/signup', options)
-            .then(function (response) {
-                if (response.ok) {
-                    response.json().then(function (result) {
-                        console.log(result.token);
-                        setToken(result.token);
-                        callback();
-                    });
-                }
+    static signup(data) {
+        return this.httpPost('/identity/signup', data)
+            .then(function (result) {
+                console.log(result.token);
+                Api.setToken(result.token);
             });
     }
 }
