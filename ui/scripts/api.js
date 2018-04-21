@@ -32,6 +32,8 @@ class Api {
                 return 'No access token';
             case Api.statusCodes.NotFound:
                 return 'Resource is not found';
+            case Api.statusCodes.AlreadyFollow:
+                return 'The users is already followed by you'
             default:
                 throw new Error('Undefined status code: ' + code);
         }
