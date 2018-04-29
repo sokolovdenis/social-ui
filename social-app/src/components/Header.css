@@ -1,0 +1,42 @@
+.header {
+    z-index: 100;
+    width: 100%;
+    position: fixed;
+    height: 50px;
+    background-color: #602f6b;
+    font-size: 18pt;
+}
+
+.header__container {
+    width: 1200px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    height: 50px;
+    background-color: #602f6b;
+    color: white;
+    font-size: 18pt;
+}
+
+.header__logo {
+    flex-grow: 1;
+    font-weight: 700;
+}
+
+.header__post-button {
+    width: 70px;
+    height: 30px;
+    text-align: center;
+    background-color: #fff325;
+    color: #602f6b;
+    border-radius: 10px;
+}
+
+a.header__logo {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+a.header__logo:hover {
+    color: #fff325;
+}

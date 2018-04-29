@@ -1,0 +1,145 @@
+.profile-container {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    align-items: stretch;
+    margin-right: 10px;
+    margin-left: auto;
+    margin-top: 10px;
+    background-color: white;
+}
+
+.profile-pic {
+    width: 300px;
+    height: 300px;
+    box-sizing: border-box;
+    border: #602f6b solid 5px;
+}
+
+.profile-pic.editing {
+    filter: brightness(50%);
+    border: 0px;
+    box-sizing: border-box;
+    padding: 5px;
+}
+
+.profile-editing-picholder {
+    position: relative;
+    height: 300px;
+    background-color: grey;
+}
+
+.profile-editing-picholder:hover {
+    background-color: #602f6b;
+}
+
+.profile-editing-changepic {
+    height: 300px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.profile-editing-picholder>input {
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
+
+.profile-editing-changepic-label {
+    color: white;
+    width: 300px;
+    box-sizing: border-box;
+    padding-left: 40px;
+    padding-right: 40px;
+    text-align: center;
+    font-weight: 700;
+    position: absolute;
+    top: 40%;
+}
+
+.profile__bottom>input,
+.profile__bottom>textarea {
+    width: 100%;
+    height: 30px;
+    padding-top: 0px;
+    box-sizing: border-box;
+}
+
+.profile-name {
+    margin-bottom: 0;
+    margin-top: 0;
+    font-size: 18pt;
+    font-weight: 700;
+    padding-top: 10px;
+}
+
+.profile-name.editing {
+    margin-top: 20px;
+}
+
+.profile-nick {
+    margin-top: 0;
+    color: grey;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.profile-age {
+    margin-bottom: 10px;
+}
+
+.profile-age.editing {
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.profile-about {
+    margin-bottom: 10px;
+}
+
+.profile-about.editing {
+    height: 200px;
+    margin-bottom: 10px;
+}
+
+.profile-interact {
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    margin-bottom: 15px;
+    background-color: #602f6b;
+    text-align: center;
+    border-radius: 10px;
+    color: white;
+    font-size: 14pt;
+    font-weight: 600;
+}
+
+.profile-interact.editing {
+    height: 30px;
+}
+
+/* User statistics */
+
+.user-statistics {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.user-statistics__label {
+    color: grey;
+    font-size: 12pt;
+    margin: 0;
+    padding: 0;
+}
+
+.user-statistics__number {
+    color: #602f6b;
+    font-weight: 700;
+    font-size: 14pt;
+    margin: 0;
+    padding: 0;
+}

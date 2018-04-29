@@ -2,7 +2,8 @@
 
 // Api.getMyself()
 //     .then(function (result) {
-//         alert('Your own profile info: ' + result.name);
+//         // alert('Your own profile info: ' + result.name);
+//         alert(result.id);
 //     })
 //     .catch(function (reason) {
 //         if (reason == Api.statusCodes.AuthenticationFailed ||
@@ -12,6 +13,11 @@
 //             alert(Api.description(reason));
 //         }
 //     });
+
+// Api.getUsersFollowers(26)
+//     .then(followers => {
+//         alert(followers[0].name);
+//     })
 
 // Api.getAllUsers()
 //     .then(function (users) {
@@ -26,31 +32,31 @@
 //         }
 //     });
 
-let userInfo = {};
-const id = 1;
+// let userInfo = {};
+// const id = 1;
 
-Api.getUser(id)
-    .then(function (user) {
-        userInfo.info = user;
-        console.log(user);
-        return Api.getUsersFollowings(id);
-    }).then(function (followings) {
-        userInfo.followings = followings;
-        console.log(followings);
-        return Api.getUsersFollowers(id);
-    }).then(function (followers) {
-        userInfo.followers = followers;
-        console.log(followers);
-        alert(`User with id: ${userInfo.info.id} is ${userInfo.info.name} with ${userInfo.followings.length} followings and ${userInfo.followers.length} followers`);
-    })
-    .catch(function (reason) {
-        if (reason == Api.statusCodes.AuthenticationFailed ||
-            reason == Api.statusCodes.NoAccessToken) {
-            window.location.href = "./login.html";
-        } else {
-            alert(Api.description(reason));
-        }
-    });
+// Api.getUser(id)
+//     .then(function (user) {
+//         userInfo.info = user;
+//         console.log(user);
+//         return Api.getUsersFollowings(id);
+//     }).then(function (followings) {
+//         userInfo.followings = followings;
+//         console.log(followings);
+//         return Api.getUsersFollowers(id);
+//     }).then(function (followers) {
+//         userInfo.followers = followers;
+//         console.log(followers);
+//         alert(`User with id: ${userInfo.info.id} is ${userInfo.info.name} with ${userInfo.followings.length} followings and ${userInfo.followers.length} followers`);
+//     })
+//     .catch(function (reason) {
+//         if (reason == Api.statusCodes.AuthenticationFailed ||
+//             reason == Api.statusCodes.NoAccessToken) {
+//             window.location.href = "./login.html";
+//         } else {
+//             alert(Api.description(reason));
+//         }
+//     });
 
 // Api.getMyself().then(function (me) {
 //         return Api.getUserPosts(me.id);
@@ -112,17 +118,17 @@ Api.getUser(id)
 //         }
 //     });
 
-// const id = 1;
+const id = 27;
 
 // alert('!!');
 
-// Api.follow(id).then(function() {
-//     alert(`Following ${id}`);
-// }).catch(function(reason) {
-//     if (reason == Api.statusCodes.AuthenticationFailed ||
-//         reason == Api.statusCodes.NoAccessToken) {
-//         window.location.href = "./login.html";
-//     } else {
-//         alert(Api.description(reason));
-//     }
-// })
+Api.follow(id).then(function() {
+    alert(`Following ${id}`);
+}).catch(function(reason) {
+    if (reason == Api.statusCodes.AuthenticationFailed ||
+        reason == Api.statusCodes.NoAccessToken) {
+        window.location.href = "./login.html";
+    } else {
+        alert(Api.description(reason));
+    }
+})

@@ -1,0 +1,39 @@
+.login {
+    background-color: white;
+    height: 50%;
+    margin: auto;
+    margin-top: 60px;
+    width: 900px;
+    height: auto;
+    padding-bottom: 10px;
+}
+
+.login-container {
+    margin-left: 200px;
+    padding-bottom: 20px;
+}
+
+.login-container input {
+    height: 20px;
+    margin-bottom: 10px;
+}
+
+.login-input-text {
+    width: 260px;
+    font-size: 12pt;
+}
+
+.login-input-checkbox {
+    margin-left: 20px;
+}
+
+.login-submit.login-submit {
+    height: 30px;
+    text-align: center;
+    background-color: #602f6b;
+    color: white;
+    border-radius: 10px;
+    border: 0;
+    font-size: 14pt;
+    font-weight: 600;
+}
