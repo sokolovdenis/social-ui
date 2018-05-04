@@ -13,8 +13,7 @@ class UserProfile extends React.Component {
         super();
         this.state = {
             isReady: false,
-            user: {},
-            stats: {},
+            userInfo: {},
             followers: [],
             followings: [],
             posts: []
@@ -23,48 +22,32 @@ class UserProfile extends React.Component {
 
     componentDidMount() {
         const userId = this.props.userId;
-        let state = {
-            isReady: false,
-            user: {},
-            stats: {},
-            followers: [],
-            followings: [],
-            posts: []
-        };
-        
+
         let apiCalls = [
             Api.getUser(userId)
-            .then(user => {
-                state.user = user;
-                this.setState(state);
+            .then(userInfo => {
+                this.setState({ userInfo });
             }),
 
             Api.getUserPosts(userId)
             .then(posts => {
-                state.posts = posts;
-                state.stats.postsCount = posts.length;
-                this.setState(state);
+                this.setState({ posts });
             }),
 
             Api.getUsersFollowers(userId)
             .then(followers => {
-                state.followers = followers;
-                state.stats.followersCount = followers.length;
-                this.setState(state);
+                this.setState({ followers });
             }),
 
             Api.getUsersFollowings(userId)
             .then(followings => {
-                state.followings = followings;
-                state.stats.followingsCount = followings.length;
-                this.setState(state);
+                this.setState({ followings });
             })
         ];
         Promise.all(apiCalls)
             .then(() => {
                 console.log(this.state);
-                state.isReady = true;
-                this.setState(state);
+                this.setState({ isReady: true });
             })
             .catch(function (reason) {
                 if (reason == Api.statusCodes.AuthenticationFailed ||
@@ -82,13 +65,19 @@ class UserProfile extends React.Component {
         }
         return (
             <div className="page-content">
-                <UserInfo user={ this.state.user }  stats={ this.state.stats }/>
+                <UserInfo
+                    showDetailed={ true }
+                    userInfo={ this.state.userInfo }
+                    followings={ this.state.followings }
+                    followers={ this.state.followers }
+                    posts={ this.state.posts }
+                    me={ this.props.me } />
 
-                <div class="main-container">
+                <div className="main-container">
                     <PostList items={ this.state.posts } />
                 </div>
 
-                <div class="right-fake"></div>
+                <div className="right-fake"></div>
             </div>
         );
     }

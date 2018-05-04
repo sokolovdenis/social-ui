@@ -65,6 +65,7 @@ class Api {
         if (stringify) {
             body = (body) ? JSON.stringify(body) : null;
         }
+        console.log(body);
         let options = {
             method: method,
             body: body,
@@ -239,9 +240,6 @@ class Api {
     }
 
     static editMyself(value) {
-        if (typeof(value) == 'object') {
-            value = JSON.stringify(value);
-        }
         if (!Api.getToken()) {
             return Promise.reject(Api.statusCodes.NoAccessToken);
         }
@@ -255,7 +253,27 @@ class Api {
     }
 
     // todo: not implemented: delete myself
-    // todo: not implemented: update image
+
+    static setProfileImage(image) {
+        if (!Api.getToken()) {
+            return Promise.reject(Api.statusCodes.NoAccessToken);
+        }
+        let formData = new FormData();
+        formData.append('file', image);
+        return fetch(this.baseUrl + `/users/me/photo`, {
+            method: 'PUT',
+            headers: {
+                Authorization: "Bearer " + Api.getToken()
+            },
+            body: formData
+        }).then(function (response) {
+            if (response.ok) {
+                return response.json();
+            } else {
+                return Promise.reject(response.status);
+            }
+        });
+    }
 
     static createPost(text) {
         if (!Api.getToken()) {
@@ -282,16 +300,13 @@ class Api {
                 Authorization: "Bearer " + Api.getToken()
             },
             body: formData
+        }).then(function (response) {
+            if (response.ok) {
+                return response.json();
+            } else {
+                return Promise.reject(response.status);
+            }
         });
-        // var data = new FormData();
-        // data.append("file", image);
-        // return Api.httpMethod(`/users/me/posts/${id}/image`, 'PUT', true, data, false,)
-        //     .catch(function (code) {
-        //         if (code == 400) {
-        //             return Api.statusCodes.WrongParameters;
-        //         }
-        //         return Api.defaultErrorHandling(code);
-        //     });
     }
 
 

@@ -27,7 +27,13 @@ class App extends React.Component {
   }
 
   onAuthenticated() {
-    this.setState({isAutheticated: true});
+    Api.getMyself()
+      .then(me => {
+        this.setState({
+          isAutheticated: true,
+          me
+        });
+      })
   }
 
   render() {
@@ -42,10 +48,10 @@ class App extends React.Component {
           <main className="body-container">
             <Switch>
               <Route exact path="/signin" component={SignIn} />
-              <Route exact path="/" component={Feed} />
+              <Route exact path="/" render={() => (<Feed me={this.state.me} />)} />
               <Route path="/users/:userId" render={({match}) => (
-                <UserProfile userId={ match.params.userId } />
-              ) } />
+                <UserProfile userId={ match.params.userId } me={ this.state.me } />
+              )} />
             </Switch>
           </main>
         </div>

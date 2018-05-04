@@ -9,7 +9,8 @@ class CreatePost extends React.Component {
         super(props);
         this.state = {
             text: "",
-            image: null,
+            imagePreview: null,
+            imageFile: null
         }
     }
 
@@ -33,7 +34,10 @@ class CreatePost extends React.Component {
     onSubmit(event) {
         event.preventDefault();
 
-        this.props.onSubmitHandler(this.state);
+        this.props.onSubmitHandler({
+            text: this.state.text,
+            imageFile: this.state.imageFile
+        });
 
         this.setState({
             text: "",
@@ -56,7 +60,7 @@ class CreatePost extends React.Component {
                         <label class="upload-image__label" htmlFor="upload-image__file-input">
                             <img class="upload-image__icon" src={ uploadImageLogo } alt="Upload photo button" />
                         </label>
-                        <input id="upload-image__file-input" type="file" name="image" accept="image/*" onChange={ (event) => this.handleImageSelected(event) }/>
+                        <input id="upload-image__file-input" type="file" name="image" accept="image/*" onChange={ (event) => this.handleImageSelected(event) } />
                     </div>
                     <input class="create-post__submit" type="submit" value="Post" />
                 </div>

@@ -11,62 +11,48 @@ class Feed extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            me: {},
-            feed: []
+            isReady: false,
+            feed: [],
+            posts: [],
+            wall: []
         }
     }
 
     componentDidMount() {
-        let state = {
-            isReady: false,
-            me: {},
-            stats: {},
-            followers: [],
-            followings: [],
-            feed: [],
-        };
+        const me = this.props.me;
+        let apiCalls = [
+            Api.getUserPosts(me.id)
+                .then(posts => {
+                    this.setState({ posts });
+                }),
 
-        Api.getMyself()
-            .then(me => {
-                console.log(me);
-                state.me = me;
-                let apiCalls = [
-                    Api.getUserPosts(state.me.id)
-                        .then(posts => {
-                            state.feed = state.feed.concat(posts);
-                            state.stats.postsCount = posts.length;
-                            this.setState(state);
-                        }),
+            Api.getUsersFollowers(me.id)
+                .then(followers => {
+                    this.setState({ followers });
+                }),
 
-                    Api.getUsersFollowers(state.me.id)
-                        .then(followers => {
-                            state.followers = followers;
-                            state.stats.followersCount = followers.length;
-                            this.setState(state);
-                        }),
+            Api.getUsersFollowings(me.id)
+                .then(followings => {
+                    this.setState({ followings });
+                }),
 
-                    Api.getUsersFollowings(state.me.id)
-                        .then(followings => {
-                            state.followings = followings;
-                            state.stats.followingsCount = followings.length;
-                            this.setState(state);
-                        }),
-
-                    Api.getUserFeed(state.me.id)
-                        .then(feed => {
-                            console.log(feed);
-                            state.feed = state.feed.concat(feed);
-                            this.setState(state);
-                        })
-                ];
-                return Promise.all(apiCalls)
-            })
+            Api.getUserFeed(me.id)
+                .then(wall => {
+                    this.setState({ wall });
+                })
+        ];
+        return Promise.all(apiCalls)
             .then(() => {
                 console.log(this.state);
-                state.feed.sort((a, b) => {
-                    return Date.parse(b.dateTime) - Date.parse(a.dateTime);
+                let feed = this.state.wall
+                    .concat(this.state.posts)
+                    .sort((a, b) => {
+                        return Date.parse(b.dateTime) - Date.parse(a.dateTime);
+                    });
+                this.setState({
+                    feed,
+                    isReady: true
                 });
-                this.setState({ isReady: true});
             })
             .catch(function (reason) {
                 if (reason == Api.statusCodes.AuthenticationFailed ||
@@ -79,25 +65,26 @@ class Feed extends React.Component {
     }
 
     createPostHandler(data) {
+        if (!data || !data.text) {
+            return;
+        }
         console.log(data);
         let {feed} = this.state;
-        if (data.imageFile) {
-            alert(`Attaching the image  ${data.imageFile}`);
-            Api.attachImage(53, data.imageFile)
-                .then(() => {
-
-                })
-        }
         Api.createPost(data.text)
             .then((created) => {
-                created.user = this.state.me;
+                console.log('Created initial:');
                 console.log(created);
-                feed.unshift(created);
-                console.log(feed);
-                this.setState({feed: this.state.feed});
-                if (data.image) {
-                    return Api.attachImage(created.id, data.image);
+                if (data.imageFile) {
+                    return Api.attachImage(created.id, data.imageFile);
                 }
+                return Promise.resolve(created);
+            })
+            .then((created) => {
+                console.log('Created after upload:');
+                console.log(created);
+                created.user = this.state.me;
+                feed.unshift(created);
+                this.setState({ feed: this.state.feed });
             })
     }
 
@@ -108,7 +95,11 @@ class Feed extends React.Component {
 
         return (
             <div className="page-content" >
-                <UserInfo user={this.state.me} stats={this.state.stats} />
+                <UserInfo userInfo={this.props.me}
+                    followings={this.state.followings}
+                    followers={this.state.followers}
+                    posts={this.state.posts}
+                    me={this.props.me} />
 
                 <div class="main-container">
                     <CreatePost onSubmitHandler={ (data) => this.createPostHandler(data) }/>

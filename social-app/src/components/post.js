@@ -2,12 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 
 import './post.css'
+import default_userpic from '../assets/default_userpic.jpg';
 
 class Post extends React.Component {
     render() {
         const { author, content } = this.props;
         if (!author || !content) {
             return null;
+        }
+        if (!author.imageUrl) {
+            author.imageUrl = default_userpic;
         }
         return (
             <div class="post">
