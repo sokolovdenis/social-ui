@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/navbar.css">
+
+    <meta charset="UTF-8">
+    <title>Publish Story</title>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-left">
+                <li class="dropdown">
+                    <button class="dropbtn">My Net</button>
+                    <div class="dropdown-content">
+                        <a href="friends.html">Friends</a>
+                        <a href="feed.html">Feed</a>
+                        <a href="all_users.html">Other</a>
+                        <a href="change_profile.html">Settings</a>
+                    </div>
+                </li>
+                <li><a class="navbar-brand" id="myProfile" href="profile.html">My page</a></li>
+            </ul>
+                <input type="text" placeholder="Search..">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="registration.html" id="myBtn">LOGOUT</a></li>
+            </ul>
+            </div>
+        </div>
+</nav>
+</header>
+<main>
+    <div class="flex_row">
+        <form>
+            <div class="authentication_form">
+                <h3>New story</h3>
+                <div class="input_row">
+                    <textarea id="text_input"></textarea>
+                </div>
+                <div class="input_row">
+                    <h4><label for="image_input">Selfie:</label></h4>
+                    <input type="file" id="image_input" name="avatar" accept="image/*">
+                </div>
+                <div class="submit_row">
+                    <input type="submit" value="Publish" size="20">
+                </div>
+            </div>
+        </form>
+    </div>
+</main>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/navbar.css">
+
+    <meta charset="UTF-8">
+    <title>Sign in</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="registration.html">REGISTER</a></li>
+                    <li><a href="login.html">LOGIN</a></li>
+                </ul>
+                </div>
+            </div>
+    </nav>
+    </header>
+<main>
+    <div class="flex_row">
+        <div class="login_image">
+            <img src="images/logo.jpg">
+        </div>
+        <form>
+            <div class="authentication_form">
+                <h3>Sign in</h3>
+                <div class="input_row">
+                    <h4><label for="email_input">Email:</label></h4>
+                    <input id="email_input" type="text" size="40">
+                </div>
+                <div class="input_row">
+                    <h4><label for="password_input">Password:</label></h4>
+                    <input id="password_input" type="password" size="40">
+                </div>
+                <div class="input_row remember_row">
+                    <input id="save_details_input" type="checkbox" value="Save details" size="40"
+                           style="margin: 20px">
+                    <h4><label for="save_details_input">Don't forget me:</label></h4>
+                </div>
+                <div class="submit_row">
+                    <input type="submit" value="Enter" size="40">
+                </div>
+            </div>
+        </form>
+    </div>
+</main>
+</body>
+</html>

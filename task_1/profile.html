@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/navbar.css">
+
+    <meta charset="UTF-8">
+    <title>Profile</title>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-left">
+                <li class="dropdown">
+                    <button class="dropbtn">My Net</button>
+                    <div class="dropdown-content">
+                        <a href="friends.html">Friends</a>
+                        <a href="feed.html">Feed</a>
+                        <a href="all_users.html">Nearest</a>
+                        <a href="change_profile.html">Settings</a>
+                    </div>
+                </li>
+                <li><a class="navbar-brand" id="myProfile" href="profile.html">My page</a></li>
+            </ul>
+                <input type="text" placeholder="Search..">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="registration.html" id="myBtn">LOGOUT</a></li>
+            </ul>
+            </div>
+        </div>
+</nav>
+</header>
+<main>
+    <div class="col-xs-12 container">
+    <div class="side_column col-xs-offset-0 col-xs-2" id="ad">
+        <h2>Реклама</h2>
+        <p>
+            ПРОДАМ ГАРАЖ
+        </p>
+        <p>
+            8-800-322-35-35
+        </p>
+        <p>
+            Amazon.com, Inc. 
+            (произносится э́мазон ком инко́рпоре́йтед, в русском языке произносится амазо́н) — американская компания,
+            крупнейшая в мире по обороту среди продающих товары и услуги через Интернет и 
+            один из первых интернет-сервисов, ориентированных на продажу реальных товаров массового спроса.
+            Штаб-квартира расположена в Сиэтле (штат Вашингтон). 
+        </p>
+    </div>
+        <div class="side_column1 col-xs-offset-0 col-xs-1"></div>
+    <div class="col-xs-2 side_column1">
+        <h2>Nikita Serenko</h2>
+        <div class="image" style="height:200px">Image</div>
+        <div class="centered_button">
+            <button class="button">Send</button>
+        </div>
+        <div class="centered_button">
+            <button class="button">Subscribe</button>
+        </div>
+        <p id="user_data">
+            Friends: 209
+            <br>
+            Followers: 100
+        </p>
+    </div>
+        <div class="col-xs-4 side_column1">
+            <h2>About me</h2>
+            <p>
+            My name is Nikita
+        </p>
+        <p>
+            Here are some facts about me
+        </p>
+        </div>
+        <div class=" col-xs-offset-1 col-xs-7 content_column">
+        <div class="content_header">
+            <h1 id="posts_header" align="center">Nikita's Posts</h1>
+            <button class="button" id="add_pos_button" onclick="location.href='add_post.html';">Add New Post</button>
+        </div>
+        <div class="col-xs-9 post">
+            <h2>Free</h2>
+            <h5>01 01 2017</h5>
+            <div class="fake_img" style="height:200px;">Image</div>
+            <p>Link to free trial!</p>
+        </div>
+        <div class="col-xs-9 post">
+            <h2>Story</h2>
+            <h5>02 02 2017</h5>
+            <div class="fake_img" style="height:200px;">Image</div>
+            <p>
+                Interesting story
+            </p>
+        </div>
+    </div>
+    </div>
+</main>
+
+</body>
+</html>
