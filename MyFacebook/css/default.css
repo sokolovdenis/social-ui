@@ -136,7 +136,7 @@ main {
     flex-direction: column;
 }
 
-.post {
+article {
     margin: 2%;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -144,21 +144,22 @@ main {
     background: white;
 }
 
-.post h4 {
+article h4 {
     margin-left: 2%;
     color: steelblue;
 }
 
-.post p {
+article p {
     margin-left: 2%;
     margin-right: 2%;
 }
 
-.post time {
+article time {
     color: lightsteelblue;
 }
 
 footer {
+    text-align: right;
     background: cadetblue;
     padding-right: 20px;
     color: navy;
