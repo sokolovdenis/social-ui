@@ -16,7 +16,6 @@ class SignIn extends React.Component {
 
         Api.signIn(this.getLoginData())
             .then(function () {
-                alert(sessionStorage.getItem('token'));
                 this.props.onAuthenticatedHandler();
             })
             .catch(function (reason) {

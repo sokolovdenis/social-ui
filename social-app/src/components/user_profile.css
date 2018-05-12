@@ -143,3 +143,8 @@
     margin: 0;
     padding: 0;
 }
+
+a.profile-name {
+    color: inherit;
+    text-decoration: inherit;
+}

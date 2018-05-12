@@ -19,7 +19,7 @@ class Feed extends React.Component {
     }
 
     componentDidMount() {
-        const me = this.props.me;
+        const me = this.props.me.myInfo;
         let apiCalls = [
             Api.getUserPosts(me.id)
                 .then(posts => {
@@ -95,7 +95,7 @@ class Feed extends React.Component {
 
         return (
             <div className="page-content" >
-                <UserInfo userInfo={this.props.me}
+                <UserInfo userInfo={this.props.me.myInfo}
                     followings={this.state.followings}
                     followers={this.state.followers}
                     posts={this.state.posts}

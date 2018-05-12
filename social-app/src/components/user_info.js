@@ -1,11 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 
 import Api from '../api'
 
 import UserStatistics from './UserStatistics'
 import EditSelf from './EditSelf';
+import FollowUnfollow from './FollowUnfollowButton'
 
 import default_userpic from '../assets/default_userpic.jpg';
+import FollowUnfollowButton from './FollowUnfollowButton';
 
 class UserInfo extends React.Component {
     constructor(props) {
@@ -16,7 +19,7 @@ class UserInfo extends React.Component {
     }
 
     render() {
-        if (!this.props.userInfo) {
+        if (!this.props.userInfo || !this.props.me) {
             return null;
         }
         let { id, imageUrl, name, info } = this.props.userInfo;
@@ -25,7 +28,7 @@ class UserInfo extends React.Component {
         const followersCount = this.props.followers ? this.props.followers.length : "?";
         const followingsCount = this.props.followings ? this.props.followings.length : "?";
 
-        const isItMe = this.props.me && this.props.me.id == id;
+        const isItMe = this.props.me && this.props.me.myInfo.id == id;
 
         if (this.state.editing) {
             return (<EditSelf 
@@ -34,13 +37,22 @@ class UserInfo extends React.Component {
                         onFinishEditing={(data) => this.onFinishEditing(data) }
                         onCancelEditing={(data) => this.onCancelEditing(data) } />);
         }
+        //const isItFollowing = this.props.me.followings.map(item => item.id).includes(this.props.userInfo.id);
+
+        let interactionButton;
+        if (isItMe) {
+            interactionButton = (<div onClick={ (event) => this.editHandler() } className="profile-interact button">Edit</div>);
+        } else {
+            interactionButton = (<FollowUnfollowButton me={this.props.me} userId={id} />)
+        }
 
         return (
             <nav id="state-is-view-other" class="profile-container">
                 <ProfilePicture src={ imageUrl }/>
                 <div class="profile__bottom">
-                    <div class="profile-name">{ name }</div>
+                    <Link to={`/users/${id}`} class="profile-name">{ name }</Link>
                     <UserStatistics
+                        id={ id }
                         postCount={ postCount }
                         followersCount={ followersCount }
                         followingsCount={ followingsCount }
@@ -50,10 +62,7 @@ class UserInfo extends React.Component {
                         (<div>
                             <div className="profile-age">21 years</div>
                             <div className="profile-about">{info}</div>
-                            <InteractionButton 
-                                isItMe={isItMe}
-                                toggleSubscriptionHandler={ () => this.toggleSupscription() }
-                                editHandler={ () => this.edit() } />
+                            { interactionButton }
                         </div>) : null
                     }
                 </div>
@@ -83,18 +92,6 @@ class UserInfo extends React.Component {
 
     onCancelEditing() {
         this.setState({ editing: false })
-    }
-
-    toggleSupscription() {
-        alert("Subscribe or unsubscribe");
-    }
-}
-
-function InteractionButton(props) {
-    if (props.isItMe) {
-        return (<div onClick={ (event) => props.editHandler() } className="profile-interact button">Edit</div>);
-    } else {
-        return (<div onClick={ (event) => props.toggleSubscriptionHandler() } className="profile-interact button">Subscribe</div>);
     }
 }
 

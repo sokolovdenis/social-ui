@@ -18,6 +18,10 @@
     margin-right: 10px;
 }
 
+.post__user-image img {
+    border-radius: 30px;
+}
+
 .post__content {
     font-family: Verdana, Geneva, Tahoma, sans-serif
 }

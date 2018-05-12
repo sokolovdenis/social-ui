@@ -49,14 +49,7 @@ class EditSelf extends React.Component {
                         onChange={(event) => this.onInfoChanged(event)} />
 
                     <input className="profile-interact editing button" type="submit" value="Save" />
-                    <input className="profile-interact editing button" onClick={ (event) => {
-                            this.setState({
-                                user: this.props.userInfo,
-                                imageFile: null,
-                                imagePreview: this.props.userInfo.imageUrl
-                            })
-                            this.props.onCancelEditing();
-                        } } value="Cancel" />
+                    <input className="profile-interact editing button" onClick={ (event) => this.props.onCancelEditing() } value="Cancel" />
                 </form>
             </div>
         );
