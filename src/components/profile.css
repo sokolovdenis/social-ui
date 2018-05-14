@@ -1,0 +1,39 @@
+.main {
+    margin-left: 150px;
+    padding: 0 10px;
+}
+
+a[type=button], a[type=submit] {
+    background-color: #513D7A;
+    box-sizing: border-box;
+    color: white;
+    border: 1px solid #513D7A;
+    padding: 10px 10px;
+    text-decoration: none;
+    cursor: pointer;
+    margin: 20px;
+}
+
+button {
+    background-color: #513D7A;
+    box-sizing: border-box;
+    color: white;
+    border: 1px solid #513D7A;
+    padding: 10px 10px;
+    text-decoration: none;
+    cursor: pointer;
+    margin: 20px;
+}
+
+.profile_info {
+    text-align: center;
+}
+
+.posts {
+    text-align: center;
+}
+
+.avatar {
+    max-width: 200px;
+    max-height: 200px;
+}

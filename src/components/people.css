@@ -1,0 +1,22 @@
+.main {
+    margin-left: 150px;
+    padding: 0 10px;
+}
+
+.user {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+
+.user_info {
+    padding-left: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.user_image {
+    width: 30px;
+    height: 30px;
+}
