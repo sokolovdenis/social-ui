@@ -1,0 +1,26 @@
+.profile {
+  display: flex;
+  width: 90%;
+  margin: 2em auto;
+  background: black;
+  flex-wrap: wrap;
+}
+
+.profile .info {
+  flex-grow: 1;
+  background: rgb(177, 223, 51);
+}
+
+.profileInfo img {
+  max-width: 300px;
+}
+
+.profile .feed {
+  flex-grow: 3;
+  background: violet;
+}
+
+.profile textarea {
+  width: 70%;
+  height: 5em;
+}

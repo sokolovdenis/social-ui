@@ -1,0 +1,23 @@
+.userList {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.userInList {
+  padding: 10px;
+}
+
+.userInList img {
+  object-fit: cover;
+  height: 150px;
+  width: 150px
+}
+
+.userInList p {
+  width: 100%;
+  text-align: center;
+  margin: 0;
+}

@@ -1,0 +1,49 @@
+article {
+  background: lavender;
+  display: grid;
+  grid-template-columns: 66px auto;
+  grid-template-rows: 33px 33px auto 25px;
+  margin: 2em 0;
+  border: 1px solid;
+}
+
+article .avatar {
+  background: salmon;
+  grid-column: 1;
+  grid-row: 1 / span 2;
+}
+
+article .avatar img {
+  max-width: 100%;
+}
+   
+article h2 {
+  background: lightgreen;
+  grid-column: 2;
+  grid-row: 1;
+  margin: 0;
+}
+  
+article .date {
+    background: burlywood;
+    grid-column: 2;
+    grid-row: 2;
+  }
+  
+article > .body {
+  background: green;
+  grid-column: 1 / span 2;
+  grid-row: 3;
+  padding: 25px;
+}
+
+article .body img {
+  max-width: 95%;
+  max-height: 350px;
+}
+  
+article .footer {
+    background: red;
+    grid-column: 1 / span 2;
+    grid-row: 4;
+}
