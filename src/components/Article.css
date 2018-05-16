@@ -23,6 +23,10 @@ article h2 {
   grid-row: 1;
   margin: 0;
 }
+
+article .avatar:hover, article h2:hover {
+  cursor: pointer;
+}
   
 article .date {
     background: burlywood;
@@ -35,6 +39,7 @@ article > .body {
   grid-column: 1 / span 2;
   grid-row: 3;
   padding: 25px;
+  color: darkorange;
 }
 
 article .body img {

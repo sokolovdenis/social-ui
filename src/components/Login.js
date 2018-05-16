@@ -76,6 +76,8 @@ class Login extends Component {
 
   render() {
     return (
+      <div>
+        <p>Заполняешь email и пароль -- входишь, заполняешь всё -- регаешься</p>
       <form onSubmit={this.handleSubmit}>
         <label>
           E-mail:
@@ -113,6 +115,7 @@ class Login extends Component {
         </label>
         <input type="submit" value="Submit" />
       </form>
+      </div>
     );
   }
 }
