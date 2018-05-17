@@ -12,22 +12,22 @@ import Profile from './Profile'
 import { logIn, logOut } from '../actions/auth'
 
 class App extends Component {
-  render() {  
+  render() {
     const userPath = "user/" + this.props.userId
     const body = this.props.isLoggedIn ? (
       <Switch>
-        <Route exact path="/" render={() => (<Redirect to={userPath}/>)}/>
+        <Route exact path="/" render={() => (<Redirect to={userPath} />)} />
         <Route path='/feed' component={Feed} />
         <Route path='/users' component={Users} />
         <Route path='/user/:id' component={Profile} />
       </Switch>
     ) : (
-      <Login call={this.props.logIn} />
-    );
+        <Login call={this.props.logIn} />
+      );
 
     return (
       <div className="App">
-        <Head exitCall={this.props.logOut}/>
+        <Head exitCall={this.props.logOut} />
         {body}
         <footer>(с) футер </footer>
       </div>
@@ -41,12 +41,12 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-      logIn: (token, setCookie) => {
-        dispatch(logIn(token, setCookie));
-      },
-      logOut: () => {
-        dispatch(logOut());
-      }
+    logIn: (token, setCookie) => {
+      dispatch(logIn(token, setCookie));
+    },
+    logOut: () => {
+      dispatch(logOut());
+    }
   }
 };
 

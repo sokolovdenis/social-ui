@@ -15,14 +15,14 @@ class Users extends Component {
   }
 
   render() {
-    const {items, history} = this.props
+    const { items, history } = this.props
     const body = this.props.isFetching ? (
       <Loading />
     ) : (
-      <div className="userList">{items.map(
-        user => <UserInList name={user.name} pic={user.imageUrl} onclick={function(){history.push('/user/' + user.id)}} />
-      )}</div>
-    );
+        <div className="userList">{items.map(
+          user => <UserInList name={user.name} pic={user.imageUrl} onclick={function () { history.push('/user/' + user.id) }} />
+        )}</div>
+      );
     return (
       <div>{body}</div>
     )

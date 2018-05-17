@@ -18,8 +18,8 @@ function handleSignIn(state, callback) {
       password: state.password
     })
   }).then(response => checkResponse(response))
-  .then(json => callback(json.token, true))
-  .catch(err => handleError(err, alert))
+    .then(json => callback(json.token, true))
+    .catch(err => handleError(err, alert))
 }
 
 function handleSignUp(state, callback) {
@@ -38,8 +38,8 @@ function handleSignUp(state, callback) {
       birthday: new Date(state.birthday).toISOString()
     })
   }).then(response => checkResponse(response))
-  .then(json => callback(json.token, true))
-  .catch(err => handleError(err, alert))
+    .then(json => callback(json.token, true))
+    .catch(err => handleError(err, alert))
 }
 
 class Login extends Component {
@@ -78,43 +78,43 @@ class Login extends Component {
     return (
       <div>
         <p>Заполняешь email и пароль -- входишь, заполняешь всё -- регаешься</p>
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          E-mail:
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            E-mail:
           <input
-            name="email"
-            type="text"
-            value={this.state.email}
-            onChange={this.handleInputChange} />
-        </label>
-        <br />
-        <label>
-          Password:
+              name="email"
+              type="text"
+              value={this.state.email}
+              onChange={this.handleInputChange} />
+          </label>
+          <br />
+          <label>
+            Password:
           <input
-            name="password"
-            type="password"
-            value={this.state.password}
-            onChange={this.handleInputChange} />
-        </label>
-        <br />
-        <label>
-          Name:
+              name="password"
+              type="password"
+              value={this.state.password}
+              onChange={this.handleInputChange} />
+          </label>
+          <br />
+          <label>
+            Name:
           <input
-            name="name"
-            type="text"
-            value={this.state.name}
-            onChange={this.handleInputChange} />
-        </label>
-        <label>
-          Birthday:
+              name="name"
+              type="text"
+              value={this.state.name}
+              onChange={this.handleInputChange} />
+          </label>
+          <label>
+            Birthday:
           <input
-            name="birthday"
-            type="date"
-            value={this.state.birthday}
-            onChange={this.handleInputChange} />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
+              name="birthday"
+              type="date"
+              value={this.state.birthday}
+              onChange={this.handleInputChange} />
+          </label>
+          <input type="submit" value="Submit" />
+        </form>
       </div>
     );
   }

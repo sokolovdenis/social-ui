@@ -2,7 +2,7 @@ import { REQUEST_USERS, RECEIVE_USERS, RECEIVE_USERS_ERROR } from '../actions/ac
 
 function users(
   state = {
-    isFetching: false,
+    isFetching: true,
     error: null,
     items: []
   },

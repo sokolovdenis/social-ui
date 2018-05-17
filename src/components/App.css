@@ -58,6 +58,11 @@ footer {
   height: 3em;
 }
 
+.loading {
+  text-align: center;
+  background: black;
+}
+
 @media (max-width:450px) {
   header > img {
     display: none;

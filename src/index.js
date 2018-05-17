@@ -9,14 +9,14 @@ import Cookies from 'universal-cookie'
 
 const cookies = new Cookies()
 const [token, userId] = [cookies.get('token'), cookies.get('userId')]
-const store = configureStore({auth: {token: token, id: userId, followings:[]}});
+const store = configureStore({ auth: { token: token, id: userId, followings: [] } });
 
 ReactDOM.render((
-<Provider store={store}>
+  <Provider store={store}>
     <HashRouter>
-      <App/>
+      <App />
     </HashRouter>
-</Provider>
+  </Provider>
 
 ), document.getElementById('root'));
 registerServiceWorker();

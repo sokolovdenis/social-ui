@@ -8,15 +8,21 @@ import {
   EDIT_SELF
 } from '../actions/actions'
 
-const info = (state = {isFetching: false, error: null}, action) => {
+const info = (state = { isFetching: true, error: null }, action) => {
   switch (action.type) {
-    case RECEIVE_PROFILE_DATA:
-    case EDIT_SELF:
-      let {id, name, info: userInfo, imageUrl, birthday} = action.data;
+    case RECEIVE_PROFILE_DATA: {
+      let { id, name, info: userInfo, imageUrl, birthday } = action.data;
       return Object.assign({}, state, {
         isFetching: false,
         id, name, userInfo, imageUrl, birthday
       })
+    }
+    case EDIT_SELF: {
+      let { name, info: userInfo, birthday } = action.data;
+      return Object.assign({}, state, {
+        name, userInfo, birthday
+      })
+    }
     default:
       return state
   }
@@ -25,7 +31,7 @@ const info = (state = {isFetching: false, error: null}, action) => {
 const followers = (state = [], action) => {
   switch (action.type) {
     case RECEIVE_PROFILE_FOLLOWERS:
-      return action.data 
+      return action.data
     default:
       return state
   }
@@ -34,13 +40,13 @@ const followers = (state = [], action) => {
 const followings = (state = [], action) => {
   switch (action.type) {
     case RECEIVE_PROFILE_FOLLOWINGS:
-      return action.data 
+      return action.data
     default:
       return state
   }
 };
 
-const profile = (state = {isFetching: false, isSelf: false, error: null}, action) => {
+const profile = (state = { isFetching: false, isSelf: false, error: null }, action) => {
   switch (action.type) {
     case REQUEST_PROFILE:
       return Object.assign({}, state, {
@@ -73,7 +79,7 @@ const profile = (state = {isFetching: false, isSelf: false, error: null}, action
         followers: followers(state.followers, action),
         followings: followings(state.followings, action)
       }
-  } 
+  }
 }
 
 export default profile

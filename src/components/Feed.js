@@ -16,14 +16,14 @@ class Feed extends Component {
   render() {
     const { articles, isFetching, history } = this.props
     return (
-      isFetching ? <Loading /> : <Wall articles={articles} history={history}/>
+      isFetching ? <Loading /> : <Wall articles={articles} history={history} />
     );
   }
 }
 
 function mapStateToProps(state) {
   const { auth, posts } = state
-  return { 
+  return {
     token: auth.token,
     userId: auth.id,
     articles: posts.items,

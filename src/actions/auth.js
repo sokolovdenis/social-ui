@@ -4,6 +4,7 @@ import {
   SET_TOKEN, RESET_TOKEN, SET_ID,
   RECEIVE_MY_FOLLOWINGS, REQUEST_MY_FOLLOWINGS,
   FOLLOW_USER, UNFOLLOW_USER,
+  DELETE_SELF,
   fetchWithCheck
 } from './actions'
 
@@ -108,6 +109,22 @@ export function unfollow(id, token) {
       method: 'DELETE'
     }, "noJSON")
       .then(() => dispatch(unfollowUser(id)))
+      .catch(err => alert(err))
+  }
+}
+
+function deleteSelf() {
+  return {
+    type: DELETE_SELF
+  }
+}
+
+export function killSelf(token) {
+  return dispatch => {
+    fetchWithCheck(ROOT_URL + 'users/me', token, {
+      method: 'DELETE'
+    }, "noJSON")
+    .then(() => dispatch(deleteSelf()))
       .catch(err => alert(err))
   }
 }

@@ -1,5 +1,6 @@
 import {
   fetchWithCheck,
+  checkResponse,
   ROOT_URL,
   REQUEST_PROFILE,
   RECEIVE_PROFILE_DATA,
@@ -71,11 +72,30 @@ export function fetchProfile(userId, token, force) {
   }
 }
 
-export function editSelf(token, newData) {
-  return dispatch => {
-    fetchWithCheck(ROOT_URL + 'users/me', token, {
-      method: 'PUT'
-    })
+export function editSelf(newData, token) {
+  const {name, info, birthday} = newData
+  if (!name || !birthday) {
+    console.log('editSelf error:', newData)
+    return 
+  }
+
+  return (dispatch, getState) => {
+    const currentInfo = getState().profile.info
+    if (currentInfo.name === name &&
+      currentInfo.userInfo === info && 
+      currentInfo.birthday.slice(0, 10) === birthday) {
+      return
+    }
+
+    fetch(ROOT_URL + 'users/me', {
+        method: 'PUT',
+        headers: { 
+          Authorization: 'Bearer ' + token,
+          'content-Type': 'application/json'
+        },
+        body: JSON.stringify({name, info, birthday})
+      }) 
+      .then(response => checkResponse(response)) 
       .then(() => dispatch({ type: EDIT_SELF, data: newData }))
       .catch(err => alert(err))
   }

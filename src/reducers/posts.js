@@ -2,7 +2,7 @@ import { REQUEST_POSTS, RECEIVE_POSTS, RECEIVE_POSTS_ERROR, ADD_POST } from '../
 
 function posts(
   state = {
-    isFetching: false,
+    isFetching: true,
     error: null,
     userId: null,
     isFeed: null,
