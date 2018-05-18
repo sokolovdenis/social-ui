@@ -88,7 +88,7 @@ class UserInfo extends React.Component {
 function ProfilePicture(props) {
     const src = props.src ? props.src : default_userpic;
     return (
-        <img className="profile-pic" src={src} />
+        <img className="profile-pic" src={src} alt="profile pic" />
     );
 }
 
