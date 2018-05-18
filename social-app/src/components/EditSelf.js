@@ -35,7 +35,7 @@ class EditSelf extends React.Component {
                 </div>
                 <form className="profile__bottom" onSubmit={(event) => this.onSubmit(event)}>
                     <input
-                        className="profile-name editing"
+                        className="profile__name editing"
                         type="text"
                         value={this.state.user.name}
                         placeholder="Name"

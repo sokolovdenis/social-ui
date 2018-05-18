@@ -19,16 +19,13 @@ class UserInfo extends React.Component {
     }
 
     render() {
-        if (!this.props.userInfo || !this.props.me) {
-            return null;
-        }
         let { id, imageUrl, name, info } = this.props.userInfo;
 
-        const postCount = this.props.posts ? this.props.posts.length : "?";
-        const followersCount = this.props.followers ? this.props.followers.length : "?";
-        const followingsCount = this.props.followings ? this.props.followings.length : "?";
+        const postCount = this.props.posts.length;
+        const followersCount = this.props.followers.length;
+        const followingsCount = this.props.followings.length;
 
-        const isItMe = this.props.me && this.props.me.myInfo.id == id;
+        const isItMe = this.props.me.myInfo.id === id;
 
         if (this.state.editing) {
             return (<EditSelf 
@@ -43,17 +40,17 @@ class UserInfo extends React.Component {
             (<FollowUnfollowButton me={this.props.me} userId={id} />);
 
         return (
-            <div class="profile-container">
+            <div className="profile-container">
                 <ProfilePicture src={ imageUrl }/>
                 <div class="profile__bottom">
-                    <Link to={`/users/${id}`} class="profile-name">{ name }</Link>
+                    <Link to={`/users/${id}`} className="profile__name">{ name }</Link>
                     <UserStatistics
                         id={ id }
                         postCount={ postCount }
                         followersCount={ followersCount }
                         followingsCount={ followingsCount }
                     />
-                    <div className="profile-about">{(info)? info : ""}</div>
+                    <div className="profile-about">{ info }</div>
                     {
                         this.props.showDetailed ?
                         (<div>
@@ -69,20 +66,18 @@ class UserInfo extends React.Component {
         this.setState({ editing: true })
     }
 
-    onFinishEditing(data) {
-        Api.editMyself({
+    async onFinishEditing(data) {
+        await Api.editMyself({
             name: data.user.name,
             info: data.user.info,
             birthday: data.user.birthday
-        }).then((updated) => {
-            console.log(updated);
-            if (data.imageFile) {
-                return Api.setProfileImage(data.imageFile);
-            }
-            return Promise.resolve(updated);
-        }).then((updated) => {
-            this.setState({ editing: false });
-        })
+        });
+
+        if (data.imageFile) {
+            await Api.setProfileImage(data.imageFile);
+        }
+
+        this.setState({ editing: false });
     }
 
     onCancelEditing() {

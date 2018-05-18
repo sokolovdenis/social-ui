@@ -1,13 +1,14 @@
 import React from 'react';
 
 import UserListItem from './UserListItem'
+import Loading from './Loading'
 
 import './UserList.css'
 
 class UserList extends React.Component {
     render() {
         if (!this.props.items) {
-            return (<div>Loading...</div>)
+            return (<Loading />)
         }
         return (
             <div class="user-list">

@@ -3,6 +3,7 @@ import React from 'react';
 import Api from '../api'
 
 import UserList from './UserList'
+import Loading from './Loading'
 
 class Followings extends React.Component {
 
@@ -22,7 +23,7 @@ class Followings extends React.Component {
 
     render() {
         if (!this.state.users) {
-            return (<div>Loading...</div>)
+            return (<Loading />)
         }
         return (
             <UserList items={ this.state.users } me={this.props.me} />

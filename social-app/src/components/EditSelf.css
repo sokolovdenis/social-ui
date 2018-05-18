@@ -47,3 +47,13 @@
     padding-top: 0px;
     box-sizing: border-box;
 }
+
+.profile-about.editing {
+    height: 130px;
+    margin-bottom: 10px;
+}
+
+.profile-age.editing {
+    margin-bottom: 10px;
+    width: 100%;
+}

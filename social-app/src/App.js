@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Api from './api'
 
 import Header from './components/Header'
-import PostList from './components/post_list'
 import SignIn from './components/signin'
 import Feed from './components/Feed'
 import UserProfile from './components/UserProfile'

@@ -26,14 +26,6 @@
     padding: 0;
 }
 
-.main {
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    flex-shrink: 0;
-    width: 600px;
-}
-
 @media (max-width: 600px) {
     .user-statistics {
         flex-direction: column;

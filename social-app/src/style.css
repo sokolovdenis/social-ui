@@ -32,16 +32,6 @@ body {
     margin-right: auto;
 }
 
-.post-list {
-    width: 600px;
-    box-sizing: border-box;
-}
-
-.post {
-    background-color: white;
-    border: #DFD5F5 solid 1px;
-}
-
 .post__container {
     display: flex;
     flex-direction: row;
