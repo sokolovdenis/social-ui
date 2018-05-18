@@ -14,12 +14,14 @@ class Post extends React.Component {
             author.imageUrl = default_userpic;
         }
         return (
-            <div class="post">
-                <div class="post__container">
-                    <img class="post__user-image" src={author.imageUrl} alt="user photo" />
-                    <div>
+            <div className="post">
+                <div className="post__container">
+                    <Link to={`/users/${author.id}`}>
+                        <img class="post__user-image" src={author.imageUrl} alt="user photo" />
+                    </Link>
+                    <div className="post-main">
                         <Link to={`/users/${author.id}`} class="post__user-name">{author.name}</Link>
-                        <div class="post__content">{content.text}</div>
+                        <div className="post__content">{content.text}</div>
                         <PostImage url={ content.imageUrl } />
                     </div>
                 </div>

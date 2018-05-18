@@ -9,6 +9,7 @@ class CreatePost extends React.Component {
         super(props);
         this.state = {
             text: "",
+            limit: 500,
             imagePreview: null,
             imageFile: null
         }
@@ -33,6 +34,9 @@ class CreatePost extends React.Component {
 
     onSubmit(event) {
         event.preventDefault();
+        if (this.state.text.length > this.state.limit) {
+            return;
+        }
 
         this.props.onSubmitHandler({
             text: this.state.text,
@@ -47,18 +51,24 @@ class CreatePost extends React.Component {
     }
 
     render() {
+        const restLimit = this.state.limit - this.state.text.length;
+        let limitCounterClass = "create-port__limit-counter";
+        if (restLimit < 0) {
+            limitCounterClass += " create-port__limit-counter--over-limit";
+        }
         return (
             <form onSubmit={(event) => this.onSubmit(event)} className="create-post">
-                <textarea class="create-post__textatea"
+                <textarea className={ "create-post__textatea" + ((this.state.text) ? " create-post__textatea--with-content" : "")}
                     value={this.state.text}
                     placeholder="What is happening?"
                     onChange={(event) => this.handleChange(event)} >
                 </textarea>
+                <div className={limitCounterClass}>{restLimit}</div>
                 <ImagePreview src={this.state.imagePreview} />
-                <div class="create-post__bottom">
-                    <div class="upload-image">
-                        <label class="upload-image__label" htmlFor="upload-image__file-input">
-                            <img class="upload-image__icon" src={ uploadImageLogo } alt="Upload photo button" />
+                <div className="create-post__bottom">
+                    <div className="upload-image">
+                        <label className="upload-image__label" htmlFor="upload-image__file-input">
+                            <img className="upload-image__icon" src={ uploadImageLogo } alt="Upload photo button" />
                         </label>
                         <input id="upload-image__file-input" type="file" name="image" accept="image/*" onChange={ (event) => this.handleImageSelected(event) } />
                     </div>

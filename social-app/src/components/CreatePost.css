@@ -94,3 +94,19 @@ textarea {
     color: grey;
     border-radius: 10px;
 }
+
+.create-post__textatea--with-content {
+    height: 220px;
+}
+
+.create-port__limit-counter {
+    position: relative;
+    padding-right: 5px;
+    text-align: right;
+    top: -25px;
+    color: grey;
+}
+
+.create-port__limit-counter--over-limit {
+    color: red;
+}

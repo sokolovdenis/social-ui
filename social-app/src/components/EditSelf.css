@@ -1,0 +1,49 @@
+.profile-pic.editing {
+    filter: brightness(50%);
+    border: 0px;
+    box-sizing: border-box;
+    padding: 5px;
+}
+
+.profile-editing-picholder {
+    position: relative;
+    height: 300px;
+    width: 300px;
+    background-color: grey;
+}
+
+.profile-editing-picholder:hover {
+    background-color: #602f6b;
+}
+
+.profile-editing-changepic {
+    height: 300px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.profile-editing-picholder>input {
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
+
+.profile-editing-changepic-label {
+    color: white;
+    width: 300px;
+    box-sizing: border-box;
+    padding-left: 40px;
+    padding-right: 40px;
+    text-align: center;
+    font-weight: 700;
+    position: absolute;
+    top: 40%;
+}
+
+.profile__bottom>input,
+.profile__bottom>textarea {
+    width: 100%;
+    height: 30px;
+    padding-top: 0px;
+    box-sizing: border-box;
+}

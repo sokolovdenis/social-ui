@@ -1,11 +1,10 @@
 import React from 'react';
 import Api from '../api'
-import UserInfo from './user_info'
+import UserInfo from './UserInfo'
 import PostList from './post_list'
 import Loading from './loading'
 
 import '../style.css'
-import './user_profile.css'
 
 class UserProfile extends React.Component {
 

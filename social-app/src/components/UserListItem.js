@@ -25,7 +25,11 @@ class UserListItem extends React.Component {
         const followersCount = this.props.followers ? this.props.followers.length : "?";
         const followingsCount = this.props.followings ? this.props.followings.length : "?";
 
-        const isItMe = this.props.me && this.props.me.id == id;
+        const isItMe = this.props.me.myInfo && this.props.me.myInfo.id == id;
+
+        let followUnfollow = (!isItMe) ?
+            (<FollowUnfollowButton me={this.props.me} userId={ id }/>) :
+            (<div/>);
 
         return (
             <div className="user-list-item">
@@ -35,7 +39,7 @@ class UserListItem extends React.Component {
                 <div className="user-list-item-right">
                     <Link to={`/users/${id}`} className="user-list-item-name">{ name }</Link>
                     <p className="">{ info }</p>
-                    <FollowUnfollowButton me={this.props.me} userId={ id }/>
+                    {followUnfollow}
                 </div>
             </div>
         );

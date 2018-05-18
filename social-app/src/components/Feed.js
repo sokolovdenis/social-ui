@@ -2,7 +2,7 @@ import React from 'react';
 
 import Api from '../api'
 
-import UserInfo from './user_info'
+import UserInfo from './UserInfo'
 import PostList from './post_list'
 import Loading from './loading'
 import CreatePost from './CreatePost'
@@ -82,7 +82,7 @@ class Feed extends React.Component {
             .then((created) => {
                 console.log('Created after upload:');
                 console.log(created);
-                created.user = this.state.me;
+                // created.user = this.state.me;
                 feed.unshift(created);
                 this.setState({ feed: this.state.feed });
             })

@@ -5,10 +5,10 @@ import Api from '../api'
 
 import UserStatistics from './UserStatistics'
 import EditSelf from './EditSelf';
-import FollowUnfollow from './FollowUnfollowButton'
-
-import default_userpic from '../assets/default_userpic.jpg';
 import FollowUnfollowButton from './FollowUnfollowButton';
+
+import "./UserInfo.css"
+import default_userpic from '../assets/default_userpic.jpg';
 
 class UserInfo extends React.Component {
     constructor(props) {
@@ -37,17 +37,13 @@ class UserInfo extends React.Component {
                         onFinishEditing={(data) => this.onFinishEditing(data) }
                         onCancelEditing={(data) => this.onCancelEditing(data) } />);
         }
-        //const isItFollowing = this.props.me.followings.map(item => item.id).includes(this.props.userInfo.id);
 
-        let interactionButton;
-        if (isItMe) {
-            interactionButton = (<div onClick={ (event) => this.editHandler() } className="profile-interact button">Edit</div>);
-        } else {
-            interactionButton = (<FollowUnfollowButton me={this.props.me} userId={id} />)
-        }
+        let interactionButton = isItMe ?
+            (<div onClick={ (event) => this.edit() } className="profile-interact button">Edit</div>) :
+            (<FollowUnfollowButton me={this.props.me} userId={id} />);
 
         return (
-            <nav id="state-is-view-other" class="profile-container">
+            <div class="profile-container">
                 <ProfilePicture src={ imageUrl }/>
                 <div class="profile__bottom">
                     <Link to={`/users/${id}`} class="profile-name">{ name }</Link>
@@ -57,16 +53,15 @@ class UserInfo extends React.Component {
                         followersCount={ followersCount }
                         followingsCount={ followingsCount }
                     />
+                    <div className="profile-about">{(info)? info : ""}</div>
                     {
                         this.props.showDetailed ?
                         (<div>
-                            <div className="profile-age">21 years</div>
-                            <div className="profile-about">{info}</div>
                             { interactionButton }
                         </div>) : null
                     }
                 </div>
-            </nav>
+            </div>
         );
     }
 

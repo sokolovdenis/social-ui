@@ -23,7 +23,8 @@
 }
 
 .post__content {
-    font-family: Verdana, Geneva, Tahoma, sans-serif
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    word-break: break-word;
 }
 
 .post__image {

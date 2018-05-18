@@ -1,6 +1,9 @@
 import React from 'react';
 import UserStatistics from './UserStatistics'
 
+import './EditSelf.css'
+import './UserInfo.css'
+
 class EditSelf extends React.Component {
     constructor(props) {
         super(props);
@@ -22,17 +25,17 @@ class EditSelf extends React.Component {
         const isItMe = !this.props.me ? undefined : (this.props.me.id == id);
 
         return (
-            <div class="profile-container">
-                <div class="profile-editing-picholder">
-                    <label class="profile-editing-changepic" for="file-input">
-                        <img class="profile-pic editing" src={ this.state.imagePreview } /*style="pointer-events: none"*//>
-                        <div class="profile-editing-changepic-label">Change your profile photo</div>
+            <div className="profile-container">
+                <div className="profile-editing-picholder">
+                    <label className="profile-editing-changepic" for="file-input">
+                        <img className="profile-pic editing" src={ this.state.imagePreview } />
+                        <div className="profile-editing-changepic-label">Change your profile photo</div>
                     </label>
                     <input id="file-input" type="file" name="pic" accept="image/*" onChange={ (event) => this.onImageSelected(event) } />
                 </div>
                 <form className="profile__bottom" onSubmit={(event) => this.onSubmit(event)}>
                     <input
-                        class="profile-name editing"
+                        className="profile-name editing"
                         type="text"
                         value={this.state.user.name}
                         placeholder="Name"
