@@ -77,7 +77,7 @@ class AllUsers extends Component {
             return element
         }
         else {
-            return <div/>;
+            return <div>Loading</div>;
         }
     }
 }

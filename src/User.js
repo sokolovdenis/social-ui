@@ -120,7 +120,6 @@ class User extends Component {
             this.state.start = true;
             this.fetch_info(id);
         }
-        console.log(this.state.info);
 
         if (this.state.info_fetched && this.state.following_fetched
             && this.state.followers_fetched && this.state.post_fetched) {
@@ -143,7 +142,7 @@ class User extends Component {
             return element
         }
         else {
-            return <div/>;
+            return <div>Loading</div>;
         }
     }
 }
