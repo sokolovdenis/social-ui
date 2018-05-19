@@ -64,28 +64,14 @@ class Feed extends React.Component {
             });
     }
 
-    createPostHandler(data) {
-        if (!data || !data.text) {
-            return;
+    async onPostCreated(created) {
+        if (created) {
+            let { feed } = this.state;
+            feed.unshift(created);
+            this.setState({
+                feed: this.state.feed
+            });
         }
-        console.log(data);
-        let {feed} = this.state;
-        Api.createPost(data.text)
-            .then((created) => {
-                console.log('Created initial:');
-                console.log(created);
-                if (data.imageFile) {
-                    return Api.attachImage(created.id, data.imageFile);
-                }
-                return Promise.resolve(created);
-            })
-            .then((created) => {
-                console.log('Created after upload:');
-                console.log(created);
-                // created.user = this.state.me;
-                feed.unshift(created);
-                this.setState({ feed: this.state.feed });
-            })
     }
 
     render() {
@@ -102,7 +88,7 @@ class Feed extends React.Component {
                     me={this.props.me} />
 
                 <div class="main-container">
-                    <CreatePost onSubmitHandler={ (data) => this.createPostHandler(data) }/>
+                    <CreatePost onPostCreated={ (created) => this.onPostCreated(created) }/>
                     <PostList items={this.state.feed} />
                 </div>
 

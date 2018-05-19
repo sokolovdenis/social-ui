@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Api from '../api'
+
 import './CreatePost.css'
 import uploadImageLogo from '../assets/upload_image_icon.svg';
 
@@ -13,41 +15,6 @@ class CreatePost extends React.Component {
             imagePreview: null,
             imageFile: null
         }
-    }
-
-    handleChange(event) {
-        this.setState({ text: event.target.value });
-    }
-
-    handleImageSelected(event) {
-        let target = event.target || window.event.srcElement
-        let files = target.files;
-        this.setState({ imageFile: files[0] })
-
-        let fileReader = new FileReader();
-        const rememberThis = this;
-        fileReader.onload = function () {
-            rememberThis.setState({ imagePreview: fileReader.result });
-        }
-        fileReader.readAsDataURL(files[0]);
-    }
-
-    onSubmit(event) {
-        event.preventDefault();
-        if (this.state.text.length > this.state.limit) {
-            return;
-        }
-
-        this.props.onSubmitHandler({
-            text: this.state.text,
-            imageFile: this.state.imageFile
-        });
-
-        this.setState({
-            text: "",
-            imagePreview: null,
-            imageFile: null
-        });
     }
 
     render() {
@@ -76,6 +43,59 @@ class CreatePost extends React.Component {
                 </div>
             </form>
         );
+    }
+
+    handleChange(event) {
+        this.setState({ text: event.target.value });
+    }
+
+    handleImageSelected(event) {
+        let target = event.target || window.event.srcElement
+        let files = target.files;
+        this.setState({ imageFile: files[0] })
+
+        let fileReader = new FileReader();
+        const rememberThis = this;
+        fileReader.onload = function () {
+            rememberThis.setState({ imagePreview: fileReader.result });
+        }
+        fileReader.readAsDataURL(files[0]);
+    }
+
+    async onSubmit(event) {
+        event.preventDefault();
+        if (this.state.text.length > this.state.limit) {
+            return;
+        }
+
+        const created = await this.createPost({
+            text: this.state.text,
+            imageFile: this.state.imageFile
+        });
+
+        this.props.onPostCreated(created);
+
+        this.setState({
+            text: "",
+            imagePreview: null,
+            imageFile: null
+        });
+    }
+
+    async createPost(data) {
+        if (!data || !data.text) {
+            return;
+        }
+        console.log(data);
+        let created = await Api.createPost(data.text)
+        console.log('Created initial:');
+        console.log(created);
+        if (data.imageFile) {
+            created = await Api.attachImage(created.id, data.imageFile);
+        }
+        console.log('Created after upload:');
+        console.log(created);
+        return created;
     }
 }
 

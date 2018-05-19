@@ -3,6 +3,7 @@ import Api from '../api'
 import UserInfo from './UserInfo'
 import PostList from './PostList'
 import Loading from './Loading'
+import CreatePost from './CreatePost'
 
 import '../style.css'
 
@@ -62,6 +63,12 @@ class UserProfile extends React.Component {
         if (!this.state.isReady) {
             return (<Loading />)
         }
+
+        const isItMe = this.props.me.myInfo.id === this.state.userInfo.id
+        const createPost = (isItMe) ?
+            (<CreatePost onPostCreated={ (created) => this.onPostCreated(created) }/>) :
+            null;
+
         return (
             <div className="page-content">
                 <UserInfo
@@ -73,12 +80,21 @@ class UserProfile extends React.Component {
                     me={ this.props.me } />
 
                 <div className="main-container">
+                    { createPost }
                     <PostList items={ this.state.posts } />
                 </div>
 
                 <div className="right-fake"></div>
             </div>
         );
+    }
+
+    async onPostCreated(created) {
+        if (created) {
+            let {posts} = this.state;
+            posts.unshift(created);
+            this.setState({ posts: this.state.posts });
+        }
     }
 }
 
