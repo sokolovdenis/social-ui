@@ -1,0 +1,1 @@
+export const API_URL = 'http://social-webapi.azurewebsites.net/api/';

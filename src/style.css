@@ -164,3 +164,7 @@ body {
     padding: 6px;
     margin: 6px 6px 6px 0;
 }
+
+textarea {
+    resize: vertical;
+}
