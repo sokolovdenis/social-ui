@@ -27,7 +27,7 @@ class FollowUnfollowButton extends React.Component {
     }
 
     unfollow(id) {
-        Api.unfollow(id)
+        Api.unfollow(id);
     }
 }
 

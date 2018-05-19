@@ -46,10 +46,6 @@ body {
     margin-right: 10px;
 }
 
-.header__post-button {
-    width: 150px;
-}
-
 @media (max-width: 600px) {
     .page-content {
         display: flex;
@@ -59,15 +55,6 @@ body {
 }
 
 @media (max-width: 1200px) {
-    .header__container {
-        width: 100%;
-    }
-    .header__post-button {
-        margin-right: 15px;
-    }
-    .header__logo {
-        margin-left: 15px;
-    }
     .profile {
         margin-left: 10px;
     }

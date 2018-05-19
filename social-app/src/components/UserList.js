@@ -11,8 +11,8 @@ class UserList extends React.Component {
             return (<Loading />)
         }
         return (
-            <div class="user-list">
-                { this.props.items.map(item => <UserListItem user={ item } me={this.props.me}/>) }
+            <div className="user-list">
+                { this.props.items.map(item => <UserListItem key={ item.id } user={ item } me={this.props.me}/>) }
             </div>
         );
     }

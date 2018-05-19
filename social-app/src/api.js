@@ -51,6 +51,10 @@ class Api {
         sessionStorage.setItem('token', value);
     }
 
+    static signOut() {
+        sessionStorage.removeItem('token');
+    }
+
     static defaultErrorHandling(code) {
         if (code == 401) {
             return Promise.reject(Api.statusCodes.AuthenticationFailed);
@@ -65,7 +69,6 @@ class Api {
         if (stringify) {
             body = (body) ? JSON.stringify(body) : null;
         }
-        console.log(body);
         let options = {
             method: method,
             body: body,
@@ -111,7 +114,6 @@ class Api {
     static signIn(credentials) {
         return Api.httpPost('/identity/signin', credentials)
             .then(function (result) {
-                console.log(result.token);
                 Api.setToken(result.token);
             }).catch(function (code) {
                 if (code == 400) {
@@ -125,7 +127,6 @@ class Api {
     static signUp(data) {
         return Api.httpPost('/identity/signup', data)
             .then(function (result) {
-                console.log(result.token);
                 Api.setToken(result.token);
             }).catch(function (code) {
                 if (code == 400) {

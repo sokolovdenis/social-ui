@@ -10,6 +10,7 @@ import UserProfile from './components/UserProfile'
 import AllUsers from './components/AllUsers'
 import Followers from './components/Followers'
 import Followings from './components/Followings'
+import Loading from './components/Loading';
 
 import './style.css'
 
@@ -18,6 +19,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       isAutheticated: false,
+      isReady: false,
       me: {}
     };
   }
@@ -29,12 +31,13 @@ class App extends React.Component {
   }
 
   async onAuthenticated() {
+    this.setState({ isAutheticated: true });
     const myInfo = await Api.getMyself();
     const followers = await Api.getUsersFollowers(myInfo.id);
     const followings = await Api.getUsersFollowings(myInfo.id);
 
     this.setState({
-      isAutheticated: true,
+      isReady: true,
       me: {
         myInfo,
         followers,
@@ -43,20 +46,28 @@ class App extends React.Component {
     });
   }
 
+  onSignOut() {
+    Api.signOut();
+    this.setState({ isAutheticated: false, isReady: false });
+  }
+
   render() {
     if (!this.state.isAutheticated) {
-      return (<SignIn onAuthenticatedHandler={ () => this.onAuthenticated() }/>);
+      return (<SignIn onAuthenticatedHandler={ async () => await this.onAuthenticated() }/>);
+    }
+
+    if (!this.state.isReady) {
+      return <Loading />;
     }
 
     return (
       <Router>
         <div className="page">
-          <Header/>
+          <Header me={ this.state.me } onSignOut={() => this.onSignOut()} />
           <main className="body-container">
             <Switch>
               <Route exact path="/users" render={ () => (<AllUsers me={this.state.me} />) } />
-              <Route exact path="/signin" component={SignIn} />
-              <Route exact path="/" render={() => (<Feed me={this.state.me} />)} />
+              <Route exact path="/" render={ () => (<Feed me={this.state.me} />) } />
               <Route exact path="/users/:userId" render={({match}) => (
                 <UserProfile userId={ match.params.userId } me={ this.state.me } />
               )} />

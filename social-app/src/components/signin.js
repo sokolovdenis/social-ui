@@ -11,16 +11,15 @@ class SignIn extends React.Component {
         };
     }
 
-    onSubmit(event) {
+    async onSubmit(event) {
         event.preventDefault();
 
-        Api.signIn(this.getLoginData())
-            .then(function () {
-                this.props.onAuthenticatedHandler();
-            })
-            .catch(function (reason) {
-                alert('Failed to log in: ' + Api.description(reason));
-            });
+        try {
+            await Api.signIn(this.getLoginData())
+            await this.props.onAuthenticatedHandler();
+        } catch (e) {
+            alert('Failed to log in: ' + Api.description(e));
+        }
     }
 
     render() {
@@ -28,7 +27,7 @@ class SignIn extends React.Component {
             <div className="login">
                 <div className="login-container">
                     <h1>Log in</h1>
-                    <form id="login-form" className="login-form" onSubmit={(event) => this.onSubmit(event)}>
+                    <form id="login-form" className="login-form" onSubmit={async (event) => await this.onSubmit(event)}>
                         <div>
                             <input id="login-form-email" className="login-input-text" type="email" name="email" placeholder="Email" />
                         </div>

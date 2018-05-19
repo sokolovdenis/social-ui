@@ -1,5 +1,4 @@
 import React from 'react';
-import UserStatistics from './UserStatistics'
 
 import './EditSelf.css'
 import './UserInfo.css'

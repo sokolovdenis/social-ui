@@ -8,9 +8,10 @@
 }
 
 .header__container {
-    width: 1200px;
+    width: 100%;
     margin: auto;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     height: 50px;
     background-color: #602f6b;
@@ -19,17 +20,8 @@
 }
 
 .header__logo {
-    flex-grow: 1;
+    margin-left: 15px;    
     font-weight: 700;
-}
-
-.header__post-button {
-    width: 70px;
-    height: 30px;
-    text-align: center;
-    background-color: #fff325;
-    color: #602f6b;
-    border-radius: 10px;
 }
 
 a.header__logo {
@@ -39,4 +31,34 @@ a.header__logo {
 
 a.header__logo:hover {
     color: #fff325;
+}
+
+.header__user-image {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.header__signout-button {
+    font-size: 14pt;
+    color: inherit;
+}
+
+.header__signout-button:hover {
+    color: #fff325;
+    cursor: pointer;
+}
+
+.header__right {
+    display: flex;
+    align-items: center;
+}
+
+@media (max-width: 1200px) {
+    .header__container {
+        width: 100%;
+    }
 }
