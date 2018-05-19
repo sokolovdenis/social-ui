@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
+import {Link} from 'react-router-dom';
 
 import Fetch from './Fetch';
 import Followers from './Followers';
+import FollowButton from './FollowButton';
 import Feed from './Feed';
 
 import './Profile.css';
@@ -12,7 +15,12 @@ function getAge(birthday) {
     return Math.abs(ageDiff.getUTCFullYear() - 1970);
 }
 
-const ProfileBase = ({data, isLoading, error}) => {
+const mapStateToProps = state => ({
+    token: state.token,
+    currentUserId: state.currentUserId,
+});
+
+const ProfileBase = ({data, isLoading, error, currentUserId}) => {
 
     const profile = data;
 
@@ -33,10 +41,13 @@ const ProfileBase = ({data, isLoading, error}) => {
     }
 
     return (
+
         <div className="Profile">
             Profile<br />
+            {currentUserId === profile.id ? <Link to={`/edit`}>Edit my profile</Link> : ''}<br/>
             Name: {profile.name}<br />
             Age: {getAge(profile.birthday)}<br />
+            <FollowButton userId={profile.id} />
             {/*<img src={profile.imageUrl} /><br />*/}
             Info: {profile.info}<br />
             <Followers userId={profile.id} type='followers' />
@@ -49,9 +60,10 @@ const ProfileBase = ({data, isLoading, error}) => {
 
 class Profile extends Component {
     render() {
-        let FetchedComponent = Fetch('GET', `users/${this.props.match.params.number}`)(ProfileBase);
+        let FetchedComponent = Fetch('GET', `users/${this.props.match.params.number}`,
+            {token: this.props.token, currentUserId: this.props.currentUserId})(ProfileBase);
         return <FetchedComponent />
     }
 }
 
-export default Profile;
+export default connect(mapStateToProps)(Profile);

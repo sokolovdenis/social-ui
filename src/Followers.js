@@ -3,6 +3,11 @@ import Fetch from './Fetch';
 import {Link} from 'react-router-dom';
 
 import './Followers.css';
+import {connect} from "react-redux";
+
+const mapStateToProps = state => ({
+    token: state.token
+});
 
 const FollowersBase = ({data, isLoading, error, type}) => {
 
@@ -42,7 +47,7 @@ class Followers extends Component {
 
     render() {
         let FetchedComponent = Fetch('GET', `users/${this.props.userId}/${this.props.type}`,
-            {'type': `${this.props.type}`})(FollowersBase);
+            {'type': `${this.props.type}`, token: this.props.token})(FollowersBase);
         return (
             <div>
                 <FetchedComponent />
@@ -51,4 +56,4 @@ class Followers extends Component {
     }
 }
 
-export default Followers;
+export default connect(mapStateToProps)(Followers);

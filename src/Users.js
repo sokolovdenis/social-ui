@@ -1,8 +1,13 @@
-import React from 'react';
+import React, {Component} from 'react';
 import Fetch from './Fetch';
 import {Link} from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import './Users.css';
+
+const mapStateToProps = state => ({
+    token: state.token
+});
 
 const UsersBase = ({data, isLoading, error}) => {
 
@@ -36,6 +41,11 @@ const UsersBase = ({data, isLoading, error}) => {
     );
 };
 
-const Users = Fetch('GET', 'users')(UsersBase);
+class Users extends Component {
+    render() {
+        let FetchedComponent = Fetch('GET', 'users', {token: this.props.token})(UsersBase);
+        return <FetchedComponent />
+    }
+}
 
-export default Users;
+export default connect(mapStateToProps)(Users);

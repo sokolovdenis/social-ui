@@ -1,42 +1,65 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import './Header.css';
+import {deleteToken} from "./actions/actions";
+
+const mapStateToProps = state => ({
+    token: state.token
+});
 
 class Header extends Component {
+
     constructor(props) {
         super(props);
-        this.handleLoginClick = this.handleLoginClick.bind(this);
         this.handleLogoutClick = this.handleLogoutClick.bind(this);
-        this.state = {isLoggedIn: false}
-    }
-
-    handleLoginClick() {
-        this.setState({isLoggedIn: true})
+        this.state = {
+            redirect: false
+        };
     }
 
     handleLogoutClick() {
-        this.setState({isLoggedIn: false})
+        this.props.dispatch(deleteToken());
+        this.setState({redirect: true});
+    }
+
+    componentWillUpdate(newProps) {
+        if (newProps.token !== this.props.token) {
+            this.render();
+        }
     }
 
     render() {
-        const isLoggedIn = this.state.isLoggedIn;
+        if (this.state.redirect) {
+            return (
+                <div className="Header">
+                    <Redirect push to="/" />
+                    <div className="Header">
+                    <Link to='/'>Header</Link>
+                    </div>
+                </div>
+            );
+        }
 
-        const button = isLoggedIn ? (
-            <div className="login" onClick={this.handleLogoutClick}>Login</div>
-        ) : (
-            <div className="login" onClick={this.handleLoginClick}>Logout</div>
-        );
+        if (this.props.token) {
+            return (
+                <div className="Header">
+                    <Link to='/'>Header</Link>
+                    <div className="login" onClick={this.handleLogoutClick}>Logout</div>
+                    <Link to='/users'>All users</Link>
+                </div>
+            );
+        }
 
         return (
             <div className="Header">
                 <Link to='/'>Header</Link>
-                {isLoggedIn}
-                {button}
-                <Link to='/users'>All users</Link>
             </div>
-        );
+        )
+
+
     }
 }
 
-export default Header;
+export default connect(mapStateToProps)(Header);

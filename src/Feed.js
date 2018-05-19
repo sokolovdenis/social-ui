@@ -2,7 +2,13 @@ import React, {Component} from 'react';
 
 import './Feed.css';
 import Fetch from './Fetch';
+import AddPost from './AddPost';
 import FeedEntry from './FeedEntry';
+import {connect} from "react-redux";
+
+const mapStateToProps = state => ({
+    token: state.token
+});
 
 const FeedBase = ({data, isLoading, error}) => {
 
@@ -37,9 +43,15 @@ const FeedBase = ({data, isLoading, error}) => {
 
 class Feed extends Component {
     render() {
-        let FetchedComponent = Fetch('GET', `users/${this.props.userId}/posts/${this.props.type}`)(FeedBase);
-        return <FetchedComponent />
+        let FetchedComponent = Fetch('GET', `users/${this.props.userId}/posts/${this.props.type}`,
+            {token: this.props.token})(FeedBase);
+        return (
+            <div>
+                <AddPost currentUserId={this.props.userId} />
+                <FetchedComponent />
+            </div>
+        )
     }
 }
 
-export default Feed;
+export default connect(mapStateToProps)(Feed);

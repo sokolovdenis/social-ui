@@ -1,6 +1,9 @@
-export const addPost = text => ({
-    type: 'ADD_POST',
-    author: userId,
-    date: Date.now(),
-    text
+export const setToken = (token, doRemember) => ({
+    type: 'SET_TOKEN',
+    token,
+    doRemember,
+});
+
+export const deleteToken = () => ({
+    type: 'DELETE_TOKEN'
 });

@@ -6,6 +6,7 @@ class FeedEntry extends Component {
         return (
             <div>
                 Entry by {this.props.data.user.name} on {this.props.data.dateTime}
+                <div><img src={this.props.data.imageUrl} width="100px" alt="Post" /></div>
                 <div>{this.props.data.text}</div>
             </div>
         );
