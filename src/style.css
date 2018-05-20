@@ -1,8 +1,8 @@
 body {
-    background-color: powderblue;
+  background-color: powderblue;
 }
 
-.header {
+.title {
   text-align: center;
 }
 
@@ -23,11 +23,15 @@ input.error-input {
 }
 
 img.avatar {
-  border: 1px solid #ddd;
+  border: 1px solid darkgrey;
   border-radius: 5%;
-  background-color: #AAAAAA;
+  background-color: grey;
   padding: 5px;
   width: 300px;
+}
+
+.header {
+  background-color: lightgrey;
 }
 
 .big-number {

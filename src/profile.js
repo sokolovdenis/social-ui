@@ -1,50 +1,77 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
 import Api from './api';
-
-let ALT_AVATAR_LINK = 'https://image.shutterstock.com/image-vector/male-avatar-profile-picture-use-260nw-193292048.jpg';
+import HeaderForm from './header';
 
 export default class ProfileForm extends React.Component {
   constructor(props) {
-    if (!window.compactSocial.currentId) {
-        //browserHistory.push('/login');
-    }
     super(props);
+    if (!Api.getAuthToken()) {
+      browserHistory.push('/login');
+    }
     this.state = {
-      id: false,
+      id: props.params.id,
       name: 'Unknown Anonymous',
-      info: 'you need to log in to view user info',
-      imageUrl: '',
+      info: 'this user doesn\'t exist or you have no access',
+      imageUrl: null,
       birthday: 'never',
       followers: 0,
-      followings: 0
+      followings: 0,
+      userId: -1
     };
     let self = this;
-    /*Api.get('/users/' + window.compactSocial.currentId)
+    Api.get('/users/me')
+      .then(response => self.setState({ userId: response.data.id }));
+    Api.get('/users/' + this.state.id)
       .then(response => self.setState(response.data))
-      .catch(err => self.setState({ id: false }));*/
+      .catch(err => self.setState({ id: false }));
+    Api.get('/users/' + this.state.id + '/followers')
+      .then(response => self.setState({ followers: response.data.length }));
+    Api.get('/users/' + this.state.id + '/followings')
+      .then(response => self.setState({ followings: response.data.length }));
+  }
+  
+  follow(event) {
+  }
+  
+  unfollow(event) {
+  }
+  
+  editProfile(event) {
+  }
+  
+  actionButton() {
+    if (this.state.id === this.state.userId) {
+      return (<button onClick={this.editProfile}>
+        Edit Profile
+      </button>);
+    } else { //TODO: follow and unfollow
+    }
   }
 
   render() {
     return (
       <div>
-        <h2 style={{ textAlign: 'center' }}>{this.state.name}</h2>
+        <HeaderForm />
+        <h2 className="title">{this.state.name}</h2>
         <div className="container">
-          <img className="avatar" src={this.state.imageUrl ? this.state.imageUrl : ALT_AVATAR_LINK} alt="avatar"/>
+          <img className="avatar" src={this.state.imageUrl ? this.state.imageUrl : Api.ALT_AVATAR_LINK} alt="avatar"/>
           <br/>
           {this.state.info}
           <br/>
-          Born:
-          {this.state.birthday.substring(0, 10)}
-          <div style={{ alignContent: 'center' }}>
+          Born: 
+          {' ' + this.state.birthday.substring(0, 10)}
+          <div>
             <div className="inline-box">
-              followers:<br/><span className="big-number">{this.state.followers}</span>
+              followers<br/><span className="big-number">{this.state.followers}</span>
             </div>
             <div className="inline-box">
-              followings:<br/><span className="big-number">{this.state.followings}</span>
+              followings<br/><span className="big-number">{this.state.followings}</span>
             </div>
           </div>
+          {this.actionButton()}
         </div>
+        <h2 className="title">User Posts</h2>
       </div>
     );
   }

@@ -66,11 +66,7 @@ export default class RegistrationForm extends React.Component {
       .then(function (response) {
         Api.setAuthToken(response.data.token);
         Api.get('/users/me')
-          .then(function (response) {
-            window.compactSocial.currentId = response.data.id;
-            window.compactSocial.userId = response.data.id;
-            browserHistory.push('/profile');
-          }); 
+          .then(response => browserHistory.push('/profile/' + response.data.id));
       });
     event.preventDefault();
   }
@@ -78,7 +74,7 @@ export default class RegistrationForm extends React.Component {
   render() {
     return (
       <div>
-        <h2 style={{textAlign: 'center'}}>Registration</h2>
+        <h2 className="title">Registration</h2>
         <form className="container" onSubmit={this.handleSubmit}>
           <label>
             Name:
