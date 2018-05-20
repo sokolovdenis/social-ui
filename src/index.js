@@ -7,13 +7,7 @@ import './style.css'
 window.compactSocial = {
   API_BASE: 'http://social-webapi.azurewebsites.net/api',
   apiConfig: {},
-  pages: {
-    REGISTRATION: 1,
-    LOGIN: 2,
-    PROFILE: 3
-  },
-
-  currentPage: 1
+  userId: false
 };
 
 render(<Router history={browserHistory} routes={routes} />,

@@ -12,6 +12,25 @@ body {
   text-align: center;
 }
 
+.inline-box {
+  display: inline-block;
+  padding-right: 8px;
+  padding-left: 8px;
+}
+
 input.error-input {
   border-color: #FF0000;
+}
+
+img.avatar {
+  border: 1px solid #ddd;
+  border-radius: 5%;
+  background-color: #AAAAAA;
+  padding: 5px;
+  width: 300px;
+}
+
+.big-number {
+  font-size: 200%;
+  font-weight: bold;
 }
