@@ -15,7 +15,7 @@
 
 .wall-block-scroll {
     width: 100%;
-    height: 60vh;
+    height: 100%;
     overflow-y: auto;
     overflow-x: hidden;
 }

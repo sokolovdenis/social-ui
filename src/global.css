@@ -15,6 +15,7 @@ body {
     position: relative;
     background-color: #292722;
     font-family: "Segoe UI", "Open Sans", Arial, sans-serif;
+    font-size: 18px;
     margin: 0;
     padding: 0;
     min-height: 100%;
@@ -24,6 +25,16 @@ body {
 a {
     text-decoration: none;
     color: #d3cbbf;
+}
+
+@font-face {
+    font-family: 'Segoe UI';
+    src: url(fonts/segoe_ui.ttf);
+}
+
+@font-face {
+    font-family: 'Segoe UI Light';
+    src: url(fonts/segoe_ui_light.ttf);
 }
 
 .global-header {

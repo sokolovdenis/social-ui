@@ -10,7 +10,6 @@ const mapStateToProps = state => ({
 });
 
 function getAvatar(user) {
-    console.log(user.imageUrl);
     if (user.imageUrl) {
         return user.imageUrl;
     }
