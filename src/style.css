@@ -1,0 +1,170 @@
+body {
+    margin: 0;
+    background-color: whitesmoke;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+}
+
+.base-container {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: auto 150px 600px auto;
+    grid-template-rows: 40px 300px auto;
+    grid-template-areas: "left-header nav-header header right-header" ". nav main ." ". nav main .";
+}
+
+.header-color {
+    background-color: royalblue;
+    color: snow;
+}
+
+.left-header {
+    grid-area: left-header;
+}
+
+.nav-header {
+    grid-area: nav-header;
+    display: flex;
+    align-items: center;
+}
+
+.header {
+    grid-area: header;
+    display: flex;
+    align-items: center;
+}
+
+.right-header {
+    grid-area: right-header;
+}
+
+.nav {
+    grid-area: nav;
+    margin-top: 12px;
+}
+
+.nav ul {
+    padding: 0 0;
+    margin: 0 0;
+    list-style: none;
+}
+
+.nav li {
+    margin: 5px 5px 5px 0;
+    padding: 3px 3px 3px 0;
+}
+
+.nav li:hover {
+    background-color: snow;
+}
+
+.nav a {
+    text-decoration: none;
+}
+
+.nav a:link {
+    color: royalblue;
+}
+
+.nav a:visited {
+    color: royalblue;
+}
+
+.main {
+    grid-area: main;
+    overflow-y: scroll;
+}
+
+.news-container {
+    display: flex;
+    flex-direction: column;
+    padding: 6px 6px 6px 0;
+}
+
+.news {
+    display: flex;
+    flex-direction: column;
+    background-color: snow;
+    border-radius: 5px;
+    padding: 6px;
+    margin: 6px 6px 6px 0;
+}
+
+.news-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 10px;
+}
+
+.news-header img {
+    border-radius: 30px;
+    border-width: 2px;
+    width: 60px;
+    height: 60px;
+    padding: 10px;
+}
+
+.news-header span {
+    padding: 10px;
+}
+
+.news p {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    background-color: snow;
+    border-radius: 5px;
+    padding: 6px;
+    margin: 6px 6px 6px 0;
+}
+
+.info-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 10px;
+}
+
+.info-header img {
+    border-radius: 30px;
+    border-width: 2px;
+    width: 130px;
+    height: 130px;
+    padding: 10px;
+}
+
+.info-header-text {
+    padding: 10px;
+}
+
+.name {
+    font-size: 20px;
+}
+
+.info-header-text ul {
+    padding: 10px 0;
+    margin: 0 0;
+    list-style-type: none;
+}
+
+.info p {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    background-color: snow;
+    border-radius: 5px;
+    padding: 6px;
+    margin: 6px 6px 6px 0;
+}
+
+textarea {
+    resize: vertical;
+}
