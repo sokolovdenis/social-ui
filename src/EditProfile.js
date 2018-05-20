@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {Redirect} from 'react-router-dom'
 import './style.css'
 import {get_token} from "./auth";
 import {API_URL} from "./settings";
@@ -75,7 +76,8 @@ class EditProfile extends Component {
             name: '',
             info: '',
             birthday: '',
-            avatar: null
+            avatar: null,
+            redirect: false,
         };
 
         this.text_change = this.text_change.bind(this);
@@ -87,7 +89,9 @@ class EditProfile extends Component {
         event.preventDefault();
 
         post_changes(this.state);
-        window.location.replace("/");
+        this.setState({
+            redirect: true,
+        })
     }
 
     text_change(event) {
@@ -108,7 +112,7 @@ class EditProfile extends Component {
     }
 
     render() {
-        return <div className="news-container">
+        return !this.state.redirect ? <div className="news-container">
             <form className="form" onSubmit={this.submit}>
                 <label>Name</label>
                 <input type="text" name="name" onChange={this.text_change}/>
@@ -125,7 +129,7 @@ class EditProfile extends Component {
                 <input type="submit" value="Save"/>
 
             </form>
-        </div>;
+        </div> : <Redirect to='/'/>;
     }
 }
 
