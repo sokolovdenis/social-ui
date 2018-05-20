@@ -1,5 +1,99 @@
-.Feed {
-    background-color: darksalmon;
-    padding: 3em;
-    font-size: 0.4em;
+.feed-block {
+    overflow: hidden;
+    min-width: 20em;
+    width: 50%;
+    margin: 0 auto 2em;
+    height: 75vh;
+}
+
+.feed-block-scroll {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.wall-block-scroll {
+    width: 100%;
+    height: 60vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.feed-entry {
+    border-radius: 0.3em;
+    border: 1px #3a3640 solid;
+    margin-bottom: 2em;
+    width: 100%;
+}
+
+.feed-entry-header {
+}
+
+.feed-entry-author {
+    float: left;
+}
+
+.feed-entry-date {
+    float: right;
+}
+
+.feed-entry-text {
+    padding: 1em 1em;
+}
+
+.feed-entry-post {
+    display: flex;
+    justify-content: left;
+}
+
+.wall-block {
+    width: 50%;
+    margin-right: 17px;
+    height: 75vh;
+    min-width: 20em;
+    overflow: hidden;
+}
+
+.feed-entry-avatar {
+    width: 80px;
+    height: 80px;
+}
+
+.feed-entry-image {
+    margin-top: 1em;
+    display: block;
+    max-width: 30em;
+    max-height: 30em;
+}
+
+.add-post {
+    margin-bottom: 1em;
+    padding: 1em 0;
+}
+
+.add-post-textarea {
+    width: 100%;
+    height: 5em;
+    border-radius: 5px;
+    border: 1px solid #30302F;
+    padding: 1em;
+}
+
+.add-post-file {
+    padding-top: 0.5em;
+}
+
+.add-post-submit {
+    display: block;
+    margin-top: 0.5em;
+    background-color: #d3cbbf;
+    color: #292722;
+    font-size: 1.2em;
+    padding: 0.2em 0.6em;
+    width: fit-content;
+}
+
+.feed-link {
+    color: #8a99a8;
 }

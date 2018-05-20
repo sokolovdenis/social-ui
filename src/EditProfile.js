@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import {Redirect} from 'react-router-dom';
+
 import './Start.css';
 
 const mapStateToProps = state => ({
@@ -22,7 +23,7 @@ function parseDate(date) {
         month = '0' + month;
     }
 
-    return year + '-' + month + '-' + day;
+    return `${year}-${month}-${day}`;
 }
 
 class EditProfile extends Component {
@@ -35,10 +36,19 @@ class EditProfile extends Component {
             errorMessage: "",
             userData: null,
             redirect: false,
+            image: null,
         };
 
         this.onSubmit = this.onSubmit.bind(this);
         this.getMyInfo = this.getMyInfo.bind(this);
+        this.onImgChange = this.onImgChange.bind(this);
+    }
+
+    onImgChange(event) {
+        event.preventDefault();
+        this.setState({
+            image: event.target.files[0],
+        });
     }
 
     onSubmit(event) {
@@ -57,6 +67,10 @@ class EditProfile extends Component {
             formData.delete(key);
         });
 
+        if (this.state.image) {
+            this.attachImage(this.state.image);
+        }
+
         fetch('http://social-webapi.azurewebsites.net/api/users/me/', {
             method: 'PUT',
             headers: {
@@ -66,11 +80,37 @@ class EditProfile extends Component {
             body: JSON.stringify(data),
         })
             .then(res => res.json())
-            .then(() => this.setState({
+            .then(() => {
+                if (!this.state.image) {
+                    this.setState({
+                        isLoading: false,
+                        redirect: true,
+                    })
+                }
+            })
+            .catch(error => this.setState({error, errorMessage: error.message}));
+    }
+
+    attachImage(file) {
+
+        let formData = new FormData();
+        formData.append('file', file);
+
+        fetch(`http://social-webapi.azurewebsites.net/api/users/me/photo`, {
+            headers: {
+                'Authorization': 'Bearer ' + this.props.token,
+            },
+            method: 'PUT',
+            body: formData,
+        })
+        .then(response => response.json())
+        .catch(error => console.error('Error:', error))
+        .then(() => {
+            this.setState({
                 isLoading: false,
                 redirect: true,
-            }))
-            .catch(error => this.setState({error, errorMessage: error.message}));
+            })
+        });
     }
 
     getMyInfo() {
@@ -100,13 +140,13 @@ class EditProfile extends Component {
 
         if (this.state.isLoading) {
             return (
-                <div>Loading...</div>
+                <div className="global-info">Loading...</div>
             )
         }
 
-        if (this.state.error) {
+        if (this.state.errorMessage) {
             return (
-                <div>{this.state.error.message}</div>
+                <div className="global-error global-info">{this.state.errorMessage}</div>
             )
         }
 
@@ -117,17 +157,31 @@ class EditProfile extends Component {
         }
 
         return (
-            <div className="Start">
-
-                Edit
-                <form onSubmit={this.onSubmit}>
-                    <input type="name" defaultValue={this.state.userData.name} name="name" placeholder="Full name"/><br/>
-                    <input type="text" defaultValue={this.state.userData.info} name="info" placeholder="Info"/><br/>
-                    <input type="date" defaultValue={parseDate(this.state.userData.birthday)}
-                           name="birthday" placeholder="Birthday"/><br/>
-                    <button>Edit</button>
-                </form>
-                <div className="error">{this.state.errorMessage}</div>
+            <div className="invite-content">
+                <div className="invite-sign-header">Edit</div>
+                    <form onSubmit={this.onSubmit}>
+                        <label>
+                            <span className="invite-sign-label">Full name</span>
+                            <input type="name" defaultValue={this.state.userData.name} name="name"
+                                   className="invite-sign-input" placeholder="Full name"/><br/>
+                        </label>
+                        <label>
+                        <span className="invite-sign-label">Info</span>
+                        <input type="text" defaultValue={this.state.userData.info} name="info"
+                               className="invite-sign-input" placeholder="Info"/><br/>
+                        </label>
+                        <label>
+                        <span className="invite-sign-label">Birthday</span>
+                        <input type="date" defaultValue={parseDate(this.state.userData.birthday)}
+                               className="invite-sign-input" name="birthday" placeholder="Birthday"/><br/>
+                        </label>
+                        <label>
+                        <span className="invite-sign-label">Change avatar</span>
+                        <input type="file" name="avatar" onChange={this.onImgChange} /><br/>
+                        </label>
+                        <button className="invite-sign-button">Edit</button>
+                    </form>
+                    <div className="error">{this.state.errorMessage}</div>
 
             </div>
         );

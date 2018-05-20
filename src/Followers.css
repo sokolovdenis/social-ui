@@ -1,6 +1,47 @@
-.Followers {
-    background-color: honeydew;
-    font-size: 0.5em;
-    margin: 1em;
-    padding: 1em;
+.followers {
+}
+
+.followers-header {
+}
+
+.followers-header-text {
+    float: left;
+}
+
+.followers-header-counter {
+    float: right;
+}
+
+.followers-block {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 1em;
+}
+
+.followers-entry {
+    margin: 0 auto;
+    padding: 1em 0.5em;
+}
+
+.followers-entry-avatar {
+    width: 5em;
+    height: 5em;
+    margin-bottom: 0.3em;
+}
+
+.followers-entry-avatar-image {
+    width: 5em;
+}
+
+.followers-entry-text {
+    text-align: center;
+    width: 5em;
+}
+
+.follow-button {
+    background: #313131;
+    padding: 0.4em;
+    width: 6em;
+    text-align: center;
+    cursor: pointer;
 }

@@ -9,34 +9,46 @@ const mapStateToProps = state => ({
     token: state.token
 });
 
+function getAvatar(user) {
+    console.log(user.imageUrl);
+    if (user.imageUrl) {
+        return user.imageUrl;
+    }
+    return '/icons/default-avatar.png';
+}
+
 const UsersBase = ({data, isLoading, error}) => {
 
     const users = data;
 
     if (error) {
         return (
-            <div className='Users'>
-                <div>{error.message}</div>
-            </div>
+            <div className="global-error global-info">{error.message}</div>
         )
     }
 
     if (isLoading) {
         return (
-            <div className='Users'>
-                <div>Loading...</div>
-            </div>
+            <div className="global-info">Loading...</div>
         )
     }
 
     return (
-        <div className='Users'>
-            <h2>All users</h2>
-            {users.map(user =>
-                <div key={user.id}>
-                    <Link to={`/profile/${user.id}`}>{user.name}</Link>
-                </div>
-            )}
+        <div className='users-list'>
+            <div className='users-scroll global-flex'>
+                {users.map(user =>
+                    <div key={user.id} className="users-element">
+                        <Link to={`/profile/${user.id}`}>
+                            <div className="global-avatar avatar">
+                                <img src={getAvatar(user)} className="global-avatar-image avatar-image" alt="User avatar" />
+                            </div><br/>
+                            <div className="users-label">
+                                {user.name}
+                            </div>
+                        </Link>
+                    </div>
+                )}
+            </div>
         </div>
     );
 };

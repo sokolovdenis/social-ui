@@ -6,7 +6,8 @@ import './Header.css';
 import {deleteToken} from "./actions/actions";
 
 const mapStateToProps = state => ({
-    token: state.token
+    token: state.token,
+    currentUserId: state.currentUserId,
 });
 
 class Header extends Component {
@@ -24,41 +25,37 @@ class Header extends Component {
         this.setState({redirect: true});
     }
 
-    componentWillUpdate(newProps) {
-        if (newProps.token !== this.props.token) {
-            this.render();
-        }
-    }
-
     render() {
         if (this.state.redirect) {
+        this.setState({redirect: false});
             return (
-                <div className="Header">
+                <header className="header">
+                    IN REDIRECT
                     <Redirect push to="/" />
-                    <div className="Header">
-                    <Link to='/'>Header</Link>
-                    </div>
-                </div>
+                    <span className="header-title"><Link to='/'>Social Network</Link></span>
+                    <br/>
+                </header>
             );
         }
 
-        if (this.props.token) {
+        if (!!this.props.token) {
             return (
-                <div className="Header">
-                    <Link to='/'>Header</Link>
-                    <div className="login" onClick={this.handleLogoutClick}>Logout</div>
-                    <Link to='/users'>All users</Link>
-                </div>
+                <header className="header">
+                    <span className="header-title"><Link to='/'>Social Network</Link></span>
+                    <span className="header-logout" onClick={this.handleLogoutClick}>Logout</span>
+                    <span className="header-logout"><Link to='/users'>All users</Link></span>
+                    <span className="header-logout"><Link to={`/profile/${this.props.currentUserId}`}>My profile</Link></span>
+                    <br/>
+                </header>
             );
         }
 
         return (
-            <div className="Header">
-                <Link to='/'>Header</Link>
-            </div>
+            <header className="header">
+                <span className="header-title"><Link to='/'>Social Network</Link></span>
+                <br/>
+            </header>
         )
-
-
     }
 }
 

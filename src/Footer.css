@@ -1,5 +1,13 @@
-.Footer {
-    background-color: black;
-    color: white;
-    height: 2em;
+.footer {
+    position: absolute;
+    margin-top: -2.5em;
+    clear: both;
+    background-color: #313131;
+    height: 2.5em;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-copyright {
+    padding: 0.7em 8em;
 }

@@ -86,15 +86,17 @@ class FollowButton extends Component {
 
         if (this.state.isFollowing) {
             return (
-                <div>
-                    <button onClick={(event) => this.onFollow(event, false)}>Unfollow</button>
+                <div className="follow-button" onClick={(event) => this.onFollow(event, false)}>
+                    Unfollow
                 </div>
             )
         }
 
         return (
             <div>
-                <button onClick={(event) => this.onFollow(event, true)}>Follow</button>
+                <div className="follow-button" onClick={(event) => this.onFollow(event, true)}>
+                    Follow
+                </div>
             </div>
         )
     }

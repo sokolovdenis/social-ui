@@ -9,22 +9,32 @@ const mapStateToProps = state => ({
     token: state.token
 });
 
+function getAvatar(user) {
+    console.log(user.imageUrl);
+    if (user.imageUrl) {
+        return user.imageUrl;
+    }
+    return '/icons/default-avatar.png';
+}
+
 const FollowersBase = ({data, isLoading, error, type}) => {
 
     const followers = data;
 
     if (error) {
         return (
-            <div className='Followers'>
-                <div>{error.message}</div>
+            <div className="followers">
+                <br />
+                <div className="global-error global-info">{error.message}</div>
             </div>
         )
     }
 
     if (isLoading) {
         return (
-            <div className='Followers'>
-                <div>Loading...</div>
+            <div className="followers">
+                <br />
+                <div className="global-info">Loading...</div>
             </div>
         )
     }
@@ -32,13 +42,32 @@ const FollowersBase = ({data, isLoading, error, type}) => {
     let header = type === 'followers' ? 'Followers' : 'Followings';
 
     return (
-        <div className="Followers">
-            {header} ({followers.length})<br />
-            {followers.map(follower =>
-                <div key={follower.id}>
-                    <Link to={`/profile/${follower.id}`}>{follower.name}</Link>
+        <div className="followers">
+            <br />
+            <div className="global-header followers-header">
+                <div className="followers-header-text">
+                    {header}
                 </div>
-            )}
+                <div className="followers-header-counter">
+                    {followers.length}
+                </div>
+                <br />
+            </div>
+            <div className="followers-block">
+                {followers.map(follower =>
+                    <div key={follower.id} className="followers-entry">
+                        <Link to={`/profile/${follower.id}`}>
+                            <div className="global-avatar followers-entry-avatar">
+                                <img className="global-avatar-image followers-entry-avatar-image"
+                                     src={getAvatar(follower)} alt="Avatar" />
+                            </div>
+                            <div className="global-text followers-entry-text">
+                                {follower.name}
+                            </div>
+                        </Link>
+                    </div>
+                )}
+            </div>
         </div>
     );
 };

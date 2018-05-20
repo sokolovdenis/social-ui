@@ -4,7 +4,8 @@ import './Feed.css';
 import {connect} from "react-redux";
 
 const mapStateToProps = state => ({
-    token: state.token
+    token: state.token,
+    currentUserId: state.currentUserId,
 });
 
 class AddPost extends Component {
@@ -14,16 +15,25 @@ class AddPost extends Component {
 
         this.state = {
             text: "",
+            image: null,
             errorMessage: "",
         };
 
         this.onSubmit = this.onSubmit.bind(this);
-        this.onChange = this.onChange.bind(this);
+        this.onTextChange = this.onTextChange.bind(this);
+        this.onImgChange = this.onImgChange.bind(this);
     }
 
-    onChange(event) {
+    onTextChange(event) {
         this.setState({
-            text: event.target.value
+            text: event.target.value,
+        });
+    }
+
+    onImgChange(event) {
+        event.preventDefault();
+        this.setState({
+            image: event.target.files[0],
         });
     }
 
@@ -31,11 +41,10 @@ class AddPost extends Component {
 
         event.preventDefault();
 
-        const data = {"text": this.state.text};
-
-        let formData = new FormData(event.target);
-        let file = formData.get('file');
-        formData.delete('file');
+        if (!this.state.text) {
+            this.setState({errorMessage: "Please fill post text"});
+            return;
+        }
 
         this.setState({text: ""});
 
@@ -45,48 +54,52 @@ class AddPost extends Component {
                 'Authorization': 'Bearer ' + this.props.token,
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(data),
+            body: JSON.stringify({"text": this.state.text}),
         })
             .then(res => res.json())
-            .then(data => {this.attachImage(data.id, file)})
+            .then(data => {
+                if (this.state.image) {
+                    this.attachImage(data.id, this.state.image);
+                } else {
+                    this.props.callback();
+                }
+            })
             .catch(error => this.setState({error, errorMessage: error.message}));
     }
 
     attachImage(postId, file) {
 
         let formData = new FormData();
-        formData.append('file', file);
+        formData.append('imageFile', file);
 
         fetch(`http://social-webapi.azurewebsites.net/api/users/me/posts/${postId}/image`, {
             headers: {
                 'Authorization': 'Bearer ' + this.props.token,
-                //'content-type': 'multipart/form-data'
             },
             method: 'PUT',
             body: formData,
         })
         .then(response => response.json())
         .catch(error => console.error('Error:', error))
-        .then(response => console.log('Success:', response));
+        .then(() => this.props.callback());
     }
 
     render() {
-        if (this.props.currentUserId === 2) {
+        if (String(this.props.userId) === String(this.props.currentUserId)) {
             return (
-                <div className="Feed">
-
-                    <form encType='multipart/form-data' onSubmit={this.onSubmit}>
-                        <textarea name="text" placeholder="What's new?"
-                                  value={this.state.text} onChange={this.onChange} /><br />
-                        <input type="file" name="file" /><br />
-                        <button>Post</button>
+                <div className="add-post">
+                    <form onSubmit={this.onSubmit}>
+                        <textarea name="text" className="add-post-textarea" placeholder="What's new?"
+                                  value={this.state.text} onChange={this.onTextChange} /><br />
+                        <input type="file" className="add-post-file" name="file"
+                               onChange={this.onImgChange} /><br />
+                        <button className="add-post-submit">Post</button>
                     </form>
-                    <div className="error">{this.state.errorMessage}</div>
+                    <div className="global-error global-info-inline">{this.state.errorMessage}</div>
                 </div>
             )
-        } else {
-            return (<div></div>)
         }
+        return null;
     }
 }
 

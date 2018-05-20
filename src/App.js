@@ -12,29 +12,38 @@ import EditProfile from './EditProfile';
 import Users from './Users';
 import Footer from './Footer';
 
+import './global.css';
+
 const mapStateToProps = state => ({
-    token: state.token
+    token: state.token,
+    currentUserId: state.currentUserId,
 });
 
 class App extends Component {
 
     render() {
         return (
-            <main className="App">
+            <div className="app">
                 <Header />
-                <Switch>
-                    <Route exact path='/' render={() => (
-                        this.props.token ? (
-                            <Redirect to="/feed" />
-                        ) : (<Start />)
-                    )} />
-                    <Route exact path='/feed' render={() => <Feed userId='1' type='feed' />} />
-                    <Route exact path='/profile/:number' component={Profile} />
-                    <Route exact path='/edit' component={EditProfile} />
-                    <Route exact path='/users' component={Users} />
-                </Switch>
+                <main className="content">
+                    <Switch>
+                        <Route exact path='/' render={() => (
+                            this.props.token ? (
+                                <Redirect to="/feed" />
+                            ) : (<Start />)
+                        )} />
+                        <Route exact path='/feed' render={() =>
+                            <div className="feed">
+                                <Feed userId={this.props.currentUserId} type='feed' />
+                            </div>
+                        } />
+                        <Route exact path='/profile/:number' component={Profile} />
+                        <Route exact path='/edit' component={EditProfile} />
+                        <Route exact path='/users' component={Users} />
+                    </Switch>
+                </main>
                 <Footer />
-            </main>
+            </div>
         );
     }
 }

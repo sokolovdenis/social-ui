@@ -20,39 +20,62 @@ const mapStateToProps = state => ({
     currentUserId: state.currentUserId,
 });
 
+function getAvatar(user) {
+    console.log(user.imageUrl);
+    if (user.imageUrl) {
+        return user.imageUrl;
+    }
+    return '/icons/default-avatar.png';
+}
+
 const ProfileBase = ({data, isLoading, error, currentUserId}) => {
 
     const profile = data;
 
     if (error) {
         return (
-            <div className='Profile'>
-                <div>{error.message}</div>
-            </div>
+            <div className="global-error global-info">{error.message}</div>
         )
     }
 
     if (isLoading) {
         return (
-            <div className='Profile'>
-                <div>Loading...</div>
-            </div>
+            <div className="global-info">Loading...</div>
         )
     }
 
     return (
+        <div className="global-flex">
+            <div className="person-block">
+                <div className="global-avatar avatar">
+                    <img src={getAvatar(profile)} className="global-avatar-image avatar-image" alt="Avatar" />
+                </div>
+                <div className="info">
+                    <div className="name">
+                        {profile.name}
+                    </div>
+                    <div className="global-text city">
+                        {getAge(profile.birthday)} years<br/>
+                        {String(currentUserId) === String(profile.id) ?
+                            <Link to={`/edit`} className="edit-link">Edit my profile</Link> :
+                            ''}<br/>
+                        <FollowButton userId={profile.id} /><br/>
+                    </div>
+                    <div className="message">
+                        <img src="/icons/ic_comment.png" className="message-icon" alt="" />
+                        <span className="message-text">
+                            {profile.info}
+                        </span>
+                    </div>
+                </div>
 
-        <div className="Profile">
-            Profile<br />
-            {currentUserId === profile.id ? <Link to={`/edit`}>Edit my profile</Link> : ''}<br/>
-            Name: {profile.name}<br />
-            Age: {getAge(profile.birthday)}<br />
-            <FollowButton userId={profile.id} />
-            {/*<img src={profile.imageUrl} /><br />*/}
-            Info: {profile.info}<br />
-            <Followers userId={profile.id} type='followers' />
-            <Followers userId={profile.id} type='followings' />
+                <Followers userId={profile.id} type='followers' />
+                <Followers userId={profile.id} type='followings' />
+
+            </div>
+
             <Feed userId={profile.id} type='wall' />
+
         </div>
     );
 };
