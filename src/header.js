@@ -25,6 +25,9 @@ export default class HeaderForm extends React.Component {
           <a href={'/profile/' + this.state.id}>My Profile</a>
         </div>
         <div className="inline-box">
+          <a href={'/feed'}>Feed</a>
+        </div>
+        <div className="inline-box">
           <a href="/profile">All Profiles</a>
         </div>
         <div className="inline-box">

@@ -2,6 +2,7 @@ import React from 'react';
 import { browserHistory } from 'react-router';
 import Api from './api';
 import HeaderForm from './header';
+import FeedForm from './feed';
 
 export default class ProfileForm extends React.Component {
   constructor(props) {
@@ -90,7 +91,7 @@ export default class ProfileForm extends React.Component {
     let nowday = new Date();
     var age = nowday.getFullYear() - birthday.getFullYear();
     if (nowday.getMonth() < birthday.getMonth()
-        || (nowday.getMonth() == birthday.getMonth() && nowday.getDay() < birthday.getDay())) {
+        || (nowday.getMonth() === birthday.getMonth() && nowday.getDay() < birthday.getDay())) {
       age = age - 1;
     }
     return this.state.birthday.substring(0, 10) + ' (' + age + ' years)';
@@ -119,6 +120,7 @@ export default class ProfileForm extends React.Component {
           {this.actionButton()}
         </div>
         <h2 className="title">User Posts</h2>
+        <FeedForm id={this.state.id} type="wall" />
       </div>
     );
   }
