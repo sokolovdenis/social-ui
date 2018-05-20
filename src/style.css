@@ -19,7 +19,7 @@ body {
 }
 
 input.error-input {
-  border-color: #FF0000;
+  border-color: red;
 }
 
 img.avatar {
@@ -31,7 +31,11 @@ img.avatar {
 }
 
 .header {
-  background-color: lightgrey;
+  background-color: powderblue;
+}
+
+.warn {
+  color: orange;
 }
 
 .big-number {

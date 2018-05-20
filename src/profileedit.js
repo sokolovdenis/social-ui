@@ -22,6 +22,7 @@ export default class ProfileEditForm extends React.Component {
     this.handleBirthdayChange = this.handleBirthdayChange.bind(this);
     this.handleAvatarSubmit = this.handleAvatarSubmit.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDeleteProfile = this.handleDeleteProfile.bind(this);
   }
 
   handleNameChange(event) {
@@ -51,6 +52,13 @@ export default class ProfileEditForm extends React.Component {
     let self = this;
     Api.put('/users/me', self.state)
       .then(response => browserHistory.push('/profile/' + response.data.id));
+    event.preventDefault();
+  }
+  
+  handleDeleteProfile(event) {
+    if (window.confirm('Are you sure? It will delete your profile and posts with no chance to be restored!')) {
+      Api.delete('/users/me');
+    }
     event.preventDefault();
   }
   
@@ -87,6 +95,12 @@ export default class ProfileEditForm extends React.Component {
           <br/>
           <input type="submit" value="Submit" />
         </form>
+        <hr/>
+        <div className="container warn">
+          <button type="button" onClick={this.handleDeleteProfile}>Delete your profile</button>
+          <br/>
+          (It cannot be undone, really)
+        </div>
       </div>
     );
   }

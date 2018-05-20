@@ -20,7 +20,7 @@ export default class HeaderForm extends React.Component {
   
   render() {
     return (
-      <div className="container">
+      <div className="container header">
         <div className="inline-box">
           <a href={'/profile/' + this.state.id}>My Profile</a>
         </div>

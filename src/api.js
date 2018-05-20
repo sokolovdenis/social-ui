@@ -41,4 +41,9 @@ Api.get = function(path) {
     Api.getConfig());
 };
 
+Api.delete = function(path) {
+  return Axios.delete(Api.API_BASE + path,
+    Api.getConfig());
+};
+
 export default Api;

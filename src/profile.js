@@ -17,24 +17,46 @@ export default class ProfileForm extends React.Component {
       birthday: '0000-00-00',
       followers: 0,
       followings: 0,
-      userId: -1
+      userId: -1,
+      isFollowed: false
     };
     let self = this;
     Api.get('/users/me')
-      .then(response => self.setState({ userId: response.data.id }));
-    Api.get('/users/' + this.state.id)
+      .then(response => {
+        self.setState({ userId: response.data.id })
+        if (self.state.id !== response.data.id) {
+          Api.get('/users/' + self.state.userId + '/followings')
+            .then(response => {
+              if (response.data.find(user => user.id === self.state.id)) {
+                self.setState({ isFollowed: true });
+              } else {
+                self.setState({ isFollowed: false });
+              }
+            });
+        }
+      });
+    Api.get('/users/' + self.state.id)
       .then(response => self.setState(response.data))
       .catch(err => self.setState({ id: false }));
-    Api.get('/users/' + this.state.id + '/followers')
+    Api.get('/users/' + self.state.id + '/followers')
       .then(response => self.setState({ followers: response.data.length }));
-    Api.get('/users/' + this.state.id + '/followings')
+    Api.get('/users/' + self.state.id + '/followings')
       .then(response => self.setState({ followings: response.data.length }));
+    
+    this.follow = this.follow.bind(this);
+    this.unfollow = this.unfollow.bind(this);
   }
   
   follow(event) {
+    let self = this;
+    Api.post('/users/me/followings/' + self.state.id)
+      .then(response => self.setState({ isFollowed: true, followers: self.state.followers + 1 }));
   }
   
   unfollow(event) {
+    let self = this;
+    Api.delete('/users/me/followings/' + self.state.id)
+      .then(response => self.setState({ isFollowed: false, followers: self.state.followers - 1 }));
   }
   
   editProfile(event) {
@@ -48,7 +70,18 @@ export default class ProfileForm extends React.Component {
           Edit Profile
         </button>
       );
-    } else { //TODO: follow and unfollow
+    } else if (this.state.isFollowed) {
+      return (
+        <button onClick={this.unfollow}>
+          Unfollow User
+        </button>
+      );
+    } else {
+      return (
+        <button onClick={this.follow}>
+          Follow User
+        </button>
+      );
     }
   }
   
@@ -56,7 +89,8 @@ export default class ProfileForm extends React.Component {
     let birthday = new Date(this.state.birthday);
     let nowday = new Date();
     var age = nowday.getFullYear() - birthday.getFullYear();
-    if (nowday.getMonth() < birthday.getMonth() || nowday.getDay() < birthday.getDay()) {
+    if (nowday.getMonth() < birthday.getMonth()
+        || (nowday.getMonth() == birthday.getMonth() && nowday.getDay() < birthday.getDay())) {
       age = age - 1;
     }
     return this.state.birthday.substring(0, 10) + ' (' + age + ' years)';
