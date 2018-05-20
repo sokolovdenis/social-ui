@@ -5,6 +5,10 @@ import Api from './api';
 export default class RegistrationForm extends React.Component {
   constructor(props) {
     super(props);
+    if (Api.getAuthToken()) {
+      Api.get('/users/me')
+        .then(response => browserHistory.push('/profile/' + response.data.id));
+    }
     this.state = {
       name: '',
       email: '',

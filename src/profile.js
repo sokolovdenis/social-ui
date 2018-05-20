@@ -14,7 +14,7 @@ export default class ProfileForm extends React.Component {
       name: 'Unknown Anonymous',
       info: 'this user doesn\'t exist or you have no access',
       imageUrl: null,
-      birthday: 'never',
+      birthday: '0000-00-00',
       followers: 0,
       followings: 0,
       userId: -1
@@ -38,15 +38,28 @@ export default class ProfileForm extends React.Component {
   }
   
   editProfile(event) {
+    browserHistory.push('/editprofile');
   }
   
   actionButton() {
     if (this.state.id === this.state.userId) {
-      return (<button onClick={this.editProfile}>
-        Edit Profile
-      </button>);
+      return (
+        <button onClick={this.editProfile}>
+          Edit Profile
+        </button>
+      );
     } else { //TODO: follow and unfollow
     }
+  }
+  
+  convertBirthday() {
+    let birthday = new Date(this.state.birthday);
+    let nowday = new Date();
+    var age = nowday.getFullYear() - birthday.getFullYear();
+    if (nowday.getMonth() < birthday.getMonth() || nowday.getDay() < birthday.getDay()) {
+      age = age - 1;
+    }
+    return this.state.birthday.substring(0, 10) + ' (' + age + ' years)';
   }
 
   render() {
@@ -60,7 +73,7 @@ export default class ProfileForm extends React.Component {
           {this.state.info}
           <br/>
           Born: 
-          {' ' + this.state.birthday.substring(0, 10)}
+          {' ' + this.convertBirthday()}
           <div>
             <div className="inline-box">
               followers<br/><span className="big-number">{this.state.followers}</span>

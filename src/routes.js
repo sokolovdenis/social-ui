@@ -5,12 +5,14 @@ import RegistrationForm from './registration';
 import LoginForm from './login';
 import ProfileForm from './profile';
 import ProfileListForm from './profilelist';
+import ProfileEditForm from './profileedit';
 
 export default (
   <Route path='/' component={App}>
     <IndexRoute component={RegistrationForm} />
     <Route path='profile/:id' component={ProfileForm} />
-    <Route path='profile/' component={ProfileListForm} />
+    <Route path='profile' component={ProfileListForm} />
+    <Route path='editprofile' component={ProfileEditForm} />
     <Route path='login' component={LoginForm} />
     <Route path='*' component={RegistrationForm} />
   </Route>

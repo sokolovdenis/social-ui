@@ -12,6 +12,12 @@ export default class HeaderForm extends React.Component {
     Api.get('/users/me')
       .then(response => self.setState({ id: response.data.id }));
   }
+  
+  logout() {
+    Api.removeAuthToken();
+    browserHistory.push('/login');
+  }
+  
   render() {
     return (
       <div className="container">
@@ -19,10 +25,10 @@ export default class HeaderForm extends React.Component {
           <a href={'/profile/' + this.state.id}>My Profile</a>
         </div>
         <div className="inline-box">
-          <a href="/profile/">All Profiles</a>
+          <a href="/profile">All Profiles</a>
         </div>
         <div className="inline-box">
-          <a href="/logout/">Log Out</a>
+          <a href="/logout">Log Out</a>
         </div>
         <hr/>
       </div>

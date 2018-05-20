@@ -14,6 +14,10 @@ Api.getAuthToken = function() {
   return Cookies.get('auth-token');
 };
 
+Api.removeAuthToken = function() {
+  Cookies.remove('auth-token');
+};
+
 Api.getConfig = function() {
   return {
     headers: {
@@ -24,6 +28,11 @@ Api.getConfig = function() {
 
 Api.post = function(path, body) {
   return Axios.post(Api.API_BASE + path, body,
+    Api.getConfig());
+};
+
+Api.put = function(path, body) {
+  return Axios.put(Api.API_BASE + path, body,
     Api.getConfig());
 };
 
