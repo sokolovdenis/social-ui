@@ -1,0 +1,17 @@
+body {
+    background-color: powderblue;
+}
+
+.header {
+  text-align: center;
+}
+
+.container {
+  display: block;
+  line-height: 2.7em;
+  text-align: center;
+}
+
+input.error-input {
+  border-color: #FF0000;
+}
