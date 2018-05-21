@@ -1,0 +1,50 @@
+.invite {
+    padding-top: 3em;
+}
+
+.invite-header {
+    font-size: 3em;
+    padding-bottom: 0.5em;
+}
+
+.invite-text {
+    font-size: 1.5em;
+}
+
+.invite-sign {
+    float: left;
+    margin-top: 3em;
+    width: 20em;
+    font-size: 1.2em;
+}
+
+.invite-sign-header {
+    font-size: 1.5em;
+    padding-bottom: 0.7em;
+}
+
+.invite-sign-label {
+    display: inline-block;
+    padding-right: 1em;
+    padding-bottom: 0.5em;
+    width: 6em;
+}
+
+.invite-sign-input {
+    width: 12em;
+}
+
+.invite-sign-postlabel {
+    padding-left: 0.5em;
+}
+
+.invite-sign-button {
+    display: block;
+    margin-top: 0.5em;
+    background-color: #d3cbbf;
+    color: #292722;
+    font-size: 1.2em;
+    padding: 0.4em;
+    border-radius: 7px;
+    width: fit-content;
+}
