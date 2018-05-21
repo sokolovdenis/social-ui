@@ -40,8 +40,6 @@ export default class ProfileEditForm extends React.Component {
   handleAvatarSubmit(event) {
     var data = new FormData();
     data.append('file', document.getElementById('avatar').files[0]);
-    console.log('hmm');
-    console.dir(data);
     let self = this;
     Api.put('/users/me/photo', data)
       .then(response => self.setState({ imageUrl: response.data.imageUrl}));

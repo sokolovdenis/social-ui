@@ -24,17 +24,18 @@ export default class ProfileForm extends React.Component {
     let self = this;
     Api.get('/users/me')
       .then(response => {
-        self.setState({ userId: response.data.id })
-        if (self.state.id !== response.data.id) {
-          Api.get('/users/' + self.state.userId + '/followings')
-            .then(response => {
-              if (response.data.find(user => user.id === self.state.id)) {
-                self.setState({ isFollowed: true });
-              } else {
-                self.setState({ isFollowed: false });
-              }
-            });
-        }
+        self.setState({ userId: response.data.id }, () => {
+          if (self.state.id !== response.data.id) {
+            Api.get('/users/' + self.state.userId + '/followings')
+              .then(response => {
+                if (response.data.find(user => user.id === self.state.id)) {
+                  self.setState({ isFollowed: true });
+                } else {
+                  self.setState({ isFollowed: false });
+                }
+              });
+          }
+        });
       });
     Api.get('/users/' + self.state.id)
       .then(response => self.setState(response.data))
@@ -119,8 +120,7 @@ export default class ProfileForm extends React.Component {
           </div>
           {this.actionButton()}
         </div>
-        <h2 className="title">User Posts</h2>
-        <FeedForm id={this.state.id} type="wall" />
+        <FeedForm id={this.state.id} type="wall"/>
       </div>
     );
   }

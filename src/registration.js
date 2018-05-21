@@ -86,7 +86,7 @@ export default class RegistrationForm extends React.Component {
               onChange={this.handleNameChange} />
             <br/>
             E-mail:
-            <input type="text" placeholder="address@mail.com" value={this.state.email}
+            <input type="email" placeholder="address@mail.com" value={this.state.email}
               className={this.emailClass} onChange={this.handleEmailChange} />
             <br/>
             Password:

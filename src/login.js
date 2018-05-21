@@ -54,7 +54,7 @@ export default class LoginForm extends React.Component {
         <form className="container" onSubmit={this.handleSubmit}>
           <label>
             E-mail:
-            <input type="text" placeholder="address@mail.com" value={this.state.email}
+            <input type="email" placeholder="address@mail.com" value={this.state.email}
               className={this.emailClass} onChange={this.handleEmailChange} />
             <br/>
             Password:
