@@ -8,7 +8,7 @@
 }
 
 .header__container {
-    width: 100%;
+    width: 1240px;
     margin: auto;
     display: flex;
     justify-content: space-between;
@@ -57,7 +57,7 @@ a.header__logo:hover {
     align-items: center;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1240px) {
     .header__container {
         width: 100%;
     }
