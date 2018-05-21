@@ -46,7 +46,7 @@ const ProfileBase = ({data, isLoading, error, currentUserId}) => {
 
     return (
         <div className="global-flex">
-            <div className="person-block">
+            <section className="person-block">
                 <div className="global-avatar avatar">
                     <img src={getAvatar(profile)} className="global-avatar-image avatar-image" alt="Avatar" />
                 </div>
@@ -72,7 +72,7 @@ const ProfileBase = ({data, isLoading, error, currentUserId}) => {
                 <Followers userId={profile.id} type='followers' />
                 <Followers userId={profile.id} type='followings' />
 
-            </div>
+            </section>
 
             <Feed userId={profile.id} type='wall' />
 

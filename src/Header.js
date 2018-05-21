@@ -41,11 +41,13 @@ class Header extends Component {
         if (!!this.props.token) {
             return (
                 <header className="header">
-                    <span className="header-title"><Link to='/'>Social Network</Link></span>
-                    <span className="header-logout" onClick={this.handleLogoutClick}>Logout</span>
-                    <span className="header-logout"><Link to='/users'>All users</Link></span>
-                    <span className="header-logout"><Link to={`/profile/${this.props.currentUserId}`}>My profile</Link></span>
-                    <br/>
+                    <nav>
+                        <span className="header-title"><Link to='/'>Social Network</Link></span>
+                        <span className="header-logout" onClick={this.handleLogoutClick}>Logout</span>
+                        <span className="header-logout"><Link to='/users'>All users</Link></span>
+                        <span className="header-logout"><Link to={`/profile/${this.props.currentUserId}`}>My profile</Link></span>
+                        <br/>
+                    </nav>
                 </header>
             );
         }

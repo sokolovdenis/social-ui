@@ -41,7 +41,7 @@ const FollowersBase = ({data, isLoading, error, type}) => {
     let header = type === 'followers' ? 'Followers' : 'Followings';
 
     return (
-        <div className="followers">
+        <section className="followers">
             <br />
             <div className="global-header followers-header">
                 <div className="followers-header-text">
@@ -67,7 +67,7 @@ const FollowersBase = ({data, isLoading, error, type}) => {
                     </div>
                 )}
             </div>
-        </div>
+        </section>
     );
 };
 

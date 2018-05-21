@@ -70,7 +70,7 @@ const FeedBase = ({data, isLoading, error, userId, type}) => {
     return (
         <div>
             {posts.map(post =>
-            <div key={post.id} className="feed-entry">
+            <article key={post.id} className="feed-entry">
                 <div className="global-header feed-entry-header">
                     <span className="feed-entry-author">
                         <Link to={`/profile/${post.user.id}`}>{post.user.name}</Link>
@@ -88,7 +88,7 @@ const FeedBase = ({data, isLoading, error, userId, type}) => {
                         }
                     </div>
                 </div>
-            </div>
+            </article>
             )}
         </div>
     );
@@ -128,11 +128,11 @@ class Feed extends Component {
         }
 
         return (
-            <div className="feed-block">
+            <section className="feed-block">
                 <div className="feed-block-scroll">
                     <FetchedComponent />
                 </div>
-            </div>
+            </section>
         )
     }
 }
