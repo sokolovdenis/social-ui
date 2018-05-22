@@ -1,0 +1,31 @@
+.user-posts {
+    display: flex;
+    flex-direction: column;
+}
+
+.new-post {
+    margin: 2%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: none;
+    background: aliceblue;
+}
+
+    .new-post .add-post-text {
+        padding-left: 20px;
+        margin-top: 5px;
+        height: 30px;
+        width: 500px;
+        border: 1px solid lightsteelblue;
+    }
+
+.new-post .add-post-button {
+    color: white;
+    background: steelblue;
+    margin-left: 2%;
+    margin-top: 5px;
+    height: 30px;
+    width: 150px;
+    text-align: center;
+    border-color: steelblue;
+}

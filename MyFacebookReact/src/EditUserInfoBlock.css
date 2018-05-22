@@ -1,0 +1,23 @@
+.info-area .save-button {
+    color: white;
+    background: steelblue;
+    margin-top: 5px;
+    width: 150px;
+    text-align: center;
+    border-color: steelblue;
+}
+
+.info-area {
+    height: 250px;
+}
+
+#edit-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#edit-form input {
+    margin-left: 10px;
+    box-sizing: border-box;
+    height: 25px;
+}

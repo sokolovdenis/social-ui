@@ -1,0 +1,22 @@
+.side-menu {
+    display: flex;
+    width: 15%;
+    background: lightsteelblue;
+    flex-direction: column;
+    align-items: baseline;
+    flex-grow: 1;
+    min-width: 220px;
+}
+
+.side-menu a {
+    display: flex;
+    width: 60%;
+    color: steelblue;
+    font-size: 16px;
+    margin: 5% 15%;
+    text-decoration: none;
+    padding: 1px;
+    border: 2px solid steelblue;
+    background: aliceblue;
+    padding-left: 3%;
+}

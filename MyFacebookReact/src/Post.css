@@ -1,0 +1,21 @@
+article {
+    margin: 2%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid lightsteelblue;
+    background: white;
+}
+
+    article h4 {
+        margin-left: 2%;
+        color: steelblue;
+    }
+
+    article p {
+        margin-left: 2%;
+        margin-right: 2%;
+    }
+
+    article time {
+        color: lightsteelblue;
+    }

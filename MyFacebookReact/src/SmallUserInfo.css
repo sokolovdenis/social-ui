@@ -1,0 +1,31 @@
+.users-list .user-info {
+    margin: 2%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid lightsteelblue;
+    background: white;
+}
+
+p {
+    color: lightsteelblue;
+}
+
+p time {
+    color: steelblue
+}
+
+.user-info a {
+    display: flex;
+    color: white;
+    font-size: 16px;
+    text-decoration: none;
+    text-align: center;
+    padding: 1px;
+    border-color: steelblue;
+    background: steelblue;
+    padding-left: 3%;
+    height: 20px;
+    width: 90px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}

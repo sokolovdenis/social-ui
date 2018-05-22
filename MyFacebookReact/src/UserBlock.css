@@ -1,0 +1,53 @@
+.photo-area {
+    display: flex;
+    flex-grow: 1;
+    background: white;
+    margin-top: 2%;
+    margin-left: 2%;
+    margin-right: 0%;
+    margin-bottom: 1%;
+    padding: 2% 3%;
+    flex-direction: row;
+    height: 200px;
+    width: 200px;
+    border: 1px solid lightsteelblue;
+}
+
+.info-area {
+    display: flex;
+    flex-grow: 16;
+    background: white;
+    margin-top: 2%;
+    margin-left: 1%;
+    margin-right: 2%;
+    margin-bottom: 1%;
+    border: 1px solid lightsteelblue;
+    height: 246px;
+    flex-direction: column;
+}
+
+    .info-area h2 {
+        margin: 1% 2%;
+        color: steelblue;
+    }
+
+    .info-area p {
+        margin: 1% 2%;
+        font-size: 20px;
+        color: steelblue;
+    }
+
+    .info-area span {
+        color: lightsteelblue;
+    }
+
+    .info-area button {
+        color: white;
+        background: steelblue;
+        margin-left: 2%;
+        margin-top: 5px;
+        height: 30px;
+        width: 150px;
+        text-align: center;
+        border-color: steelblue;
+    }
