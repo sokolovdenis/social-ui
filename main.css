@@ -1,0 +1,279 @@
+html {
+	height: 100%;
+}
+
+body {
+	background: #d9a7c7;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #fffcdc, #d9a7c7);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #fffcdc, #d9a7c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	margin: 0;
+	font-family: Helvetica;
+	height: 100%;
+}
+
+header {
+	background-color: #7B506F;
+	height: 10%;
+	display: flex;
+	flex-direction: row;
+}
+
+footer {
+	background-color: #7B506F;
+	height: 5%;
+	display: flex;
+	flex-direction: row;
+}
+
+button {
+	border: none;
+}
+
+.title {
+	margin-left: 100px;
+	margin-top: auto;
+	margin-bottom: auto;
+	font-size: 20pt;
+	color: white;
+	text-align: center;
+}
+
+.copyright {
+	margin: auto;
+	font-size: 10pt;
+	color: white;
+	text-align: center;
+}
+
+.main {
+	display: flex;
+	flex-direction: row;
+	min-height: 85%;
+}
+
+.left {
+	width: 25%;
+	background-color: rgba(255,255,255,0.5);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.center {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 50%;
+	padding-bottom: 20px;
+}
+
+.right {
+	width: 25%;
+	background-color: rgba(255,255,255,0.5);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 60%;
+	margin: 30px;
+	padding: 30px;
+	border-radius: 10px;
+	background-color: white;
+}
+
+.input {
+	margin: 10px;
+	border-radius: 3px;
+	width: 80%;
+	border: none;
+	border-bottom: 2px solid black;
+	padding: 7px;
+	font-size: 10pt;
+}
+
+.remember {
+	display: flex;
+	flex-direction: row;
+	font-size: 8pt;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.button {
+	background-color: #1F1A38;
+	color: white;
+	font-size: 10pt;
+	text-align: center;
+	padding: 5px;
+	border-radius: 5px;
+}
+
+.login_button {
+	width: 30%;
+	margin-top: 10px;
+}
+
+.register_button {
+	width: 70%;
+	margin-top: 20px;
+}
+
+.profile {
+	width: 90%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	background-color: rgba(255,255,255,0.5);
+	margin-top: 30px;
+	border-radius: 10px;
+	padding: 15px;
+}
+
+.profile_photo {
+	width: 100px;
+	height: 100px;
+	border-radius: 500px;
+	margin-top: 20px;
+}
+
+.profile_info {
+	display: flex;
+	flex-direction: column;
+	margin-right: 10px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	width: 60%;
+	padding: 15px;
+	background-color: rgba(255,255,255,0.5);
+	border-radius: 7px;
+}
+
+.profile_name {
+	font-weight: bold;
+	font-size: 14pt;
+}
+
+.profile_age {
+	font-size: 10pt;
+}
+
+.profile_status {
+	margin-top: 15px;
+	margin-bottom: 15px;
+	width: 100%;
+	font-style: italic;
+	font-size: 11pt;
+}
+
+.profile_subs_container {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	justify-content: space-around;
+	font-size: 9pt;
+}
+
+.post {
+	width: 90%;
+	background-color: rgba(255,255,255,0.5);
+	margin-top: 20px;
+	border-radius: 10px;
+}
+
+.post_author {
+	width: 90%;
+	margin-left: 20px;
+	margin-top: 20px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.post_name_date {
+	display: flex;
+	flex-direction: column;
+	margin-left: 20px;
+}
+
+.post_name {
+	font-weight: bold;
+	font-size: 12pt;
+}
+
+.post_date {
+	font-size: 10pt;
+}
+
+.post_photo {
+	width: 50px;
+	height: 50px;
+	border-radius: 25px;
+}
+
+.post_content {
+	margin: 20px;
+	background-color: rgba(255,255,255,0.5);
+	padding: 20px;
+	border-radius: 7px;
+	font-size: 11pt;
+}
+
+.post_content_photo {
+	width: 100%;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.menu {
+	width: 70%;
+	display: flex;
+	flex-direction: column;
+	margin-top: 20px;
+}
+
+.menu_item {
+	width: 90%;
+	margin: 5px;
+	background-color: #d9a7c7;
+	padding: 7px;
+}
+
+.subscribe_button {
+	font-size: 9pt;
+	margin-top: 15px;
+}
+
+.profile_photo_sub {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.friend {
+	display: flex;
+	flex-direction: row;
+	width: 50%;
+	background-color: rgba(255,255,255,0.5);
+	padding: 10px;
+	border-radius: 10px;
+	margin: 10px;
+}
+
+.friends_cnt_label {
+	font-size: 14pt;
+	margin: 15px;
+}
+
+.small_register {
+	margin: 10px;
+	margin-top: 15px;
+	font-size: 8pt;
+	border: none;
+	border-bottom: 2px dotted black;
+}
+
