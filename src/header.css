@@ -1,0 +1,17 @@
+nav {
+    display: flex;
+    background-color: deepskyblue;
+}
+
+nav a {
+    color: white;
+    font-size: 20px;
+    padding: 20px;
+    text-decoration: none;
+    text-align: center;
+}
+
+nav a:hover {
+    background-color: #ddd;
+    color: black;
+}
