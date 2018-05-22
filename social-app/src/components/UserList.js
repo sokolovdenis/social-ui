@@ -12,7 +12,7 @@ class UserList extends React.Component {
         }
         return (
             <div className="user-list">
-                { this.props.items.map(item => <UserListItem key={ item.id } user={ item } me={this.props.me}/>) }
+                { this.props.items.map(item => <UserListItem key={ item.id } user={ item } me={ this.props.me }/>) }
             </div>
         );
     }

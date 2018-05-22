@@ -13,7 +13,7 @@ class Header extends React.PureComponent {
                     <div className="header__right">
                         <div className="header__signout-button" onClick={(event) => this.props.onSignOut()}>sign out</div>
                         <Link to={`/users/${info.id}`}>
-                            <img className="header__user-image" src={info.imageUrl} alt="user photo" />
+                            <img className="header__user-image" src={info.imageUrl} alt="user" />
                         </Link>
                     </div>
                 </header>

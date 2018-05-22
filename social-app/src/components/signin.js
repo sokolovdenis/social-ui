@@ -1,6 +1,6 @@
 import React from 'react';
 import Api from '../api'
-import '../login_style.css'
+import './SignIn.css'
 
 class SignIn extends React.Component {
 

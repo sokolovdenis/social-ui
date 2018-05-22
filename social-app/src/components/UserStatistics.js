@@ -6,10 +6,6 @@ class UserStatistics extends React.Component {
     render() {
         return (
             <div className="user-statistics">
-                <div className = "user-statistics__block" >
-                    <p className="user-statistics__label">Posts</p>
-                    <p className="user-statistics__number">{ this.props.postCount }</p>
-                </div>
                 <Link to={ `/users/${this.props.id}/followings` } className = "user-statistics__block" >
                     <p className="user-statistics__label">Following</p>
                     <p className="user-statistics__number">{ this.props.followingsCount }</p>

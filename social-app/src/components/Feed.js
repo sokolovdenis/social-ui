@@ -14,63 +14,77 @@ class Feed extends React.Component {
             isReady: false,
             feed: [],
             posts: [],
-            wall: []
+            thereWillBeMore: true,
+            skip: 0,
+            count: 10
         }
     }
 
-    componentDidMount() {
-        const me = this.props.me.myInfo;
-        let apiCalls = [
-            Api.getUserPosts(me.id)
-                .then(posts => {
-                    this.setState({ posts });
-                }),
+    async loadMore() {
+        const userId = this.props.userId;
+        const userInfo = await Api.getUser(userId);
+        const posts = await Api.getUserPosts(userId, this.state.skip, this.state.count);
 
-            Api.getUsersFollowers(me.id)
-                .then(followers => {
-                    this.setState({ followers });
-                }),
-
-            Api.getUsersFollowings(me.id)
-                .then(followings => {
-                    this.setState({ followings });
-                }),
-
-            Api.getUserFeed(me.id)
-                .then(wall => {
-                    this.setState({ wall });
-                })
-        ];
-        return Promise.all(apiCalls)
-            .then(() => {
-                console.log(this.state);
-                let feed = this.state.wall
-                    .concat(this.state.posts)
-                    .sort((a, b) => {
-                        return Date.parse(b.dateTime) - Date.parse(a.dateTime);
-                    });
-                this.setState({
-                    feed,
-                    isReady: true
-                });
+        if (posts.length < this.state.count) {
+            this.setState({
+                thereWillBeMore: false
             })
-            .catch(function (reason) {
-                if (reason == Api.statusCodes.AuthenticationFailed ||
-                    reason == Api.statusCodes.NoAccessToken) {
-                    alert('Please sign in!');
-                } else {
-                    alert(Api.description(reason));
-                }
-            });
+        }
+        const skip = this.state.skip + posts.length;
+        this.state.posts = this.state.posts.concat(posts);
+
+        this.setState({
+            isReady: true,
+            posts: this.state.posts,
+            skip
+        });
+    }
+
+    async loadMore() {
+        const me = this.props.me.myInfo;
+
+        // todo: remove post count term at all
+        const posts = await Api.getUserPosts(me.id, 0, this.state.count);
+        const feed = await Api.getUserFeed(me.id, this.state.skip, this.state.count);
+
+        if (feed.length < this.state.count) {
+            this.setState({
+                thereWillBeMore: false
+            })
+        }
+
+        const skip = this.state.skip + feed.length;
+        this.state.feed = this.state.feed.concat(feed);
+
+        this.setState({
+            posts,
+            feed: this.state.feed,
+            skip
+        });
+    }
+
+    async componentDidMount() {
+        const me = this.props.me.myInfo;
+        
+        const followers = await Api.getUsersFollowers(me.id);
+        const followings = await Api.getUsersFollowings(me.id);
+
+        await this.loadMore();
+
+        this.setState({
+            followers,
+            followings,
+            isReady: true
+        });
     }
 
     async onPostCreated(created) {
         if (created) {
-            let { feed } = this.state;
-            feed.unshift(created);
-            this.setState({
-                feed: this.state.feed
-            });
+            // let { feed } = this.state;
+            // feed.unshift(created);
+            // this.setState({
+            //     feed: this.state.feed
+            // });
         }
     }
 
@@ -89,7 +103,7 @@ class Feed extends React.Component {
 
                 <div class="main-container">
                     <CreatePost onPostCreated={ (created) => this.onPostCreated(created) }/>
-                    <PostList items={this.state.feed} />
+                    <PostList items={this.state.feed} onLoadMore={ () => this.loadMore() } thereWillBeMore={ this.state.thereWillBeMore }/>
                 </div>
 
                 <div class="right-fake"></div>

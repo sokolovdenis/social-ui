@@ -16,52 +16,50 @@ class UserProfile extends React.Component {
             userInfo: {},
             followers: [],
             followings: [],
-            posts: []
+            posts: [],
+            thereWillBeMore: true,
+            skip: 0,
+            count: 10
         };
+
     }
 
-    componentDidMount() {
+    async loadMore() {
         const userId = this.props.userId;
+        const posts = await Api.getUserPosts(userId, this.state.skip, this.state.count);
 
-        let apiCalls = [
-            Api.getUser(userId)
-            .then(userInfo => {
-                this.setState({ userInfo });
-            }),
+        if (posts.length < this.state.count) {
+            this.setState({ thereWillBeMore: false })
+        }
+        const skip = this.state.skip + posts.length;
+        this.state.posts = this.state.posts.concat(posts);
 
-            Api.getUserPosts(userId)
-            .then(posts => {
-                this.setState({ posts });
-            }),
+        this.setState({
+            isReady: true,
+            posts: this.state.posts,
+            skip
+        });
+    }
 
-            Api.getUsersFollowers(userId)
-            .then(followers => {
-                this.setState({ followers });
-            }),
+    async componentDidMount() {
+        const userId = this.props.userId;
+        const userInfo = await Api.getUser(userId);
+        const followers = await Api.getUsersFollowers(userId);
+        const followings = await Api.getUsersFollowings(userId);
 
-            Api.getUsersFollowings(userId)
-            .then(followings => {
-                this.setState({ followings });
-            })
-        ];
-        Promise.all(apiCalls)
-            .then(() => {
-                console.log(this.state);
-                this.setState({ isReady: true });
-            })
-            .catch(function (reason) {
-                if (reason == Api.statusCodes.AuthenticationFailed ||
-                    reason == Api.statusCodes.NoAccessToken) {
-                    alert('Please sign in!');
-                } else {
-                    alert(Api.description(reason));
-                }
-            });
+        this.setState({
+            isReady: true,
+            userInfo,
+            followers,
+            followings,
+        });
+
+        await this.loadMore();
     }
 
     render() {
         if (!this.state.isReady) {
-            return (<Loading />)
+            return (<Loading />);
         }
 
         const isItMe = this.props.me.myInfo.id === this.state.userInfo.id
@@ -81,7 +79,7 @@ class UserProfile extends React.Component {
 
                 <div className="main-container">
                     { createPost }
-                    <PostList items={ this.state.posts } />
+                    <PostList items={ this.state.posts } onLoadMore={ () => this.loadMore() } thereWillBeMore={ this.state.thereWillBeMore }/>
                 </div>
 
                 <div className="right-fake"></div>
@@ -89,7 +87,7 @@ class UserProfile extends React.Component {
         );
     }
 
-    async onPostCreated(created) {
+    onPostCreated(created) {
         if (created) {
             let {posts} = this.state;
             posts.unshift(created);

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 
-import UserStatistics from './UserStatistics'
 import FollowUnfollowButton from './FollowUnfollowButton'
 
 import './UserListItem.css'
@@ -19,13 +18,8 @@ class UserListItem extends React.Component {
         if (!this.props.user) {
             return null;
         }
-        let { id, imageUrl, name, info } = this.props.user;
-
-        const postCount = this.props.posts ? this.props.posts.length : "?";
-        const followersCount = this.props.followers ? this.props.followers.length : "?";
-        const followingsCount = this.props.followings ? this.props.followings.length : "?";
-
-        const isItMe = this.props.me.myInfo && this.props.me.myInfo.id == id;
+        const { id, imageUrl, name, info } = this.props.user;
+        const isItMe = this.props.me.myInfo.id == id;
 
         let followUnfollow = (!isItMe) ?
             (<FollowUnfollowButton me={this.props.me} userId={ id }/>) :
@@ -39,18 +33,10 @@ class UserListItem extends React.Component {
                 <div className="user-list-item-right">
                     <Link to={`/users/${id}`} className="user-list-item-name">{ name }</Link>
                     <p className="">{ info }</p>
-                    {followUnfollow}
+                    { followUnfollow }
                 </div>
             </div>
         );
-    }
-}
-
-function InteractionButton(props) {
-    if (props.isItMe) {
-        return (<div onClick={ (event) => props.editHandler() } className="profile-interact button">Edit</div>);
-    } else {
-        return (<div onClick={ (event) => props.toggleSubscriptionHandler() } className="profile-interact button">Subscribe</div>);
     }
 }
 

@@ -228,7 +228,7 @@ class Api {
         if (!Api.getToken()) {
             return Promise.reject(Api.statusCodes.NoAccessToken);
         }
-        return Api.httpGet(`/users/${id}/posts/wall`, true)
+        return Api.httpGet(`/users/${id}/posts/wall?skip=${skip}&count=${count}`, true)
             .catch(Api.defaultErrorHandling);
     }
 
@@ -236,7 +236,7 @@ class Api {
         if (!Api.getToken()) {
             return Promise.reject(Api.statusCodes.NoAccessToken);
         }
-        return Api.httpGet(`/users/${id}/posts/feed`, true)
+        return Api.httpGet(`/users/${id}/posts/feed?skip=${skip}&count=${count}`, true)
             .catch(Api.defaultErrorHandling);
     }
 
