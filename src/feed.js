@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router';
 import Api from './api';
 import HeaderForm from './header';
 
-let FEED_PAGE_SIZE = 20;
+let FEED_PAGE_SIZE = 5;
 
 export default class FeedForm extends React.Component {
   constructor(props) {
@@ -25,8 +25,6 @@ export default class FeedForm extends React.Component {
         if (props.type !== 'wall') {
           self.setState({ userId: response.data.id, type: 'feed' }, self.loadPosts);
         } else {
-          console.dir(response.data);
-          console.dir(self.state);
           self.setState({ isOwned: self.state.userId === response.data.id.toString() }, self.loadPosts);
         }
       });
@@ -66,8 +64,7 @@ export default class FeedForm extends React.Component {
   }
   
   addNewPost(post) {
-    this.state.posts.pop();
-    this.setState({ posts: [post].concat(this.state.posts) });
+    this.setState({ posts: [post].concat(this.state.posts.slice(0, (this.state.page + 1) * FEED_PAGE_SIZE - 1)) });
   }
   
   

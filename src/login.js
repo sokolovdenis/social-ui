@@ -52,6 +52,8 @@ export default class LoginForm extends React.Component {
       <div>
         <h2 className="title">Log in</h2>
         <form className="container" onSubmit={this.handleSubmit}>
+          Have not account yet? <a href="/register">Register here!</a>
+          <br/>
           <label>
             E-mail:
             <input type="email" placeholder="address@mail.com" value={this.state.email}

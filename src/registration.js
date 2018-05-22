@@ -80,6 +80,8 @@ export default class RegistrationForm extends React.Component {
       <div>
         <h2 className="title">Registration</h2>
         <form className="container" onSubmit={this.handleSubmit}>
+          Already registered? <a href="/login">Login here!</a>
+          <br/>
           <label>
             Name:
             <input type="text" placeholder="username" value={this.state.name}
