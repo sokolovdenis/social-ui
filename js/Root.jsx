@@ -7,7 +7,8 @@ export default class Root extends React.Component {
 	    super(props);
 	    this.state = {
 			login: true,
-			redirect: false
+			redirect: false,
+			remember: false
 	    };
 
 	    this.handleLogin = this.handleLogin.bind(this);
@@ -26,7 +27,9 @@ export default class Root extends React.Component {
 			if (response.status == 200) {
 				this.props.set_user(response.data.token);
 				this.setState({redirect: true});
-				localStorage.setItem('token', response.data.token);
+				if (this.state.remember) {
+					localStorage.setItem('token', response.data.token);
+				}
 			}
 	    }).bind(this))
 	}
@@ -49,13 +52,13 @@ export default class Root extends React.Component {
   	render () {
 
   		if (this.state.redirect) {
-  			return <Redirect to="/home"/>;
+  			return <Redirect to="/feed"/>;
   		}
 
 	    return (
 		    <div>
 				<header>
-					<div className="title">SN</div>
+					<div className="title">The Cuttest Social Network</div>
 				</header>
 				<div className="main">
 					<div className="left">
@@ -71,9 +74,10 @@ export default class Root extends React.Component {
 							/>
 							<div className="input remember">
 								<div>Запомнить меня</div>
-								<input type="checkbox" name="remember"/>
+								<input type="checkbox" name="remember"
+									onChange={(event) => this.setState({remember: !this.state})}/>
 							</div>
-							<div 
+							<div
 								className="button login_button"
 								onClick={this.handleLogin}>
 								Войти</div>
@@ -92,7 +96,7 @@ export default class Root extends React.Component {
 								onChange={(event) => this.setState({name: event.target.value})}/>
 							<input className="input" type="text" name="birthday" placeholder="Дата рождения"
 								onChange={(event) => this.setState({birthday: event.target.value})}/>
-							<div 
+							<div
 								className="button register_button"
 								onClick={this.handleRegister}>
 								Зарегистрироваться

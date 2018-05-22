@@ -181,16 +181,19 @@ button {
 }
 
 .post {
-	width: 90%;
+	width: 80%;
 	background-color: rgba(255,255,255,0.5);
+	margin: auto;
 	margin-top: 20px;
+	margin-bottom: 20px;
 	border-radius: 10px;
+	padding: 15px;
 }
 
 .post_author {
 	width: 90%;
-	margin-left: 20px;
-	margin-top: 20px;
+	/*margin-left: 20px;*/
+	/*margin-top: 20px;*/
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -200,6 +203,7 @@ button {
 	display: flex;
 	flex-direction: column;
 	margin-left: 20px;
+	width: 70%;
 }
 
 .post_name {
@@ -218,11 +222,13 @@ button {
 }
 
 .post_content {
-	margin: 20px;
+	/*margin: 20px;*/
+	margin-top: 20px;
 	background-color: rgba(255,255,255,0.5);
 	padding: 20px;
 	border-radius: 7px;
 	font-size: 11pt;
+	overflow: hidden;
 }
 
 .post_content_photo {
@@ -263,16 +269,23 @@ button {
 .friend {
 	display: flex;
 	flex-direction: row;
-	width: 50%;
+	width: 45%;
 	background-color: rgba(255,255,255,0.5);
 	padding: 10px;
 	border-radius: 10px;
-	margin: 10px;
+	margin: auto;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	justify-content: space-around;
+	align-items: center;
 }
 
 .friends_cnt_label {
 	font-size: 14pt;
-	margin: 15px;
+	margin: auto;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	text-align: center;
 }
 
 .small_register {
@@ -281,5 +294,48 @@ button {
 	font-size: 8pt;
 	border: none;
 	border-bottom: 2px dotted black;
+}
+
+.sub {
+	width: 50px;
+	height: 24px;
+	border-radius: 5px;
+	background-color: #7B506F;
+	color: white;
+	font-size: 10pt;
+	margin: 5px;
+}
+
+.sub_cont{
+	display: flex;
+	flex-direction: column;
+}
+
+.new_post_cont {
+	border-radius: 10px;
+	background-color: rgba(255,255,255,0.5);
+	width: 80%;
+	margin: auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	padding: 20px;
+}
+
+.post_text {
+	width: 100%;
+	height: 70;
+	border-radius: 7px;
+	border-style: solid;
+	border-color: rgba(255,255,255,0.4);
+	padding: 15px;
+}
+
+.publish_button {
+	margin-top: 20px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border-radius: 5px;
 }
 

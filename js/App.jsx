@@ -25,7 +25,6 @@ export default class App extends React.Component {
 			}),
 			logged: false
 		};
-		console.log(localStorage.getItem('token'));
 
 		if (localStorage.getItem('token') !== null) {
 			this.state.api.defaults.headers.common['Authorization'] = 'Bearer '+localStorage.getItem('token');
@@ -48,25 +47,25 @@ export default class App extends React.Component {
 		return (
 			<div>
 				<header>
-					<div className="title">SN</div>
+					<div className="title">The Cuttest SN</div>
 				</header>
 				<div className="main">
 					<div className="left">
 						<div className="menu">
 							<div className="menu_item button">
 								<NavLink to='/my_page'
-									style={{color: 'white'}} activeStyle={{'font-weight': 'bold', color: 'black'}}>
+									style={{color: 'white'}} activeStyle={{'fontWeight': 'bold', color: 'black'}}>
 									Моя страница
 								</NavLink>
 							</div>
 							<div className="menu_item button">
 								<NavLink to='/feed'
-									style={{color: 'white'}} activeStyle={{'font-weight': 'bold', color: 'black'}}>
+									style={{color: 'white'}} activeStyle={{'fontWeight': 'bold', color: 'black'}}>
 								Лента</NavLink>
 							</div>
 							<div className="menu_item button">
 								<NavLink to='/all_users'
-									style={{color: 'white'}} activeStyle={{'font-weight': 'bold', color: 'black'}}>
+									style={{color: 'white'}} activeStyle={{'fontWeight': 'bold', color: 'black'}}>
 								Все пользователи</NavLink>
 							</div>
 						</div>
@@ -103,8 +102,21 @@ export default class App extends React.Component {
 							info_api_path="/users/me"
 							get_age={this.get_age}
 						/>)}/>
-					<Route path="/feed" render={() => this.template(<Feed api={this.state.api}/>)}/>
-					<Route path="/all_users" render={() => this.template(<AllUsers api={this.state.api}/>)}/>
+					<Route path="/feed" render={() => this.template(
+						<Feed
+							api={this.state.api}
+						/>)}/>
+					<Route path="/all_users" render={() => this.template(
+						<AllUsers
+							api={this.state.api}
+							get_age={this.get_age}
+						/>)}/>
+
+					<Route path="/users/:id" render={(props) =>
+						this.template(
+							<Profile api={this.state.api} get_age={this.get_age}
+								info_api_path={"/users/"+props.match.params.id}/>)
+					}/>
 				</Switch>
 			</HashRouter>
 		);

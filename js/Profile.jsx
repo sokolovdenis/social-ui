@@ -1,5 +1,8 @@
 import React from "react";
 
+import NewPost from "./NewPost";
+import Post from "./Post";
+
 export default class Profile extends React.Component {
 
 	constructor(props) {
@@ -48,9 +51,11 @@ export default class Profile extends React.Component {
 		}).bind(this))
 	}
 
-	render() {
+	componentWillUpdate() {
+		this.componentWillMount(); // работает плохо, хз как по другому, он не обновляет профиль, при переходе от одного к другому
+	}
 
-		console.log(this.state);
+	render() {
 
 		return (
 		<div style={{width: '100%'}}>
@@ -71,9 +76,11 @@ export default class Profile extends React.Component {
 				</div>
 			</div> : ''}
 
+			{ this.props.info_api_path === "/users/me" ? <NewPost api={this.props.api}/> : ''}
+
 			{this.state.posts &&
 			this.state.posts.map((post, i) =>
-				<Post
+				<Post key={i}
 					author_photo={post.user.imageUrl}
 					author_name={post.user.name}
 					date={post.dateTime}
