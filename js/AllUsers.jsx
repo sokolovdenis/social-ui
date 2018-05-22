@@ -1,6 +1,6 @@
 import React from "react";
 
-export default class Feed extends React.Component {
+export default class AllUsers extends React.Component {
 
     constructor(props) {
         super(props);
@@ -9,6 +9,6 @@ export default class Feed extends React.Component {
     }
 
     render() {
-        return <p>Feed</p>;
+        return <p>AllUsers</p>;
     }
 }

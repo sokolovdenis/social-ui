@@ -2,6 +2,7 @@ import React from "react";
 
 import Profile from "./Profile";
 import Post from "./Post";
+import Person from "./Person";
 
 import {Redirect} from 'react-router-dom';
 
@@ -12,92 +13,27 @@ export default class Main extends React.Component {
 
 		this.state = {
 			redirect: false,
-			page: "my_page"
+			page: "my_page",
+			get_users: true
 		};
 	}
 
-	componentWillMount() {
-
-		console.log("will mount");
-
-		var state_dict = {};
-
-		this.props.api.get('/users/me')
-		.then((function (response) {
+	get_users() {
+		this.props.api.get('/users').
+		then((function (response) {
 			if (response.status == 200) {
-
-				var diff =(new Date().getTime() - new Date(response.data['birthday']).getTime()) / 1000;
-				diff /= (60 * 60 * 24);
-				var age = Math.abs(Math.floor(diff/365.25));
-
-				state_dict.profile_photo = response.data.imageUrl;
-				state_dict.profile_name = response.data.name;
-				state_dict.profile_age = age;
-				state_dict.profile_status = response.data.info;
-				state_dict.me_id = response.data.id;
-
-				this.props.api.get('users/'+state_dict.me_id+'/posts/wall')
-		    	.then((function (response) {
-					if (response.status == 200) {
-						this.setState({
-							posts: response.data
-						});
-					}
-				}).bind(this))
-
-				return this.props.api.get('/users/'+state_dict.me_id+'/followings');
+				this.setState({
+					all_users: response.data
+				});
 			}
-		}).bind(this))
-		.then((function (response) {
-			if (response.status == 200) {
-				state_dict.profile_followings = response.data;
-				return this.props.api.get('/users/'+state_dict.me_id+'/followers');
-			}
-		}).bind(this))
-		.then((function (response) {
-			if (response.status == 200) {
-				state_dict.profile_followers = response.data;
-
-				this.setState(state_dict);
-			}
-		}).bind(this))
-		.catch((error) => {
-			if (error.response.status === 401) {
-				this.setState({redirect: true});
-			}
-    	});
+		}).bind(this));
 	}
 
 	render() {
 
-		console.log(this.state);
-
-		if (this.state.redirect) {
-			return <Redirect to="/"/>;
-		}
-
-		return (
-			<div>
-				<header>
-					<div className="title">SN</div>
-				</header>
-				<div className="main">
-					<div className="left">
-						<div className="menu">
-							<button className="menu_item button"
-								onClick={(event) => this.setState({page: "my_page"})}
-							>Моя страница</button>
-							<button className="menu_item button"
-								onClick={(event) => this.setState({page: "feed"})}
-							>Лента</button>
-							<button className="menu_item button"
-								onClick={(event) => this.setState({page: "friends"})}
-							>Мои друзья</button>
-						</div>
-					</div>
 					<div className="center">
 
-					{this.state.page === "my_page" && this.state.me_id && 
+					{this.state.page === "my_page" && this.state.me_id &&
 						<Profile
 							photo={this.state.profile_photo || "static/no-user.png"}
 							name={this.state.profile_name}
@@ -127,7 +63,15 @@ export default class Main extends React.Component {
 							post_photo={post.imageUrl}
 						/>)}
 
-					{this.state.page == "friends" && }
+					{this.state.page == "all_users" && this.state.all_users &&
+							<div className="friends_cnt_label"><b>{this.state.all_users.length}</b> друзей</div>
+							{this.state.all_users.map((friend, i) =>
+							<Person key={i}
+								photo={friend.imageUrl || "static/no-user.png"}
+								name={friend.name}
+								age={this.get_age(friend.birthday)}
+							/>)}
+						}
 
 					</div>
 					<div className="right">
