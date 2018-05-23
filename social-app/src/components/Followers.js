@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Api from '../api'
+import Api from '../Api'
 
 import UserList from './UserList'
 import Loading from './Loading'

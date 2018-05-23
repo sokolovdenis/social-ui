@@ -40,10 +40,10 @@ class EditSelf extends React.Component {
                         placeholder="Name"
                         onChange={(event) => this.onNameChanged(event)} />
 
-                    <input class="profile-age editing" type="date" name="birthdate" placeholder="Date of birth" />
+                    <input className="profile-age editing" type="date" name="birthdate" placeholder="Date of birth" />
                     
                     <textarea
-                        class="profile-about editing"
+                        className="profile-about editing"
                         name="about"
                         cols="30" rows="10"
                         placeholder="Information about yourself"

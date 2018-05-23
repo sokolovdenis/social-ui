@@ -1,5 +1,5 @@
 import React from 'react';
-import Api from '../api'
+import Api from '../Api'
 
 class FollowUnfollowButton extends React.Component {
     constructor(props) {

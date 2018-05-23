@@ -1,5 +1,5 @@
 import React from 'react';
-import Api from '../api'
+import Api from '../Api'
 import './SignIn.css'
 
 class SignIn extends React.Component {

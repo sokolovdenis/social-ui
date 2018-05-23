@@ -56,9 +56,9 @@ class Api {
     }
 
     static defaultErrorHandling(code) {
-        if (code == 401) {
+        if (code === 401) {
             return Promise.reject(Api.statusCodes.AuthenticationFailed);
-        } if (code == 404) {
+        } if (code === 404) {
             return Promise.reject(Api.statusCodes.NotFound);
         } else {
             return Promise.reject(Api.statusCodes.Unknown);

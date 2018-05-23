@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
-import Api from './api'
+import Api from './Api'
 
 import Header from './components/Header'
 import SignIn from './components/SignIn'

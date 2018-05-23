@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Api from '../api'
+import Api from '../Api'
 
 import './CreatePost.css'
 import uploadImageLogo from '../assets/upload_image_icon.svg';
@@ -39,7 +39,7 @@ class CreatePost extends React.Component {
                         </label>
                         <input id="upload-image__file-input" type="file" name="image" accept="image/*" onChange={ (event) => this.handleImageSelected(event) } />
                     </div>
-                    <input class="create-post__submit" type="submit" value="Post" />
+                    <input className="create-post__submit" type="submit" value="Post" />
                 </div>
             </form>
         );
@@ -101,7 +101,7 @@ class CreatePost extends React.Component {
 
 function ImagePreview(props) {
     if (props.src) {
-        return (<img src={props.src} className="create-post__image-preview" />);
+        return (<img src={props.src} className="create-post__image-preview" alt="preview" />);
     } else {
         return null;
     } 

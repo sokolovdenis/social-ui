@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 
-import Api from '../api'
+import Api from '../Api'
 
 import UserStatistics from './UserStatistics'
 import EditSelf from './EditSelf';
@@ -42,7 +42,7 @@ class UserInfo extends React.Component {
         return (
             <div className="profile-container">
                 <ProfilePicture src={ imageUrl }/>
-                <div class="profile__bottom">
+                <div className="profile__bottom">
                     <Link to={`/users/${id}`} className="profile__name">{ name }</Link>
                     <UserStatistics
                         id={ id }

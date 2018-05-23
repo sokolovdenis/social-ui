@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Api from '../api'
+import Api from '../Api'
 
 import UserInfo from './UserInfo'
 import PostList from './PostList'
@@ -81,12 +81,12 @@ class Feed extends React.Component {
                     posts={this.state.posts}
                     me={this.props.me} />
 
-                <div class="main-container">
+                <div className="main-container">
                     <CreatePost onPostCreated={ (created) => this.onPostCreated(created) }/>
                     <PostList items={this.state.feed} onLoadMore={ () => this.loadMore() } thereWillBeMore={ this.state.thereWillBeMore }/>
                 </div>
 
-                <div class="right-fake"></div>
+                <div className="right-fake"></div>
             </div>
         );
     }

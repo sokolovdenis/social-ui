@@ -1,5 +1,5 @@
 import React from 'react';
-import Api from '../api'
+import Api from '../Api'
 import UserInfo from './UserInfo'
 import PostList from './PostList'
 import Loading from './Loading'
