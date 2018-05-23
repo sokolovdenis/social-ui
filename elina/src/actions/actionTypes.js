@@ -1,0 +1,3 @@
+export const FETCH_USER_DATA = 'FETCH_USER_DATA';
+export const FETCH_USERS_DATA = 'FETCH_USERS_DATA';
+export const FETCH_USERS_LIST = 'FETCH_USERS_LIST';
