@@ -367,12 +367,19 @@ class UserBlock extends Component {
             </form>;
         }
 
-        return (
+        let img;
+        if (this.state.userData.imageUrl !== null) {
+            img = <img src={this.state.userData.imageUrl} width="200" height="200" alt="profile photo" />;
+        }
+        else {
+            img = <img src={require("./images/VanyaIvanov.jpg")} width="200" height="200" alt="profile photo" />;
+        }
 
+        return (
             <main>
                 <section class="all-user-info">
                     <section class="photo-area">
-                        <img src={require("./images/VanyaIvanov.jpg")} width="200" height="200" alt="profile photo" />
+                        {img}
                     </section>
                     <section class="info-area">
                         <h2>{this.state.userData.name}</h2>

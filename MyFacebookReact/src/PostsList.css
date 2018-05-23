@@ -19,10 +19,14 @@
         border: 1px solid lightsteelblue;
     }
 
+    .new-post .add-post-image {
+        margin-left: 10px;
+        margin-right: 0px;
+    }
+
 .new-post .add-post-button {
     color: white;
     background: steelblue;
-    margin-left: 2%;
     margin-top: 5px;
     height: 30px;
     width: 150px;

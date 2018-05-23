@@ -6,6 +6,12 @@
     background: white;
 }
 
+.user-info img {
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-bottom: 0px
+}
+
 p {
     color: lightsteelblue;
 }

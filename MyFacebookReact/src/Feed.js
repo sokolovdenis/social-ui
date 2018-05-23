@@ -100,6 +100,7 @@ class Feed extends Component {
                             authorName={post.user.name}
                             date={post.dateTime}
                             text={post.text}
+                            imageUrl={post.imageUrl}
                         />
                     )}
                 </section>

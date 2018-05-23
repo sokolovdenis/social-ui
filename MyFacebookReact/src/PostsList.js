@@ -87,11 +87,53 @@ class PostsList extends Component {
                     return Promise.reject(response.statusText);
                 }
             })
-            .then(data => this.onRenderWithNewPost(data))
+            .then(data => {
+                if (this.newPostImage.files[0] !== undefined) {
+                    this.onUploadImage(data);
+                }
+                this.onRenderWithNewPost(data);
+            })
             .catch(function (error) {
                 alert(error);
             });
         this.newPostText.value = '';
+    }
+
+    onUploadImage(data) {
+        if (this.newPostImage.value !== undefined) {
+
+            let imageFile = this.newPostImage.files[0];
+            let formData = new FormData();
+            formData.append('imageFile', imageFile);
+
+            // Отправим картинку на сервер
+            const urlPhoto = this.apiUrl + 'users/me/posts/' + data.id + '/image';
+            
+            const responsePromisePhoto = fetch(urlPhoto, {
+                method: 'PUT',
+                headers: {
+                    'Authorization': "Bearer " + this.state.token
+                },
+                body: formData
+            });
+
+            responsePromisePhoto
+                .then(function (response) {
+                    const status = response.status;
+                    if (status >= 200 && status <= 299) {
+                        return response.json();
+                    }
+                    else {
+                        return Promise.reject(response.statusText);
+                    }
+                })
+                .then(data => this.onRenderWithNewPost(data))
+                .catch(function (error) {
+                    alert(error);
+                });
+            this.newPostText.value = '';
+        }
+        
     }
 
     onRenderWithNewPost(data) {
@@ -106,7 +148,8 @@ class PostsList extends Component {
     render() {
         const newPostBlock = this.state.isMe ? (<article class="new-post">
             <form onSubmit={(event) => this.handleNewPostSubmit(event)} id="new-post-submit-form">
-                <input type="text" class="add-post-text" placeholder="Что у вас нового?" ref={input => this.newPostText = input}/>
+                <input type="text" class="add-post-text" placeholder="Что у вас нового?" ref={input => this.newPostText = input} />
+                <input type="file" class="add-post-image" ref={input => this.newPostImage = input} />
                 <input type="submit" class="add-post-button" value="Отправить" />
             </form>
         </article>) : (<p></p>);
@@ -119,6 +162,7 @@ class PostsList extends Component {
                         authorName={post.user.name}
                         date={post.dateTime}
                         text={post.text}
+                        imageUrl={post.imageUrl}
                     />
                 )}
             </section>

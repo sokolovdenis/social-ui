@@ -17,8 +17,16 @@ class SmallUserInfo extends Component {
     }
 
     render() {
+
+        let image;
+
+        if (this.state.imageUrl !== null) {
+            image = <img src={this.state.imageUrl} width="80" height="80" alt="profile photo" />;
+        }
+
         return (
             <article class="user-info">
+                {image}
                 <h4>{this.state.name}</h4>
                 <p>Дата рождения: <time>{this.state.birthday}</time></p>
                 <p>{this.state.info}</p>

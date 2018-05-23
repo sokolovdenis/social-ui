@@ -40,13 +40,6 @@ class MainArea extends Component {
             <div class="main-area">
                 <SideMenu />
                 <Switch>
-                    <Route exact path="/" render={() => {
-                        if (this.state.isEditMode) {
-                            return <EditUserInfoBlock token={this.state.token} onNotEditMode={() => this.saveButtonHandler()} />;
-                        } else {
-                            return <UserBlock token={this.state.token} isMe={true} onEditMode={() => this.editButtonHandler()} />;
-                        }
-                    }} />
                     <Route exact path="/users" render={() => {
                         return <UsersList token={this.state.token} />;
                     }} />
@@ -55,6 +48,13 @@ class MainArea extends Component {
                     }} />
                     <Route exact path="/feed" render={() => {
                         return <Feed token={this.state.token} />;
+                    }} />
+                    <Route exact path="/" render={() => {
+                        if (this.state.isEditMode) {
+                            return <EditUserInfoBlock token={this.state.token} onNotEditMode={() => this.saveButtonHandler()} />;
+                        } else {
+                            return <UserBlock token={this.state.token} isMe={true} onEditMode={() => this.editButtonHandler()} />;
+                        }
                     }} />
                 </Switch>
             </div>
