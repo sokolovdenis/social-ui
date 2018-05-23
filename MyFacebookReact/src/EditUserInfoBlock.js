@@ -46,7 +46,7 @@ class EditUserInfoBlock extends Component {
             })
             .then(data => {
                 this.onUploadPhoto();
-                if (this.fileInput.value === undefined) {
+                if (this.fileInput.value === "") {
                     this.props.onNotEditMode();
                 }
             })
@@ -56,7 +56,7 @@ class EditUserInfoBlock extends Component {
     }
 
     onUploadPhoto() {
-        if (this.fileInput.value !== undefined) {
+        if (this.fileInput.value !== "") {
             
             let imageFile = this.fileInput.files[0];
             let formData = new FormData();
