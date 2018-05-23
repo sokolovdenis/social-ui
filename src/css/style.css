@@ -1,0 +1,19 @@
+body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: #FFF url(images/img06.png) repeat;
+  font-family: 'Oswald', sans-serif;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  text-transform: none;
+}
