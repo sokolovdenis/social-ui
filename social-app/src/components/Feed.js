@@ -74,7 +74,7 @@ class Feed extends React.Component {
         }
 
         return (
-            <div className="page-content" >
+            <div className="page-content">
                 <UserInfo userInfo={this.props.me.myInfo}
                     followings={this.state.followings}
                     followers={this.state.followers}

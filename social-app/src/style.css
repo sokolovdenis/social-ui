@@ -50,6 +50,7 @@ body {
     border-radius: 10px;
     padding: 3px;
     font-weight: 700;
+    color: white;
 }
 
 .button:hover {

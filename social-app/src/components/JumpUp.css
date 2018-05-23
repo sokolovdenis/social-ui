@@ -1,0 +1,12 @@
+﻿.jump-up {
+    display: block;
+    background-color: #602f6b;
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
+    width: 150px;
+    height: 60px;
+    margin: auto 0;
+    text-align: center;
+    line-height: 60px;
+}

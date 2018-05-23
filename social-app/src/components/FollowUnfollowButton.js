@@ -4,6 +4,7 @@ import Api from '../Api'
 class FollowUnfollowButton extends React.Component {
     constructor(props) {
         super(props);
+
         this.state = {
             isFollowing: false
         };
@@ -24,10 +25,12 @@ class FollowUnfollowButton extends React.Component {
 
     follow(id) {
         Api.follow(id)
+        this.setState({ isFollowing: true })
     }
 
     unfollow(id) {
         Api.unfollow(id);
+        this.setState({ isFollowing: false })
     }
 }
 

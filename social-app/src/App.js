@@ -11,6 +11,7 @@ import AllUsers from './components/AllUsers'
 import Followers from './components/Followers'
 import Followings from './components/Followings'
 import Loading from './components/Loading';
+import JumpUp from './components/JumpUp';
 
 import './style.css'
 
@@ -62,7 +63,8 @@ class App extends React.Component {
 
     return (
       <Router>
-        <div className="page">
+        <div className="page" id="top">
+          <JumpUp anchor = '#top'/>
           <Header me={ this.state.me } onSignOut={() => this.onSignOut()} />
           <main className="body-container">
             <Switch>
