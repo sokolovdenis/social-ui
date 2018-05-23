@@ -21,26 +21,6 @@ class Feed extends React.Component {
     }
 
     async loadMore() {
-        const userId = this.props.userId;
-        const userInfo = await Api.getUser(userId);
-        const posts = await Api.getUserPosts(userId, this.state.skip, this.state.count);
-
-        if (posts.length < this.state.count) {
-            this.setState({
-                thereWillBeMore: false
-            })
-        }
-        const skip = this.state.skip + posts.length;
-        this.state.posts = this.state.posts.concat(posts);
-
-        this.setState({
-            isReady: true,
-            posts: this.state.posts,
-            skip
-        });
-    }
-
-    async loadMore() {
         const me = this.props.me.myInfo;
 
         // todo: remove post count term at all
@@ -65,7 +45,7 @@ class Feed extends React.Component {
 
     async componentDidMount() {
         const me = this.props.me.myInfo;
-        
+
         const followers = await Api.getUsersFollowers(me.id);
         const followings = await Api.getUsersFollowings(me.id);
 
