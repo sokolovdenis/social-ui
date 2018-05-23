@@ -1,0 +1,47 @@
+.field {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 10px;
+}
+
+.miniavatar {
+  margin-right: 30px;
+}
+
+.miniavatar img {
+  width: 50px;
+  height: 50px;
+  border: 1px #545255 solid;
+  box-shadow: 0 0 3px #545255;
+  border-radius: 50px;
+  background-image: url("../../icons/boss.png");
+  background-size: 50px 50px;;
+}
+
+.buttons {
+  margin: 10px 0px;
+}
+
+.but {
+  padding-right: 10px;
+}
+
+.active {
+  color: #000;
+}
+
+.infoFoll {
+  height: 100%;
+}
+
+.fieldBlock button {
+  display: block;
+  margin: 15px;
+  color: #545255;
+  background: none;
+  border: 1px rgba(170, 170, 170, 0.51) solid;
+  box-shadow: 0px 0px 1px rgba(158, 154, 160, 0.5);
+  font-family: 'Circe-Light';
+  height: 20px;
+  width: 100px;
+}

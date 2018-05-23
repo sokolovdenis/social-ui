@@ -1,0 +1,81 @@
+.sidebar {
+  font-family: 'Circe-Light';
+  position: fixed;
+  display: flex;
+  justify-content: flex-start;
+  background: #fff;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  left: 0;
+}
+
+.icons {
+  width: 70px;
+  box-shadow: 2px -1px 2px #545255;
+}
+
+.icons li {
+  margin-top: 20px;
+}
+
+.icon {
+  margin-left: 10px;
+}
+
+.icon {
+  width: 50px;
+  height: 50px;
+  border: 1px #545255 solid;
+  box-shadow: 0 0 3px #545255;
+  border-radius: 80px;
+}
+
+.a {
+  background-image: url("../../icons/man.png");
+  background-size: 50px 50px;
+}
+
+.b {
+  background-image: url("../../icons/movie.png");
+  background-size: 50px 50px;
+}
+
+.c {
+  background-image: url("../../icons/users.png");
+  background-size: 50px 50px;
+}
+
+.d {
+  background-image: url("../../icons/left.png");
+  background-size: 50px 50px;
+}
+
+.links {
+  display: none;
+  width: 110px;
+  box-shadow: 2px -1px 2px #545255;
+}
+
+.links li {
+  margin-top: 18px;
+  margin-bottom: 2px;
+}
+
+.icons:hover + .links, .links:hover {
+  display: block;
+}
+
+.sidebar:hover > .icons, .icons:hover{
+  box-shadow: none;
+}
+
+.link {
+  outline: none;
+  font-family: 'Circe-Light';
+  height: 50px;
+  font-size: 20px;
+  margin-left: 10px;
+  text-align: left;
+}
