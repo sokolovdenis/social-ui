@@ -24,7 +24,7 @@ class EditSelf extends React.Component {
         return (
             <div className="profile-container">
                 <div className="profile-editing-picholder">
-                    <label className="profile-editing-changepic" for="file-input">
+                    <label className="profile-editing-changepic" htmlFor="file-input">
                         <img className="profile-pic editing" src={ this.state.imagePreview } />
                         <div className="profile-editing-changepic-label">Change your profile photo</div>
                     </label>
@@ -48,8 +48,8 @@ class EditSelf extends React.Component {
                         defaultValue={ info }
                         onChange={(event) => this.onInfoChanged(event)} />
 
-                    <input className="profile-interact editing button" type="submit" value="Save" />
-                    <input className="profile-interact editing button" onClick={ (event) => this.props.onCancelEditing() } value="Cancel" />
+                    <input className="profile-interact editing button" type="submit" value="Save"/>
+                    <input className="profile-interact editing button" type="button" onClick={ (event) => this.props.onCancelEditing() } value="Cancel"/>
                 </form>
             </div>
         );
