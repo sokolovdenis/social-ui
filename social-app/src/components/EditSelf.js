@@ -19,9 +19,7 @@ class EditSelf extends React.Component {
         if (!this.props.userInfo) {
             return null;
         }
-        let { id, imageUrl, name, info } = this.props.userInfo;
-
-        const isItMe = !this.props.me ? undefined : (this.props.me.id == id);
+        let { id, info } = this.props.userInfo;
 
         return (
             <div className="profile-container">

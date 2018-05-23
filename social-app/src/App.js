@@ -52,6 +52,12 @@ class App extends React.Component {
     this.setState({ isAutheticated: false, isReady: false });
   }
 
+  onSelfUpdated(updated) {
+    let {me} = this.state;
+    me.myInfo = updated;
+    this.setState({ me });
+  }
+
   render() {
     if (!this.state.isAutheticated) {
       return (<SignIn onAuthenticatedHandler={ async () => await this.onAuthenticated() }/>);
@@ -71,7 +77,7 @@ class App extends React.Component {
               <Route exact path="/users" render={ () => (<AllUsers me={this.state.me} />) } />
               <Route exact path="/" render={ () => (<Feed me={this.state.me} />) } />
               <Route exact path="/users/:userId" render={({match}) => (
-                <UserProfile userId={ match.params.userId } me={ this.state.me } />
+                <UserProfile userId={ match.params.userId } me={ this.state.me } onSelfUpdated={ (me) => this.onSelfUpdated(me) } />
               )} />
 
               <Route path="/users/:userId/followers" render={({match}) => (

@@ -40,6 +40,10 @@
     top: 40%;
 }
 
+.profile__bottom {
+    margin-top:  10px;
+}
+
 .profile__bottom>input,
 .profile__bottom>textarea {
     width: 100%;

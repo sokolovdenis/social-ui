@@ -75,7 +75,8 @@ class UserProfile extends React.Component {
                     followings={ this.state.followings }
                     followers={ this.state.followers }
                     posts={ this.state.posts }
-                    me={ this.props.me } />
+                    me={ this.props.me }
+                    onSelfUpdated={ (me) => this.props.onSelfUpdated(me) } />
 
                 <div className="main-container">
                     { createPost }

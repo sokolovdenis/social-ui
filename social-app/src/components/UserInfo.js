@@ -14,12 +14,13 @@ class UserInfo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            user: this.props.userInfo,
             editing: false
         };
     }
 
     render() {
-        let { id, imageUrl, name, info } = this.props.userInfo;
+        let { id, imageUrl, name, info } = this.state.user;
 
         const postCount = this.props.posts.length;
         const followersCount = this.props.followers.length;
@@ -29,7 +30,7 @@ class UserInfo extends React.Component {
 
         if (this.state.editing) {
             return (<EditSelf 
-                        userInfo={this.props.userInfo}
+                        userInfo={this.state.user}
                         me={this.props.me}
                         onFinishEditing={(data) => this.onFinishEditing(data) }
                         onCancelEditing={(data) => this.onCancelEditing(data) } />);
@@ -67,17 +68,22 @@ class UserInfo extends React.Component {
     }
 
     async onFinishEditing(data) {
-        await Api.editMyself({
+        let updatedUser = await Api.editMyself({
             name: data.user.name,
             info: data.user.info,
             birthday: data.user.birthday
         });
 
         if (data.imageFile) {
-            await Api.setProfileImage(data.imageFile);
+            updatedUser = await Api.setProfileImage(data.imageFile);
         }
 
-        this.setState({ editing: false });
+        this.setState({
+            user: updatedUser, 
+            editing: false
+        });
+
+        this.props.onSelfUpdated(updatedUser);
     }
 
     onCancelEditing() {
