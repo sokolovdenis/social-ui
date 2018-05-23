@@ -9,6 +9,7 @@ class Header extends React.PureComponent {
         return (
             <div className="header">
                 <header className="header__container">
+                    <Link to="/users/" className="header__logo">Comrades</Link>
                     <Link to="/" className="header__logo">Social App</Link>
                     <div className="header__right">
                         <div className="header__signout-button" onClick={(event) => this.props.onSignOut()}>sign out</div>

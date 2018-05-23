@@ -12,7 +12,7 @@ class LoadMore extends React.Component {
             var offset = d.scrollTop + window.innerHeight;
             var height = d.offsetHeight;
 
-            if (height != oldHeight) {
+            if (height !== oldHeight) {
                 alreadyTriggered = false;
             }
 
