@@ -36,6 +36,9 @@ class App extends React.Component {
     const myInfo = await Api.getMyself();
     const followers = await Api.getUsersFollowers(myInfo.id);
     const followings = await Api.getUsersFollowings(myInfo.id);
+    if (!followings.map(user => user.id).includes(myInfo.id)) {
+        await Api.follow(myInfo.id);
+    }
 
     this.setState({
       isReady: true,
