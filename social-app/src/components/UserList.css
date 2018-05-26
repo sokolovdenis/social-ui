@@ -1,0 +1,17 @@
+.user-list {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    margin: 5px auto 0px auto;
+}
+
+@media (max-width: 1300px) {
+    .user-list {
+        grid-template-columns: auto auto;
+    }
+}
+
+@media (max-width: 900px) {
+    .user-list {
+        grid-template-columns: auto;
+    }
+}
