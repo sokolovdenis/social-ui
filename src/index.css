@@ -1,0 +1,47 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper {
+    font-family: 'Roboto', sans-serif;;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+h3, h4 {
+    margin: 10px 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.header_wrapper {
+    display: flex;
+    justify-content: center;
+    background-color: #24292e;
+}
+
+nav {
+    width: 60%;
+    display: flex;
+    background-color: #24292e;
+}
+
+nav a {
+    color: white;
+    padding: 20px 30px;
+    text-decoration: none;
+    text-align: center;
+}
+
+nav a:hover {
+    color: #bcbfbf;
+}
+
+.sign_out_lnk {
+    margin-left: auto;
+}
