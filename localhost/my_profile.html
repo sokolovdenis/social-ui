@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Профиль</title>
+    <link rel="stylesheet" href="css/mainStyles.css">
+    <link rel="stylesheet" href="css/personProfileStyle.css">
+</head>
+<style>
+   body {
+    background-image: url(pic/back.jpg); /* Путь к фоновому изображению */
+    background-color: #EDEEF0; /* Цвет фона */
+   }
+</style>
+<body>
+<header class="header">
+    <img  src="pic/logo.png"  style="
+      height:30px; width: 30px;"><div style="font-size: 40px; font-style: bold">Коннект</div></img>
+    <div class="header_Поиск">
+        <input type="Поиск" name="Поиск"> <span> Поиск </span>
+    </div>
+    <a href="my_profile.html" class="header_picture">
+        <img href="my_profile.html" src="pic/profile.png"  style="padding-top: 15px; padding-bottom: 30px height:30px; width: 30px;"><br/>Профиль</img>
+    </a>
+    <a href="#" class="header_Выход">Выход</a>
+</header>
+
+<div class="container">
+    <nav class="nav">
+        <ul>
+            <li style="padding-left: 20px; padding-right: 20px;"><a href="friend_list.html">Друзья</a></li>
+            <li><a href="#">Сообщения</a></li>
+            <li><a href="news.html">Новости</a></li>
+        </ul>
+    </nav>
+
+    
+
+    <main class="main" style="padding-left: 20px; padding-right: 20px;">
+        <div class="main_data_info">
+            <p class="main_data">
+                <input type="file" style="padding-left: 20px; padding-top: 20px;" name="avatar" accept="image/*">
+            </p>
+            <p class="main_data">
+                <span class="main_info_text"> Имя </span>
+                <span class="main_info_input">
+                    <input type="text" name="Моё имя" placeholder="Моё имя">
+                </span>
+            </p>
+            <p class="main_data">
+                <span class="main_info_text"> Фамилия </span>
+                <span class="main_info_input">
+                    <input type="text" name="Моя фамилия" placeholder="Моя фамилия">
+                </span>
+            </p>
+            <p class="main_data">
+                <span class="main_info_text"> День рождения </span>
+                <span class="main_info_input">
+                    <input type="date" name="Birthday">
+                </span>
+            </p>
+            <p class="main_data">
+                <span class="main_info_text"> Электропочта</span>
+                <span class="main_info_input">
+                    <input type="email" class="main_info_input" placeholder="example@gov.ru">
+                </span>
+            </p>
+        </div>
+        <p class="change_password">
+            <span class="main_info_text"> Изменить пароль </span>
+            <span class="main_info_input">
+                <input type="password" class="main_info_input" placeholder="#1234567890">
+            </span> <br>
+            <div class="show_password">
+                <input type="checkbox" name="main_show_password_input">
+                <span class="main_show_password_text"> Show the password </span>
+            </div>
+        </p>
+
+        <p class="main_info">
+        <span class="main_info_info"> Обо мне </span> <br/>
+        <textarea name="InfoAboutMe" cols="55" rows="8" placeholder="Информация обо мне"></textarea>
+    </p>
+    </main>
+
+    
+</div>
+
+<footer class="footer">
+    <div class="footer_tech_email"> Копирайт 2018 </div>
+
+    <div class="footer_tech_text"> Поддержать проект 4026 3023 3943 4511 </div>
+</footer>
+
+</body>
+</body>
+</html>
