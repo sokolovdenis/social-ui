@@ -1,0 +1,45 @@
+.registration {
+    font-family: Arial, Helvetica, sans-serif;
+    border-style: dotted;
+    border-width: 5px;
+    border-color: #EDEEF0;
+    width: 600px;
+    height: 380px;
+    margin: auto;
+    margin-top: 8%;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    background:white;
+}
+
+.info{
+    text-align: right;
+    padding-right: 150px;
+}
+.info_password{
+    text-align: right;
+    padding-right: 150px;
+}
+.person_info {
+    padding-bottom: 20px;
+}
+
+.functions_password {
+    text-align: left;
+    padding-top: 4px;
+    padding-left: 300px;
+    font-size: 13px;
+}
+
+.info input {
+    text-align: left;
+    margin-left: 10px;
+    width: 220px;
+    padding-left: 7px;
+}
+.registration_ready {
+    width: 130px;
+    margin-top: 0px;
+    margin-left: 70px;
+    font-size: 18px;
+}

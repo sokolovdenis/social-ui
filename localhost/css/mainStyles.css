@@ -1,0 +1,94 @@
+
+.img {
+    background-color: #EDEEF0;
+    width: 100%;
+    padding: 20px;
+}
+
+body {
+    font-size: 16px;
+    font-family: PT_Sans, PT_Sans;
+    background-image: url(pic/back.jpg); /* Путь к фоновому изображению */
+    background-color: #EDEEF0; /* Цвет фона */
+}
+
+* {
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color:black;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* описание header*/
+.header {
+    height: 70px;
+    background: #4A76A8;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+.header_logo {
+    width: 30px;
+    height: 30px;
+    padding-top: 23px;
+    padding-left: 50px;
+    border-radius: 50px;
+}
+.header_Поиск {
+    width: 95%;
+    text-align: right;
+}
+.header_picture {
+    width: 11%;
+    padding-left: 30px;
+    border-radius: 50px;
+}
+
+.header_Выход {
+    width: 6%;
+    text-align: left;
+}
+
+/* описание центральных блоков*/
+.container {
+    display: flex;
+    flex-grow: 1;
+}
+
+/* описание navigation*/
+ul {
+     list-style-type: none;
+ }
+ul ul {
+    padding-left: 15px;
+}
+.nav {
+    padding-top: 30px;
+    text-align: center;
+    background: #279EDA;
+}
+/* описание footer*/
+.footer {
+    background: #4A76A8;
+    height: 50px;
+    display: flex;
+}
+
+.footer_tech_email {
+    width: 15%;
+    padding-left: 30px;
+    padding-top: 6px;
+}
+
+.footer_tech_text {
+    font-size: 24px;
+    margin: auto;
+    padding-right: 150px;
+}

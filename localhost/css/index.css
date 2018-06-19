@@ -1,0 +1,59 @@
+.registration {
+    font-family: PT_Sans, PT_Sans;
+    border-style: solid;
+    border-width: 5px;
+    border-color: #EDEEF0;
+    width: 500px;
+    height: 180px;
+    margin: auto;
+    margin-top: 8%;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    background:white;
+}
+
+.signup{
+    font-family: PT_Sans, PT_Sans;
+    border-style: solid;
+    border-width: 5px;
+    border-color: #EDEEF0;
+    width: 500px;
+    height: 350px;
+    margin: auto;
+    margin-top: 8%;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    background:white;
+}
+
+.info{
+    text-align: right;
+    padding-right: 120px;
+}
+.info_password{
+    text-align: right;
+    padding-right: 120px;
+}
+.person_info {
+    padding-bottom: 0px;
+}
+
+.functions_password {
+    text-align: left;
+    padding-top: 4px;
+    padding-left: 300px;
+    font-size: 13px;
+}
+
+.info input {
+    text-align: left;
+    margin-left: 10px;
+    width: 220px;
+    padding-left: 7px;
+}
+.registration_ready {
+    width: 130px;
+    margin-top: -50px;
+    margin-left: 70px;
+    font-size: 18px;
+}

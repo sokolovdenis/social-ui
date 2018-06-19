@@ -1,0 +1,58 @@
+/* описание main
+    main
+        main_person
+            picture
+            info
+                name
+                birthday
+                info
+        main
+*/
+.main {
+    flex-grow: 1;
+    box-sizing: border-box;
+}
+.main_person {
+    padding-left: 15px;
+    padding-top: 20px;
+    display: flex;
+    height: 250px;
+}
+.ad {
+    width: 500px;
+}
+
+.main_person_picture {
+    width: 150px;
+}
+.main_person_info {
+    width: 300px;
+    padding-bottom: 3px;
+}
+
+.main_person_info_name{
+
+}
+.main_person_info_age{
+}
+.main_person_info_info{
+    padding-top: 20px;
+}
+.main_person_he_likes {
+    padding-top: 20px;
+}
+
+.main_main{
+    height: 500px;
+    box-sizing: border-box;
+}
+
+.post {
+    padding-left: 20px;
+    box-sizing: border-box;
+}
+.img {
+    background-color: #EDEEF0;
+    width: 100%;
+    padding: 20px;
+}

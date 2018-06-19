@@ -1,0 +1,53 @@
+body {
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.person_picture {
+    width: 20%;
+    vertical-align: center;
+}
+.main {
+    width: 350px;
+}
+
+.main_info {
+    width: 40%;
+    padding-left: 50px;
+}
+
+.main_info_text {
+    width: 600px;
+}
+
+.main_show_password_text {
+    font-size: 11px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.main_data {
+    text-align: right;
+}
+
+.main_data input {
+    width: 210px;
+    padding-left: 7px;
+}
+.main_data_info {
+    margin-top: 23px;
+}
+
+.change_password {
+    margin-top: 40px;
+    padding-left: 70px;
+}
+
+.main_info_input input{
+    width: 200px;
+    padding-left: 20px;
+}
+
+.show_password {
+    margin-top: -5px;
+    padding-left: 150px;
+}

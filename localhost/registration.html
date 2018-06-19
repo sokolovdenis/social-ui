@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Log in</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<style>
+   body {
+    background-image: url(pic/back.jpg); /* Путь к фоновому изображению */
+    background-color: #EDEEF0; /* Цвет фона */
+   }
+</style>
+<body>
+<div class="signup">
+    <div class="person_info">
+        <p class="info">
+            <span class="info_text"> Имя </span>
+            <input type="text" required placeholder="Имя">
+        </p>
+        <p class="info">
+            <span class="info_text"> Фамилия </span>
+            <input type="text" required placeholder="Фамилия">
+        </p>
+        <p class="info">
+            <span class="info_text"> День рождения </span>
+            <input type="date" name="Birthday">
+        </p>
+        <p class="info">
+            <span class="info_text"> Электропочта </span>
+            <input type="email" required placeholder="aaa@aaa.aaa">
+        </p>
+    </div>
+    <div class="password_info">
+        <p class="info">
+            <span class="info_text"> Пароль </span>
+            <input type="password" required placeholder="1234567890">
+        </p>
+        <p class="info">
+            <span class="info_text"> Повторите пароль </span>
+            <input type="password" placeholder="1234567890">
+        </p>
+        <p class="functions_password">
+            <input type="checkbox" name="remember_password">
+            <span class="functions_password_text"> Запомнить пароль </span>
+            <br>
+            <input type="checkbox" name="show_password">
+            <span class="functions_password_text"> Показать пароль </span>
+        </p>
+    </div>
+    <a class="registration_ready" href="my_profile.html"> Готово </a>
+</div>
+</body>
+</html>
