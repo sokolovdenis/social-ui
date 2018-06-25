@@ -23,11 +23,7 @@ class Profile extends Component {
             userId: null
         };
         let setState = this.setState.bind(this);
-        Api.get('/users/me')
-          .then(response => setState({userId: response.data.id}));
-        Api.get('/users/' + this.state.id)
-          .then(response => setState(response.data))
-          .catch(err => setState({id: false}));
+        Api.get('/users/me').then(response => setState({userId: response.data.id}));
     }
 
     editProfileButton() {

@@ -15,6 +15,7 @@ ReactDOM.render(
             <Route path='/register' component={Register} />
             <Route path='/login' component={Login} />
             <Route path='/profile/:id' component={Profile} />
+            <Route path='/profile' component={Login} />
         </div>
     </BrowserRouter>,
     document.getElementById('root')
