@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
+
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import DatePicker from 'material-ui/DatePicker';
+
+import Api from './Api'
 
 class Register extends Component {
     constructor(props) {
@@ -13,7 +17,7 @@ class Register extends Component {
             name: '', 
             email: '',
             password: '',
-            birthday: null
+            birthday: new Date()
         }
 
         this.handleNameChange = this.handleNameChange.bind(this);
@@ -28,6 +32,7 @@ class Register extends Component {
     }
 
     handleEmailChange(event, newEmail) {
+        // TODO
         this.setState({email: newEmail});
     }
 
@@ -40,8 +45,19 @@ class Register extends Component {
     }
 
     handleClick(event) {
-        console.log('Submitting', this.state);
-        // TODO: backend
+        console.log('Registering', this.state);
+        let history = this.props.history;
+        Api.post('/identity/signup', this.state)
+            .then(function(response) {
+                console.log(response.data);
+                Api.setToken(response.data.token);
+                Api.get('/users/me').then(response => history.push('/profile/' + response.data.id));
+            });
+        event.preventDefault();
+    }
+
+    componentDidMount() {
+        this.props.history.push('/register');
     }
 
     render() {
@@ -71,4 +87,4 @@ class Register extends Component {
     }
 }
 
-export default Register;
+export default withRouter(Register);
